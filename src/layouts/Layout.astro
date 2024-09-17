@@ -1,0 +1,75 @@
+---
+import Link from '../components/atoms/Link.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<Link to="/">{t('nav.home')}</Link>
+				<Link to="/else">{t('nav.knowledgeBase')}</Link>
+			</nav>
+		</header>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
+<style is:global lang="scss">
+	:root {
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #13151a;
+		color: white;
+	}
+	main {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 4rem;
+		margin: 1rem 0 2rem 0;
+	}
+</style>

@@ -1,0 +1,81 @@
+---
+interface Props {
+  to: string
+}
+
+const { to } = Astro.props;
+const currentPath = new URL(Astro.url).pathname.split('/')[1];
+---
+
+<a href={to} class={`/${currentPath}` === to ? 'current' : undefined}>
+  <slot />
+</a>
+
+<style lang="scss">
+  a {
+			text-decoration: none;
+			color: white;
+			font-size: larger;
+			position: relative;
+
+			&::before {
+				content: "{";
+				transform: translateX(-2rem);
+				left: 0;
+				position: absolute;
+				transition-property: transform, opacity;
+				transition-duration: 150ms;
+				transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+			}
+
+			&::after {
+				content: "}";
+				transform: translateX(2rem);
+				right: 0;
+				position: absolute;
+				transition-property: transform, opacity;
+				transition-duration: 150ms;
+				transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+			}
+
+			&:not(.current) {
+				&::after,
+				&::before {
+					opacity: 0;
+				}
+
+				&:hover,
+				&:focus-within {
+					&::before,
+					&::after {
+						opacity: 1;
+					}
+					&::before { transform: translateX(-1rem); }
+				&::after { transform: translateX(1rem); }
+				}
+			}
+
+			&.current {
+				&::before {
+					transition: transform 100ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+					transform: translateX(-2rem);
+				}
+
+				&:hover::before,
+				&:focus-visible::before {
+					transform: translateX(-1rem);
+				}
+
+				&::after {
+					transform: translateX(2rem);
+					transition: transform 100ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+				}
+			
+				&:hover::after,
+				&:focus-visible::after {
+					transform: translateX(1rem);
+					
+				}
+			}
+		}
+</style>

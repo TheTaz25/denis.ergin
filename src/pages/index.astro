@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/utils';
+import '../styles/homepage-markdown.scss';
+import { Icon } from 'astro-icon/components';
+
+const t = useTranslations();
+---
+
+<Layout title="Hallo Welt!">
+	<div class="opening-wrapper">
+		<div class="row">
+			<Icon name="bracket" class="bracket open" height="100px" width="unset" />
+			<h1>{t('home.welcome')}</h1>
+		</div>
+		<p class="mb-2">
+			{t('home.opening.1')}
+		</p>
+		<p>
+			{t('home.opening.2')}
+		</p>
+		<div class="row">
+			<p>{t('home.opening.3')}</p>
+			<Icon name="bracket" class="bracket close" height="100px" width="unset" />
+		</div>
+	</div>
+</Layout>
+
+<style lang="scss">
+.row {
+	display: flex;
+	align-items: center;
+
+	h1 {
+		font-size: xxx-large;
+		margin: unset;
+	}
+}
+[data-icon="bracket"].bracket {
+	height: 100px;
+	color: #555;
+
+	&.close {
+		transform: rotate(180deg);
+	}
+}
+</style>
