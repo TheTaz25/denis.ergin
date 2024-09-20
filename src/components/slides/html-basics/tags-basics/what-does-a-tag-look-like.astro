@@ -1,0 +1,67 @@
+<section>
+
+  <section>
+    <h2>Aufbau eines HTML-Elements</h2>
+    <pre class="html"><code data-line-numbers data-trim>
+      <p>
+        Das ist ein Beispiel
+      </p>
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>Aufbau eines HTML-Elements</h2>
+    <pre><code data-line-numbers="1,3" data-trim>
+      <p>  <!-- öffnendes Tag -->
+        Das ist ein Beispiel
+      </p> <!-- schließendes Tag -->
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>Aufbau eines HTML-Elements</h2>
+    <pre><code data-line-numbers="2" data-trim>
+      <p>
+        Das ist ein Beispiel <!-- Kind-Element -->
+      </p>
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Attribute</h3>
+    <pre><code data-line-numbers="1" data-trim>
+      <p id="meine-id" class="klasse">
+        Das ist ein Beispiel
+      </p>
+    </code></pre>
+    <p>
+      In diesem Beispiel erhält das p-tag die attribute "id" und "class" mit den respektiven Werten "meine-id" und "klasse".
+      <br/>
+      Das id-Attribut wird in der Regel zur Identifikation im Dokument verwendet. Es kann zum Beispiel durch das a-Tag referenziert werden.
+      <br/>
+      Das class-Attribut wird im späteren Verlauf dazu verwendet um Styles auf das Element anzuwenden (hierzu später mehr).
+    </p>
+  </section>
+
+  <section>
+    <p>
+      Weitere Attribute existieren und bestimmte Tags können mit weiteren spezielleren Attributen umgehen.
+      <br/>
+      In den folgenden Slides werden weitere Attribute gezeigt und deren (mögliche) Effekte erklärt.
+    </p>
+  </section>
+
+  <section>
+    <h4>Custom Attribute</h4>
+    <p>
+      Neben den bereits definierten Attributen die in diesem Kurs angesprochen werden, kann der Entwickler jederzeit eigene Attribute einem Element zuweisen.
+      <br/>
+      Diese "Custom"-Attribute werden hierfür mit dem Präfix "data-" versehen:
+    </p>
+    <pre class="html"><code data-trim>
+      <p data-custom-attribut="etwas">
+        Ein Beispiel zu Custom-Attributen
+      </p>
+    </code></pre>
+  </section>
+</section>

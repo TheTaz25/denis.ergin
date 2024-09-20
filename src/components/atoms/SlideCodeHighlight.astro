@@ -1,0 +1,13 @@
+---
+interface Props {
+  language: 'html',
+  trim?: boolean
+  highlightLines?: Array<number | string>
+}
+
+const { language, trim, highlightLines } = Astro.props;
+---
+
+<pre class={language}><code data-trim={trim ? "data-trim" : undefined} data-line-numbers={highlightLines?.join(',')}>
+  <slot />
+</code></pre>

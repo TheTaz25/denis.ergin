@@ -1,0 +1,199 @@
+<section>
+  <section>
+    <h2>Wie sieht das minimalste HTML-Dokument aus</h2>
+  </section>
+
+  <section>
+    <h3>HTML-Dokument</h3>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;!-- Content --&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>!DOCTYPE</h3>
+    <pre class="html"><code data-trim data-line-numbers="1">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;!-- Content --&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </section>
+  
+  <section>
+    <p>Ein "altes" Artefakt aus alten HTML-Zeiten. Normalerweise wird mit diesem Code auf eine DTD verwiesen um valides HTML durchzusetzten.</p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;!DOCTYPE html PUBLIC
+        "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+      &gt;
+    </code></pre>
+    <p>Dies ist aber heute in der Form nicht mehr notwendig. Die Kurzform ist ausreichend für heutige Standards und bezieht sich dabei auf HTML in der Version 5!</p>
+  </section>
+
+  <section>
+    <h3>Das HTML-Tag</h3>
+    <pre class="html"><code data-trim data-line-numbers="2,12">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;!-- Content --&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>
+      Das HTML-tag bildet den äußersten Rahmen.
+      <br/>
+      In manchen Fällen wird hier auch vom "root" Element geredet.
+      <br/>
+      Alle weiteren Tags befinden sich innerhalb des HTML-Tag
+    </p>
+  </section>
+
+  <section>
+    <h3>Das head-Tag</h3>
+    <pre class="html"><code data-trim data-line-numbers="3,8">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;!-- Content --&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>
+      Inhalte innerhalb des head-Tag werden nicht im Browser angezeigt.
+      <br/>
+      Im head werden verschiedene Arten für Informationen bereit gestellt:
+    </p>
+    <ul>
+      <li>Titel, Beschreibung und Keywords</li>
+      <li>CSS-Styling</li>
+      <li>Einbindung von JavaScript-Dateien</li>
+      <li>Meta-Informationen</li>
+      <li>und weitere...</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Innerhalb des head-Tag</h3>
+    <pre class="html"><code data-trim data-line-numbers="4|5,6|7">
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;!-- Content --&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Meta: Charset</h4>
+    <pre class="html"><code data-trim>
+      &lt;meta charset="UTF-8"&gt;
+    </code></pre>
+    <p>
+      Dieses Meta-Tag beschreibt das Character Encoding, die der Webbrowser verwenden soll
+      <br/>
+      Weit verbreitet, wie in diesem Beispiel, ist UTF-8. UTF-8 deckt den breitesten Bereich an Sprachen ab die abgebildet werden können.
+      <br/>
+      Dieses Meta Tag sollte unbedingt gesetzt werden um Text-Darstellungsprobleme zu vermeiden.
+    </p>
+  </section>
+
+  <section>
+    <h4>Meta: name &amp; content</h4>
+    <p>
+      Das meta-Tag kann auch generelle Informationen für den Browser beinhalten.
+      <br/>
+      Diese werden in der Kombination "name" und "content" überliefert.
+    </p>
+    <pre class="html"><code data-trim>
+      &lt;meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+      &gt;
+    </code></pre>
+    <p>
+      Das Viewport-Meta Tag kontrolliert die Größe des Viewports im Browser-Fenster.
+    </p>
+  </section>
+
+  <section>
+    <p>
+      Mit
+      <br/><code>width=device-width</code><br/>
+      teilen wir dem Browser-Fenster mit, dass es die vollständige (Geräte) Breite verwenden soll.
+      <br/>
+      Auf dem Laptop entspricht dies der Fenster-Breite des Programms. Auf mobilen Geräten entspricht das die Gerätebreite (in Pixeln).
+    </p>
+    <p>
+      <code>initial-scale=1.0</code><br/>
+      definiert den Zoom den die Website zu beginn eingestellt haben soll.
+    </p>
+    <p>
+      Dieses Beispiel sollte auch in allen Websites angewandt werden, um eine korrekte Darstellung auf mobilen Geräten zu ermöglichen.
+    </p>
+  </section>
+
+  <section>
+    <h4><code>title</code> Tag</h4>
+    <p>
+      Das <code>title</code> Tag gibt den Titel der Website an.
+      <br>
+      Der Titel ist im Tab des Browser-Fensters zu sehen.
+      <br>
+      Außerdem verwendet Google (und andere Suchmaschinen) diesen Tag um dies als Ergebnis in den Suchen anzuzeigen.
+    </p>
+  </section>
+
+  <section>
+    <h3>Das <code>body</code>-Tag</h3>
+    <p>
+      Innerhalb des body Tag befindet sich der sichtbare Inhalt der Website.
+    </p>
+  </section>
+</section>
+
