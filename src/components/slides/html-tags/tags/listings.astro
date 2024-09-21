@@ -1,0 +1,87 @@
+
+<section>
+  <section>
+    <h2>Auflistungen und Aufzählungen</h2>
+  </section>
+
+  <section>
+    <h3>Nummerierte Aufzählungen</h3>
+    <ul>
+      <li>Das Element &lt;ol&gt; definiert eine Nummerierte/Sortierte Liste (Ordered List)</li>
+      <li>Jedes Listenelement innerhalb von <code>ol</code> muss sich in einem <code>&lt;li&gt;</code> Element befinden</li>
+    </ul>
+  </section>
+
+  <section>
+    <b>Beispiel</b>
+    <pre class="html"><code data-trim data-line-numbers>
+      <ol>
+        <li>Erstes Element</li>
+        <li>Zweites Element</li>
+        <li>Drittes Element</li>
+      </ol>
+    </code></pre>
+  </section>
+
+  <section>
+    <b>Attribute</b>
+    <dl>
+      <dt><code>reversed</code></dt>
+      <dd>Gibt an, dass die Elemente in Abzählender Reihe aufgelistet werden (ohne den Inhalt zu vertauschen)</dd>
+      <dt><code>start</code></dt>
+      <dd>Gibt an, ab welcher Nummer der Aufzählung beginnen soll</dd>
+    </dl>
+  </section>
+
+  <section>
+    <b>Nummerierungs-Typen</b>
+    <p>Die Art der Nummerierung wird normal per CSS gesteuert. <code>(list-style-type)</code></p>
+    <ul>
+      <li><code>lowercase-alpha</code> (a, b, c, ...)</li>
+      <li><code>uppercase-alpha</code> (A, B, C, ...)</li>
+      <li><code>decimal</code> (1, 2, 3, ...)</li>
+      <li><code>lowercase/uppercase-roman</code> (I, II, III, ...)</li>
+      <li>Viele Weitere...</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Aufzählungs-Listen</h3>
+    <ul>
+      <li>Das Element <code>&lt;ul&gt;</code> definiert eine unsortierte Liste (Unordered List)</li>
+      <li>Jedes Listenelement innerhalb von <code>ul</code> muss ich in einem <code>&lt;li&gt;</code> befinden</li>
+    </ul>
+  </section>
+
+  <section>
+    <b>Beispiel</b>
+    <pre class="html"><code data-trim data-line-numbers>
+      <ul>
+        <li>Erstes Element</li>
+        <li>Zweites Element</li>
+        <li>Drittes Element</li>
+      </ul>
+    </code></pre>
+  </section>
+
+  <section>
+    <b>Aufzählungstypen</b>
+    <p>Mit CSS lässt sich der Stil der Aufzählung ändern <code>(list-item-style)</code></p>
+    <ul>
+      <li><code>circle</code></li>
+      <li><code>disc</code></li>
+      <li><code>square</code></li>
+      <li>Ein beliebiger String</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Schachtelung von Aufzählungen</h3>
+    <ul>
+      <li>Aufzählungen und Nummerierungen lassen sich beliebig Schachteln</li>
+      <li>Der Aufzählungstyp innerhalb einer Verschachtelung ändert sich automatisch</li>
+      <li>Es können nummerierte Listen und Aufzählungspunkte ineinander beliebig verschachtelt werden</li>
+      <li>Verschachtelte Listen werden automatisch eingerückt</li>
+    </ul>
+  </section>
+</section>

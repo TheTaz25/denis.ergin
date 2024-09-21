@@ -1,0 +1,102 @@
+<section>
+  <section>
+    <h2>Äußere Struktur eines HTML Dokumentes</h2>
+  </section>
+
+  <section>
+    <p>
+      Bisher haben wir mehr generische und wiederverwendbare Elemente in einem HTML-Dokument gesehen
+      <br>
+      Aber eine wichtige Sache fehlt dem noch:
+    </p>
+    <ul>
+      <li>Menü?</li>
+      <li>Navigationselemente wie Breadcrumbs?</li>
+      <li>Normalerweise gibt es auch einen Footer</li>
+      <li>Wo fängt der "eigentliche" Content an?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Der "Kopf" einer Website</h3>
+    <ul>
+      <li>Ein Logo</li>
+      <li>Navigation zu Unterseiten</li>
+      <li>Bei größeren Anwendungen: Eine "User-Section"</li>
+      <li>Ggf Suche?</li>
+    </ul>
+  </section>
+  
+  <section>
+    <p>
+      Das &lt;header&gt; Element existiert zu diesem Zweck
+      <br>
+      Zusätzlich wertvoll für die Accessibility einer Website
+    </p>
+  </section>
+
+  <section>
+    <h3>Wo der eigentliche Content liegt</h3>
+    <p>
+      Innerhalb des <code>&lt;main&gt;</code> Elementes wird der eigentliche Website-Inhalt präsentiert.
+      <br>
+      Es darf nicht mehr als ein <code>&lt;main&gt;</code> auf einer Website befindlich sein.
+    </p>
+  </section>
+
+  <section>
+    <h3>Das Ende einer Seite</h3>
+    <p>
+      Meistens befindet sich am Ende einer Website zusätzliche, aber zunächst nicht relevante Informationen für den Besucher.
+      <br>
+      <br>
+      Beispielsweise befinden sich hier Social-Media Links, eine Copyright-Info und Funktionen/Weiterleitungen zu ggf rechtlich notwendigen Unterseiten.
+      <br>
+      <br>
+      Hierfür wird das &lt;footer&gt; Element verwendet
+    </p>
+  </section>
+
+  <section>
+    <h3>Inhalte innerhalb einer Seite strukturieren</h3>
+  </section>
+
+  <section>
+    <h4><code>&lt;article&gt;</code></h4>
+    <ul>
+      <li>Enthält ein alleinstehendes "etwas"</li>
+      <li>Beispielsweise einen Foren-Post, Zeitungsartikel, Blog-Post, einen Nutzer-Kommentar, etc...</li>
+      <li>Kann auch ein alleinstehendes interaktives Element sein (Formular)</li>
+      <li>Kann geschachtelt vorkommen (z.B einen Nuzter-Kommentar innerhalb eines Blog-Post)</li>
+      <li>Sollte eine Überschrift beinhalten</li>
+    </ul>
+  </section>
+
+  <section>
+    <h4><code>&lt;section&gt;</code></h4>
+    <ul>
+      <li>Generischer als ein <code>&lt;article&gt;</code></li>
+      <li>Falls ein styling-wrapper benötigt wird, lieber ein <code>&lt;div&gt;</code> verwenden</li>
+      <li>Eine section sollte auch eine Überschrift beinhalten</li>
+    </ul>
+  </section>
+
+  <section>
+    <h4><code>&lt;aside&gt;</code></h4>
+    <ul>
+      <li>Präsentiert Inhalt der indirekt mit dem Eigentlichen Seiteninhalt zusammenhängt</li>
+      <li>Wird oft zum Beispiel als Sidebar angezeigt</li>
+      <li>Alternativ auch als "Callout"-Box</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3><code>&lt;nav&gt;</code>igation</h3>
+    <ul>
+      <li>Dient als container für Navigations-Links innerhalb der (Web)Seite</li>
+      <li>Repräsentiert nur die "Sektion", eigentliche Links innerhalb dieses Elementes können weiter verschachtelt sein (zum Beispiel mit <code>ul</code>)</li>
+      <li>Neben der Hauptnavigation auch für Unter-Navigation gedacht</li>
+      <li>Inhaltsverzeichnisse, Breadcrumbs, etc.</li>
+    </ul>
+  </section>
+</section>

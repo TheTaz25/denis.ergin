@@ -1,0 +1,82 @@
+<section>
+  <section>
+    <h2>Inline Text Style Tags</h2>
+    <p>
+      Einfaches formattieren von Texten (z.B. innerhalb von Paragraphen)
+    </p>
+  </section>
+
+  <section>
+    <p><strong>Ein Vorwort</strong></p>
+    <p>
+      Die inline-text Tags haben <em>eigentlich nicht den Sinn,</em> einzelne Texte zu stylen.
+      <br>
+      Hierzu sollte normal ein <code>&lt;span&gt;</code> mit CSS-Styling verwendet werden.
+      <br>
+      Die hier angesprochenen Tags haben einen semantischen Hintergrund der, zum Beispiel von Screen Readern verwendet wird.
+    </p>
+  </section>
+
+  <section>
+    <h3>Das <code>&lt;span&gt;</code> als "Styling"-Container</h3>
+    <ul>
+      <li>Das <code>&lt;span&gt;</code> Element besitzt kein eigenes Styling</li>
+      <li>Das Element dient lediglich als inline-container für Texte</li>
+      <li>Via Klassen sollte dem <code>&lt;span&gt;</code> Element ein Styling verliehen werden</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3><code>&lt;strong&gt;</code> &amp; <code>&lt;b&gt;</code></h3>
+    <ul>
+      <li>Beide Tags sorgen für einen <b>fettgedruckten</b> Text</li>
+      <li>Das b-Tag hat weniger semantisches gewicht</li>
+      <li>
+        Das b-Tag sollte z.B. verwendet werden für Stichwörter oder Produkt-Namen.
+        Es soll Aufmerksamkeit auf sich ziehen ohne eine Notwendigkeit zu suggerieren.
+      </li>
+      <li>
+        Das strong-Tag sollte wichtige Inhalte hervorheben oder dann verwendet werden wenn dringlichkeit Vermittelt werden soll.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h3><code>&lt;em&gt;</code>phasize &amp; <code>&lt;i&gt;</code></h3>
+    <ul>
+      <li>Textinhalte in diesen Tags werden als <i>kursiv</i> dargestellt</li>
+      <li>Das &lt;i&gt; ist semantisch schwächer als das &lt;em&gt; Element</li>
+      <li>Das <em>lässt <em>nesting</em></em> zu um den "Effekt" zu verstärken</li>
+      <li>In Screen Readern wird das &lt;em&gt; Element semantisch hervorgehoben</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Weitere spezielle Inline-Style Tags</h3>
+  </section>
+
+  <section>
+    <h4><code>&lt;code&gt;</code></h4>
+    <ul>
+      <li>Dient zum stylen von Texten der (Programmier)-Code darstellen soll</li>
+      <li>Styled den Text für gewöhnlich in einem <b><code>Monospaced Font</code></b></li>
+    </ul>
+  </section>
+
+  <section>
+    <h4><code>&lt;mark&gt;</code></h4>
+    <ul>
+      <li>Soll <mark>markierten</mark> beziehungsweise <mark>Hervorgehobenen</mark> Text darstellen</li>
+      <li>Styled den Text für gewöhnlich mit einem auffälligen Hintergrund</li>
+    </ul>
+  </section>
+
+  <section>
+    <h4><code>&lt;u&gt;</code>nderline</h4>
+    <ul>
+      <li>Dient als Anmerkung zu einem Text</li>
+      <li>Wird normalerweise als <u>Unterstreichung</u> dargestellt</li>
+      <li>Zum Beispiel zur Anzeige von <u style="text-decoration: #f00 wavy underline;">synatkatischen</u> Fehlern</li>
+    </ul>
+  </section>
+</section>
