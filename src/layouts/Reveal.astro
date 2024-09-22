@@ -36,15 +36,10 @@ const { title } = Astro.props;
 
   <script>
     import RevealJS from 'reveal.js';
-    import Markdown from 'reveal.js/plugin/markdown/markdown.esm'
     import Highlight from 'reveal.js/plugin/highlight/highlight.esm'
-    import Notes from 'reveal.js/plugin/notes/notes.esm'
-
-    // ToDo: Do I need the Notes Plugin?
-    // ToDo: Do I need the Markdown Plugin?
 
     let deck = new RevealJS({
-      plugins: [Markdown, Highlight, Notes],
+      plugins: [Highlight],
       slideNumber: true,
       hash: true
     });
