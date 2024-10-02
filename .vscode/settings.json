@@ -1,0 +1,9 @@
+{
+  "conventionalCommits.scopes": [
+    "nginx",
+    "slides",
+    "tasks",
+    "landing",
+    "build"
+  ]
+}
