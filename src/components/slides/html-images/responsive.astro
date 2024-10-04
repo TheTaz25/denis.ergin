@@ -1,0 +1,105 @@
+<section>
+  <section>
+    <h2>Responsive Bilder</h2>
+  </section>
+
+  <section>
+    <p>Seit dem Smartphone gibt es das Problem der Bildschirmbreiten und der Support derer.</p>
+  </section>
+
+  <section>
+    <ul>
+      <li>Große Bilder können schlechter auf mobilen Geräten angezeigt werden</li>
+      <li>Große Dateien brauchen länger zum herunter laden</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3><code>srcset</code> und <code>sizes</code></h3>
+  </section>
+
+  <section>
+    <p>Mithilfe der Attribute <code>srcset</code> und <code>sizes</code> kann der Browser anhand der Informationen vom Entwickler und des Gerätes verschiedene Bilder laden.</p>
+    <p>Zwischen verschiedenen Browser erlebt man aber verschiedene Erfahrungen...</p>
+  </section>
+
+  <section>
+    <p>Beispiel</p>
+    <pre class="html"><code data-trim data-line-numbers="2-5|7-8|10">
+      &lt;img
+        srcset="
+          /images/cat-w250.png 250w, // Erstes Bild - 250px
+          /images/cat-w600.png 600w, // Zweites Bild - 600px
+        "
+        sizes="
+          (max-width: 800px) 250px, // Bildschirme &lt;= 800px
+          600px                     // Bildschirme &gt;  800px
+        "
+        src="/images/cat-w250.png"  // Fallback
+        alt="Eine Katze"
+      /&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <img
+      height="500"
+      srcset="
+        /images/cat-w250.png 250w,
+        /images/cat-w600.png 600w
+      "
+      sizes="
+        (max-width: 800px) 250px,
+        600px
+      "
+      src="/images/cat-w250.png"
+      alt="Eine Katze"
+    />
+  </section>
+
+  <section>
+    <h3><code>&lt;picture&gt;</code> - Die Alternative</h3>
+  </section>
+
+  <section>
+    <p>Bietet die gleichen Features, lässt das alles aber ein bisschen besser aussehen</p>
+    <p>Kann aber auch ein bisschen mehr!</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers="1,5|2,3|4">
+      &lt;picuture&gt;
+        &lt;source /&gt; &lt;!-- Ein oder mehrere source-tags --&gt;
+        &lt;source /&gt;
+        &lt;img /&gt;  &lt;!-- Notwendig zum Anzeigen --&gt;
+      &lt;/picture&gt;
+    </code></pre>
+  </section>
+  <section>
+    <pre class="html"><code data-trim data-line-numbers="2-6|7-11|12-14">
+      &lt;picuture&gt;
+        &lt;!-- Das kleine Bild definieren, zeige bis 799px an --&gt;
+        &lt;source
+        media="(max-width: 799px)"
+        srcset="/images/cat-w250.png"
+        /&gt;
+        &lt;!-- Das große Bild definieren, zeige ab 800px an --&gt;
+        &lt;source
+          media="(min-width: 800px)"
+          srcset="/images/cat-w600.png"
+        /&gt;
+        &lt;img
+          src="/images/cat-w600.png" alt="Eine Katze"
+        /&gt;
+      &lt;/picture&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <picture>
+      <source srcset="/images/cat-w250.png" media="(max-width: 799px)">
+      <source srcset="/images/cat-w600.png" media="(min-width: 800px)">
+      <img src="/images/cat-w600.png" alt="Eine Katze" height="500"/>
+    </picture>
+  </section>
+</section>

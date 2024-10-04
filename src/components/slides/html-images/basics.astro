@@ -1,0 +1,142 @@
+<section>
+  <section>
+    <h2>Das <code>img</code>-Tag</h2>
+  </section>
+
+  <section>
+    <h3>Einbinden einer Grafik</h3>
+    <p>Mithilfe des <code>&lt;img /&gt;</code> Tag können Bilder in die Website eingebunden werden:</p>
+    <figure>
+      <img src="/images/cat.png" height="300"/>
+      <figcaption>Eine Katze. Ein Bild von <a href="https://cataas.com">Cat-As-A-Service</a>.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <p>Die Einbindung des Bilder erfolgt mit dem <code>src</code>-Attribut:</p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;img src="/images/cat.png" /&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das Bild wird im Web-Server abgelegt und mit dem Pfad aufgerufen.</p>
+    <p>Es können natürlich auch Bilder aus anderen Webseiten verwendet werden, aber dies ist nicht beliebt.</p>
+    <p>Datenhaltung und Bandbreite werden mit auf den Host des Bildes "abgeschoben".</p>
+  </section>
+
+  <section>
+    <h3>Aber h<code>"alt"</code></h3>
+    <p>Mit dem alt-Attribut kann das Bild beschrieben werden, dass angezeigt wird. Der Text ist so nicht einsehbar, technische Hilfsmittel wie Screen-Reader verwenden aber solche Informationen.</p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;img
+        src="/images/cat.png"
+        alt="Eine schwarz-weiß farbene Katze sitzt
+          und schaut interessiert nach oben"
+      /&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>(Weitere) Gründe das alt-Attribut zu verwenden</p>
+    <ul>
+      <li>Screen-Reader</li>
+      <li>Bild kann nicht oder wird nicht geladen: Browser zeigt alt-Text an</li>
+      <li>Google nutzt alt-Text für Bilder-Suche</li>
+      <li>Text-Browser</li>
+    </ul>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;img
+        src="/non-existent.png"
+        alt="Das Bild hier fehlt"
+      /&gt;
+    </code></pre>
+    <img src="non-existent.png" alt="Das Bild hier fehlt" />
+  </section>
+
+  <section>
+    <h3>Breite & Höhe vordefinieren</h3>
+    <p>Es ist mit den Attributen <code>height</code> und <code>width</code> möglich, dem Browser mitzuteilen welche Breite und Höhe das geladene Bild einnehmen soll.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;img
+        src="/images/cat.png"
+        alt="Das Bild einer Katze"
+        height="50"
+      /&gt;
+    </code></pre>
+    <img src="/images/cat.png" alt="Das Bild einer schwarz-weißen Katze" height="50"/>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;img
+        src="/images/cat.png"
+        alt="Das Bild einer Katze"
+        height="250"
+      /&gt;
+    </code></pre>
+    <img src="/images/cat.png" alt="Das Bild einer schwarz-weißen Katze" height="250" />
+  </section>
+
+  <section>
+    <p>Tipp: Wenn das Bild flexibel geladen wird, immer nur ein Attribut verwenden. Der Browser behält das Seitenverhältniss ansonsten nicht:</p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;img
+        src="/images/cat.png"
+        alt="Das Bild einer Katze"
+        height="250"
+        width="100"
+      /&gt;
+    </code></pre>
+    <img src="/images/cat.png" alt="Das Bild einer schwarz-weißen Katze" height="250" width="100" />
+  </section>
+
+  <section>
+    <p><strong>Aber Wieso Dimensionen angeben?</strong></p>
+  </section>
+
+  <section>
+    <p>Der Browser lädt zuerst HTML, liest dann das HTML und lädt Inhalte nach sobald er welche findet.</p>
+    <p>Das Bedeutet, dass ein Bild womöglich während der ersten Sekunden nicht zu sehen ist und dann klassisch rein "ploppt".</p>
+  </section>
+
+  <section>
+    <p>Inhalt der nach dem Bild angezeigt wird, wird daraufhin verschoben -&gt; Schlechte User-Experience.</p>
+    <p>Das gesamte Konzept (Inhalt wird nachgeladen) ist auch unter dem Begriff "Cumulative Layout Shift" bekannt.</p>
+  </section>
+  <section>
+    <p>Wird eine Höhe vorgegeben, so "reserviert" der Browser den Platz, bis das Bild vollständig geladen wurde.</p>
+  </section>
+
+  <section>
+    <h3>Datei-Typen</h3>
+    <p>Bilder-Formate gibt es heutzutage wie Sand am Meer.</p>
+  </section>
+
+  <section>
+    <p>Klassische Formate</p>
+    <ul>
+      <li>.png - Bietet Transparenz</li>
+      <li>.jpeg - Bietet kleinere Dateien (für den Verlust von Qualität)</li>
+      <li>.gif - Wenn das Bild klein und ggf. animiert sein soll</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Modernere Formate bieten normalerweise "gleichbleibende" Qualität bei drastisch kleineren Dateigrößen</p>
+  </section>
+
+  <section>
+    <ul>
+      <li>.svg - Vektorgrafiken, beliebt bei z.B. Icons</li>
+      <li>.webp - Eine Alternative für .gif-Dateien, aber auch Stillstehende Bilder (durch besseren Farb-Raum)</li>
+      <li>.avif - Sehr gute Komprimierung, Adoption war lange schlecht, mittlerweile aber sehr verbreitet</li>
+    </ul>
+  </section>
+</section>
