@@ -1,0 +1,57 @@
+<section>
+  <section>
+    <h2>Das <code>a</code>-Tag für Verlinkungen</h2>
+  </section>
+
+  <section>
+    <p>Mithilfe des a-Tag kann man Links zu Unterseiten, anderen Websites, etc erstellen.</p>
+    <p>Klassisch erscheint der Link in blauer Schrift und ist unterstrischen. Besuchte Links heben sich durch eine leichte Violet-Färbung hervor.</p>
+  </section>
+
+  <section>
+    <h3>Anatomie</h3>
+    <pre class="html"><code data-trim data-line-numbers="1,4,6|5|2|3">
+      &lt;a
+        href="https://google.com"
+        target="_self"
+      &gt;
+        Besuche doch mal Google!
+      &lt;/a&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Targets</h3>
+    <ul>
+      <li>_self - Öffnet den Link im gleichen Browser-Context (gleicher Tab)</li>
+      <li>_blank - Öffnet den Link in einem neuen Browser-Context (neuer Tab)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Relative URL's</h3>
+    <p>Sofern Verlinkungen auf der eigenen Seite existieren, muss eigentlich nur der Pfad innerhalb der Website angegeben werden</p>
+  </section>
+
+  <section>
+    <p>Angenommen sie befinden sich auf <code>/account</code>:</p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;a href="/settings"&gt;...&lt;/a&gt;
+    </code></pre>
+    <br>
+    leitet weiter zu
+    <br>
+    <code>/settings</code>
+  </section>
+
+  <section>
+    <p><strong>Anchor / Fragmente</strong></p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;h1 id="the-beginning"&gt;Der Anfang&lt;/h1&gt;
+
+      &lt;!-- Irgendwo im Text --&gt;
+
+      &lt;a href="#the-beginning"&gt; Zum Anfang &lt;/a&gt;
+    </code></pre>
+  </section>
+</section>

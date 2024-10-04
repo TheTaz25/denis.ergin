@@ -1,0 +1,200 @@
+<section>
+  <section>
+    <h2>Wie ist eine URL aufgebaut?</h2>
+  </section>
+
+  <section>
+    <p>Eine klassische URL wird aus verschiedenen Teilstücken zusammengesetzt um eine bestimmte Resource im WWW zu referenzieren</p>
+  </section>
+
+  <section>
+    <h3>Protokol</h3>
+    <p>
+      Das Protokol definiert wie der Browser mit dem Ziel (nach dem Protokol) kommunizieren muss um an die Informationen zu gelangen.
+      <br><br>
+      Nach dem Protokoll erfolgt immer ein <code>://</code> (Doppelpunkt Doppelslash)
+    </p>
+  </section>
+  
+  <section>
+    <h4>Gängige Protokolle</h4>
+    <ul>
+      <li>HTTP</li>
+      <li>HTTPS</li>
+      <li>FTP</li>
+      <li>mailto</li>
+      <li>file</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Beispiel: <br><br> <code style="background-color: #99f;">https://</code></p>
+  </section>
+
+  <section>
+    <h3>Domäne</h3>
+    <p>
+      Verschiedene Websites sind unter verschiedenen Domänen erreichbar (Google vs Yahoo).
+      <br>
+      Dabei ist jede Domäne eindeutig identifizierbar und verweist mittels DNS-Server auf einen eindeutigen Server (genauer gesagt, dessen IP-Adresse) im Internet.
+    </p>
+  </section>
+
+  <section>
+    <p>Beispiel: <br><br>
+      <code style="background-color: #99f;">https://</code>
+      <code style="background-color: #9f9;">google.de</code>
+    </p>
+  </section>
+
+  <section>
+    <h4>Subdomains & Top-Level-Domain</h4>
+    <p>
+      Im Vorherigen Beispiel hat man nach "google" noch ein <code>.de</code> gesehen
+      <br><br>
+      Dies ist Teil der Domäne als sogenannte "Top-Level-Domain" (TLD).
+      <br>
+      Historisch gesehen wurde die TLD zur Länder-Identifizierung verwendet, unter <code>.de</code> waren z.B. Deutsche Seiten erreichbar.
+    </p>
+  </section>
+
+  <section>
+    <p>Weitere bekannte TLD's:</p>
+    <ul>
+      <li>.com ("Commercial", eigentlich aber eher für den US-Raum verwendet)</li>
+      <li>.org (Organization)</li>
+      <li>.co.uk ("Commercial" + "United Kingdom")</li>
+      <li>.tv (Tuvalu, die polynesische Insel profitiert stark von dieser TLD)</li>
+      <li>.net ("Network")</li>
+      <li>.edu ("Educational")</li>
+      <li>.gov ("Government")</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>
+      Seit den Jahren 2000 bis 2004 wurden Schrittweise neue (und generischere) TLD's durch die Internet-Verwaltung "ICANN" eingeführt.
+      <br><br>
+      Bis dahin gab es die klassischen Länder-TLD's in der 2-Buchstaben-Schreibweise und ein paar spezifische 3-Buchstaben TLD's.
+    </p>
+  </section>
+
+  <section>
+    <ul>
+      <li>.berlin</li>
+      <li>.online</li>
+      <li>.shop</li>
+      <li>.dev</li>
+      <li>.edeka</li>
+    </ul>
+  </section>
+
+  <section>
+    <p><strong>Subdomains</strong> unterteilen Domains. Bei größeren Dienstanbietern kann das durchaus Sinn machen, aber die Mechanik wird auch gerne von kleineren Websites verwendet.</p>
+  </section>
+
+  <section>
+    <p>
+      Beispiel <br><br>
+      <code style="background-color: #99f;">https://</code>
+      <code style="background-color: #9f9;">myaccount.google.de</code>
+    </p>
+  </section>
+
+  <section>
+    <h3>Port</h3>
+    <p>
+      Jede Website im Internet ist durch einen sogenannten Port erreichbar.
+      Da die Port's aber eine gewisse "Standardisierung" haben, ist dies in 99% der Fällen aber nicht notwendig im Alltag, der Browser fügt den Port im Hintergrund selber ein.
+      Port-Angaben sind nummerisch.
+    </p>
+    <ul>
+      <li>Port 80 - für das HTTP-Protokoll reserviert</li>
+      <li>Port 443 - für das HTTPS-Protokoll reserviert</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Beispiel</p>
+    <code style="background-color: #99f;">https://</code>
+    <code style="background-color: #9f9;">myaccount.google.de</code>
+    <code style="background-color: #ff9;">:80</code>
+  </section>
+
+  <section>
+    <p>
+      Da die Ports bis 1024 ein geschüzter Bereich sind, muss eine Applikation auf diesen Ports mit Administrativen Rechten gestartet werden (Zumindest unter Unix-OS).
+      <br><br>
+      Generell wird aber während der Lokalen Entwicklung auf höheren Ports entwickelt (3000, 8080, 6006 sind oft gesehene Ports)
+    </p>
+  </section>
+
+  <section>
+    <h3>Pfade</h3>
+    <p>
+      Nach der Domäne und dem Port folgt der Pfad zur Angefragten Resource.
+      <br><br>
+      Der Pfad ist in den meisten Fällen auf eine bestimmte Datei innerhalb das Betriebs-Systems gemapped. Hierzu aber gleich mehr.
+      <br><br>
+      Unterpfade werden wie bei Unix-basierten Betriebssystemen per Slash abgetrennt.
+    </p>
+  </section>
+
+  <section>
+    <p>
+      Beispiel
+    </p>
+    <code style="background-color: #99f;">https://</code>
+    <code style="background-color: #9f9;">myaccount.google.de</code>
+    <code style="background-color: #ff9;">:80</code>
+    <code style="background-color: #f99">/pfad/zur/resource.html</code>
+  </section>
+
+  <section>
+    <p><strong>Pfad-Besonderheiten</strong></p>
+    <p>Wenn eine HTML Datei "index.html" benannt wird, so muss das "index.html" nicht im Pfad vorliegen. Der Webserver liefert diese Datei "von selbst aus" aus.</p>
+    <p>Auch muss generell bei .html-Dateien der Datentyp nicht mitgegeben werden.</p>
+  </section>
+
+  <section>
+    <h3>Query / Parameter</h3>
+    <p>Die Query nach der Pfad-Angabe dient i.d.R. dem Server als zusätzliche Information.</p>
+    <p>Bei statischen Inhalten (also reinen HTML-Seiten) macht dies keinen Sinn. Sobald aber HTML-Inhalte dynamisch gesendet werden, kann der bearbeitende Server auf die Query zugreifen um Inhalte beispielsweise zu filtern.</p>
+  </section>
+
+  <section>
+    <p>Die Parameter werden vom Pfad mittels eines Fragezeichens abgetrennt.</p>
+    <p>Mehrere Parameter werden mit einem kaufm. "und" (<code>&amp;</code>) abgetrennt.</p>
+    <p>Parameter sind oft abgekürzt oder anderweitig kryptisch benamt (als Beispiel, <a href="https://developer.matomo.org/api-reference/tracking-api">Matomo</a>)</p>
+  </section>
+
+  <section>
+    <p>Beispiel</p>
+    <code style="background-color: #99f;">https://</code>
+    <code style="background-color: #9f9;">duckduckgo.com</code>
+    <code style="background-color: #ff9;">:80</code>
+    <code style="background-color: #f99">/Birne</code>
+    <code style="background-color: #9ff;">?iax=images&ia=images</code>
+  </section>
+
+  <section>
+    <h3>Anchor / Fragment</h3>
+    <p>Der Anker wird nur vom Browser verwendet und wird nicht zum Server mitgesendet.</p>
+    <p>Steht ganz zum Schluss der URL, abgetrennt durch ein Hashtag (<code>#</code>)</p>
+    <p>Dient dazu, dass der Browser den "verankerten" Inhalt nach dem Laden der Seite in den Sichtbaren Bereich scrollt.</p>
+  </section>
+
+  <section>
+    <p>Dafür muss das "zu verankernde" Element das id-Attribut gesetzt haben, auf den sich dann der Anker bezieht.</p>
+  </section>
+
+  <section>
+    <p>Beispiel</p>
+    <code style="background-color: #99f;">https://</code>
+    <code style="background-color: #9f9;">duckduckgo.com</code>
+    <code style="background-color: #ff9;">:80</code>
+    <code style="background-color: #f99">/Birne</code>
+    <code style="background-color: #9ff;">?iax=images&ia=images</code>
+    <code style="background-color: #f9f">#the-interesting-part</code>
+  </section>
+</section>

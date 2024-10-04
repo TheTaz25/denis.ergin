@@ -1,0 +1,32 @@
+<section>
+  <section>
+    <h2>Strukturieren von HTML-Dateien</h2>
+  </section>
+
+  <section>
+    <p>Im Kontext von statischen Web-Inhalten, kann man HTML-Dateien in Ordner strukturieren, damit URL-Pfade auch einheitliche Namen haben.</p>
+    <p>Website-Generatoren wie PHP, React (Server-Side-Rendering) oder andere halten sich auch zu großen Teilen an dieses Konstrukt, der Entwickler kann aber davon abweichen (Aber nicht weiter notwendig für diese Vorlesung.)</p>
+  </section>
+
+  <section>
+    <h3>Erreichbarkeit über die Ordnerstruktur</h3>
+    <pre class="bash"><code data-trim data-line-numbers="">
+      .
+      ├── index.html               # /
+      ├── blog/
+      │   ├── index.html           # /blog
+      │   └── was-ist-html.html    # /blog/was-ist-html
+      └── ueber-mich/
+          ├── index.html           # /ueber-mich
+          ├── hobbies.html         # /ueber-mich/hobbies
+          └── lebenslauf/
+              ├── index.html       # /ueber-mich/lebenslauf
+              └── alternativ.html  # /ueber-mich/lebenslauf/alternativ
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das Konzept der Ordnerstruktur wird, wie bereits erwähnt, nur für statische Dateien und in bestimmten Fällen von dynamischen System angelehnt daran verwendet.</p>
+    <p>Wenn reine Web-Services (API's) geschrieben werden, folgen die Regeln für URL-Pfade ähnlichen "Gesetzen", sind aber digitaler Natur.</p>
+  </section>
+</section>
