@@ -1,0 +1,136 @@
+<section>
+  <section>
+    <h2>Einführung</h2>
+  </section>
+
+  <section>
+    <p>Wir verwenden Tabellen um große Datenmengen strukturiert anzuzeigen.</p>
+    <p>Wir verwenden Tabellen NICHT um eine HTML-Seite zu strukturieren (das wurde damals gern gemacht)</p>
+  </section>
+
+  <section>
+    <h3>Eine Tabelle definieren</h3>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers="1,5|2,4|3">
+      &lt;table&gt; &lt;!-- Tabellendefinition --&gt;
+        &lt;tr&gt; &lt;!-- Tabellenzeile (Table-Row) --&gt;
+          &lt;td&gt;Mein Inhalt&lt;/td&gt; &lt;!-- Tablenzelle (Table-Data) --&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;table&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Mein Inhalt 1&lt;/td&gt;
+          &lt;td&gt;Mein Inhalt 2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Mein Inhalt 3&lt;/td&gt;
+          &lt;td&gt;Mein Inhalt 4&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <table>
+      <tr>
+        <td>Mein Inhalt 1</td>
+        <td>Mein Inhalt 2</td>
+      </tr>
+      <tr>
+        <td>Mein Inhalt 3</td>
+        <td>Mein Inhalt 4</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <p>Recht langweilig oder?</p>
+    <h3>Wie wärs mit Kopfzeilen?</h3>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+        &lt;table&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Kopf 1&lt;/th&gt;
+          &lt;th&gt;Kopf 2&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Mein Inhalt 1&lt;/td&gt;
+          &lt;td&gt;Mein Inhalt 2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Mein Inhalt 3&lt;/td&gt;
+          &lt;td&gt;Mein Inhalt 4&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <table>
+      <tr>
+        <th>Kopf 1</th>
+        <th>Kopf 2</th>
+      </td>
+      <tr>
+        <td>Mein Inhalt 1</td>
+        <td>Mein Inhalt 2</td>
+      </tr>
+      <tr>
+        <td>Mein Inhalt 3</td>
+        <td>Mein Inhalt 4</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>Man kann auch Zellen zusammenfassen</h3>
+    <p>Mithilfe des <code>colspan</code>-Attributes kann man festlegen, wie viele Spalten die Zelle einnehmen soll</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+        &lt;table&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Kopf 1&lt;/th&gt;
+          &lt;th&gt;Kopf 2&lt;/th&gt;
+          &lt;th&gt;Kopf 3&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td colspan="2"&gt;Mein Inhalt 1&lt;/td&gt;
+          &lt;td&gt;Ich bin in Spalte 3&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Mein Inhalt 3&lt;/td&gt;
+          &lt;td&gt;Mein Inhalt 4&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <table>
+      <tr>
+        <th>Kopf 1</th>
+        <th>Kopf 2</th>
+        <th>Kopf 3</th>
+      </td>
+      <tr>
+        <td colspan="2">Mein Inhalt 1 (länger zur Demonstration)</td>
+        <td>Ich bin in Spalte 3</td>
+      </tr>
+      <tr>
+        <td>Mein Inhalt 3</td>
+        <td>Mein Inhalt 4</td>
+      </tr>
+    </table>
+  </section>
+</section>
