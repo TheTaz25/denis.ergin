@@ -8,4 +8,125 @@
       Neben <code>table,tr</code> und <code>td</code>, gibt es auch Tags um eine Tabelle etwas besser zu strukturieren
     </p>
   </section>
+
+  <section>
+    <ul>
+      <li><code>thead</code> für die Kopfzeilen</li>
+      <li><code>tbody</code> für den eigentlichen Inhalt</li>
+      <li><code>tfoot</code> für Fußzeilen</li>
+    </ul>
+  </section>
+
+  <section>
+    <table>
+      <thead>
+        <tr>
+          <th>Artikel</th>
+          <th>Preis</th>
+          <th>Menge</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="2">Summe</td>
+          <td>7,97€</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td>Honig</td>
+          <td>1,99€</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>Butter</td>
+          <td>3,99€</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-number>
+      &lt;table&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;Artikel&lt;/th&gt;
+            &lt;th&gt;Preis&lt;/th&gt;
+            &lt;th&gt;Menge&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tfoot&gt;
+          &lt;tr&gt;
+            &lt;td colspan="2"&gt;Summe&lt;/td&gt;
+            &lt;td&gt;7,97€&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tfoot&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;td&gt;Honig&lt;/td&gt;
+            &lt;td&gt;1,99€&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td&gt;Butter&lt;/td&gt;
+            &lt;td&gt;3,99€&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Zeilen-Header</h3>
+    <p>Natürlich ist es auch möglich, eine bestimmte Zelle als "Header" zu deklarieren</p>
+    <p>In solchen Situationen empfiehlt es sich, auch das attribut <code>scope</code> auf <code>"row"</code> zu setzen.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;table&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Film&lt;/th&gt;
+          &lt;th&gt;Bewertung&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th scope="row"&gt;Matrix&lt;/th&gt;
+          &lt;td&gt;★★★★★&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th scope="row"&gt;Matrix Revolution&lt;/th&gt;
+          &lt;td&gt;★★★&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;  
+    </code></pre>
+  </section>
+
+  <section>
+    <table>
+      <tr>
+        <th>Film</th>
+        <th>Bewertung</th>
+      </tr>
+      <tr>
+        <th scope="row">Matrix</th>
+        <td>★★★★★</td>
+      </tr>
+      <tr>
+        <th scope="row">Matrix Revolution</th>
+        <td>★★★</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <p>Das <code>scope</code> Attribut hilft Screenreadern.</p>
+  </section>
+
+  <section>
+    <p>Zu guter letzt:</p>
+    <p>Es können Tabellen in Tabellen geschachtelt werden</p>
+  </section>
 </section>
