@@ -1,0 +1,144 @@
+<!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Basic_native_form_controls -->
+<!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/HTML5_input_types -->
+<!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Other_form_controls -->
+
+<section>
+  <section>
+    <h2>Mehr Eingabemöglichkeiten</h2>
+  </section>
+  <section>
+    <p>Bisher haben wir nur das Standard-Textfeld zur Eingabe von Text verwendet.</p>
+  </section>
+
+  <section>
+    <h3>Der <code>type</code> beim <code>&lt;input&gt;</code></h3>
+  </section>
+
+  <section>
+    <p>Soweit haben wir bei Inputs das Attribut <code>type</code> als <code>text</code> definiert.</p>
+    <p>Das Textfeld kann aber spezialisiert werden um Eingaben zu sammeln</p>
+  </section>
+
+  <section>
+    <h4>Sichere Eingaben mittels <code>password</code></h4>
+    <pre class="html"><code data-trim>
+      &lt;input type="password" value="geheim"&gt;
+    </code></pre>
+  </section>
+
+  <section><input type="password" value="geheim"></section>
+
+  <section>
+    <h4>Zahleneingabe mittels <code>number</code></h4>
+    <pre class="html"><code data-trim>
+      &lt;input type="number" value="5"&gt;
+    </code></pre>
+  </section>
+  <section><input type="number" value="5"></section>
+
+  <section>
+    <ul>
+      <li>Bietet kleine Buttons an um die Zahl zu ändern</li>
+      <li>Ändern der Zahl mittels Pfeiltasten</li>
+      <li>
+        Verschiedene Optionen um Eingabe zu präzisieren
+        <ul>
+          <li><code>max</code> &amp; <code>min</code> um Grenzen nach oben und unten zu sezten</li>
+          <li><code>step</code> um Schritte anzugeben (Pfeile)</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h4>Zahleneingabe mittels <code>number</code></h4>
+    <pre class="html"><code data-trim>
+      &lt;input type="number" min="1" max="10" step="2" value="1"&gt;
+    </code></pre>
+  </section>
+  <section><input type="number" min="1" max="10" step="2" value="1"></section>
+
+  <section>
+    <h4>Alternative Zahleneingabe mit <code>range</code></h4>
+  </section>
+
+  <section>
+    <p>Eine weitere Möglichkeit, Zahlen einzugeben, besteht darin einen Slider anzuzeigen</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim>
+      &lt;input type="range" min="1" max="10" step="1" value="1"&gt;
+    </code></pre>
+  </section>
+  <section><input type="range" min="1" max="10" step="1" value="1"></section>
+  <section>
+    <p>Nachteil: Ohne Feedback und Anzeige des aktuellen Wertes, eher sinnlos</p>
+  </section>
+
+  <section>
+    <h4>Alles was Zeiten betrifft</h4>
+  </section>
+
+  <section>
+    <ul style="font-family: monospace;">
+      <li>datetime-local</li>
+      <li>month</li>
+      <li>time</li>
+      <li>week</li>
+      <li>date</li>
+    </ul>
+  </section>
+
+  <section>
+    <input type="datetime-local">
+    <br>
+    <input type="month">
+    <br>
+    <input type="time">
+    <br>
+    <input type="week">
+    <br>
+    <input type="date">
+  </section>
+
+  <section>
+    <p>Man sieht, nicht alle Werte bewirken etwas auffälliges, manche Types helfen aber auf mobilen Geräten.</p>
+    <img src="/images/month-picker.jpeg" alt="Ein Monats-Picker auf einem iOS Gerät geöffnet" height="300" />
+  </section>
+
+  <section>
+    <h4>Jetzt wirds bunt: <code>color</code></h4>
+    <pre class="html"><code data-trim>
+      &lt;input type="color" value="#00ff00"&gt;
+    </code></pre>
+  </section>
+  <section><input type="color" value="#00ff00"></section>
+
+  <section>
+    <h4>Dateien auswählen mit <code>file</code></h4>
+    <pre class="html"><code data-trim>
+      &lt;input type="file"&gt;
+    </code></pre>
+  </section>
+  <section><input type="file" ></section>
+
+  <section>
+    <h4>Weitere Text-Basierte Typen</h4>
+  </section>
+
+  <section>
+    <ul>
+      <li><code>url</code> für URL's</li>
+      <li><code>email</code> für E-Mail Adressen</li>
+      <li><code>tel</code> für Telefonnummern</li>
+      <li><code>search</code> für Sucheingaben</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Manche Eingabearten validieren die Eingabe, wenn ein User auf "submit" drückt.</p>
+    <p>Oft wird aber mittels Javascript eine komplexere Validierung implementiert (die meist schon Hinweise nach der Eingabe in einem Textfeld auf fehler hinweist)</p>
+  </section>
+</section>
+

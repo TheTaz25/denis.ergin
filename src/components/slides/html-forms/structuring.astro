@@ -1,0 +1,54 @@
+<!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_structure_a_web_form -->
+
+<section>
+  <section>
+    <h2>Gruppieren von Eingabe-Elementen</h2>
+  </section>
+
+  <section>
+    <p>
+      Mithilfe der Tags <code>fieldset</code> und <code>legend</code> können Zusammenhängende Abschnitte in einem Formular zusammengefasst werden.
+    </p>
+    <p>
+      Die Tags haben keinen Einfluss darauf, wie die Daten versendet werden.
+    </p>  
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;form&gt;
+        &lt;fieldset&gt;
+          &lt;legend&gt;Name&lt;/legend&gt;
+          &lt;p&gt;
+            &lt;label for="vorname"&gt;Vorname&lt;/label&gt;
+            &lt;input id="vorname" name="firstname" type="text"&gt;
+          &lt;/p&gt;
+          &lt;p&gt;
+            &lt;label for="nachname"&gt;Nachname&lt;/label&gt;
+            &lt;input id="nachname" name="lastname" type="text"&gt;
+          &lt;/p&gt;
+        &lt;/fieldset&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <form>
+      <fieldset>
+        <legend>Name</legend>
+        <p>
+          <label for="vorname">Vorname</label>
+          <input id="vorname" name="firstname" type="text">
+        </p>
+        <p>
+          <label for="nachname">Nachname</label>
+          <input id="nachname" name="lastname" type="text">
+        </p>
+      </fieldset>
+    </form>
+  </section>
+
+  <section>
+    Alle Zusammenhängende Elemente können in ein <code>fieldset</code> gepackt werden und zusätzlich mit einem <code>legend</code> Beschrieben werden
+  </section>
+</section>

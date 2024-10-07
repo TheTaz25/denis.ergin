@@ -1,0 +1,153 @@
+<!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form -->
+
+<section>
+  <section>
+    <h2>Basics eines Formulars</h2>
+  </section>
+
+  <section>
+    <p>Alle abzufragenden Inhalte werden in ein spezielles <code>form</code>-Tag platziert</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;form action="https://example.com/" method="get"&gt;
+        &lt;!-- Hier kommen die Eingabe-Felder hinein --&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das <code>action</code>-Attribut definiert wohin die Daten gesendet werden, wenn der User auf "absenden" klickt.</p>
+    <p>Das <code>method</code>-Attribut definiert wie die Daten versendet werden (HTTP-Methode)</p>
+  </section>
+
+  <section>
+    <h3>Label & Eingabefeld</h3>
+  </section>
+
+  <section>
+    <p>Es empfiehlt sich, jedes Eingabefeld mit einem <code>label</code>-Tag zu versehen.</p>
+    <p>Der Nutzer versteht einfacher, was er eingeben muss und zusätzlich erhält der Screenreader mehr Informationen zum vorlesen.</p>
+  </section>
+
+  <section>
+    <p>Das erste Tag, um Daten einzugeben, ist <code>input</code>.</p>
+    <p>Mithilfe von Input können alle Text-Relevanten Informationen eingegeben werden.</p>
+    <p>Das Tag bietet Attribute um die gewünschte Eingabe zu verfeinern.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;form action="https://example.com/" method="get"&gt;
+        &lt;p&gt;
+          &lt;label for="name"&gt;Dein Name:&lt;/label&gt;
+          &lt;input type="text" id="name" name="username"&gt;
+        &lt;/p&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <form action="" method="get">
+      <p>
+        <label for="name">Dein Name</label><input type="text" id="name" name="username">
+      </p>
+    </form>
+  </section>
+
+  <section>
+    <p>Wir können auch ein Textfeld im Voraus ausfüllen, nutze dafür das <code>value</code> Attribut!</p>
+    <pre class="html"><code data-trim data-line-numbers="8">
+      &lt;form action="https://example.com/" method="get"&gt;
+        &lt;p&gt;
+          &lt;label for="name"&gt;Dein Name:&lt;/label&gt;
+          &lt;input
+            type="text"
+            id="name"
+            name="username"
+            value="Hier könnte deine Werbung stehen!"
+          &gt;
+        &lt;/p&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <form action="" method="get">
+      <p>
+        <label for="name">Dein Name</label><input type="text" id="name" name="username" value="Hier könnte deine Werbung stehen!" style="width: 300px;">
+      </p>
+    </form>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers="3,6">
+      &lt;form action="https://example.com/" method="get"&gt;
+        &lt;p&gt;
+          &lt;label for="name"&gt;Dein Name:&lt;/label&gt;
+          &lt;input
+            type="text"
+            id="name"
+            name="username"
+            value="Hier könnte deine Werbung stehen!"
+          &gt;
+        &lt;/p&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das <code>for</code>-Attribut des Labels sollte dem <code>id</code>-Attribute des referenzierten Eingabefeldes entsprechen.</p>
+  </section>
+
+  <section>
+    <h3><code>textarea</code> für größere Texteingaben</h3>
+    <p>Mithilfe von <code>&lt;textarea&gt;</code> kann eine Eingabebox mit variabler Größe erzeugt werden</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;textarea&gt;
+        Hier steht ein default-value Text
+      &lt;textarea&gt;  
+    </code></pre>
+  </section>
+
+  <section>
+    <textarea>Hier steht ein default-value Text</textarea>
+  </section>
+
+  <section>
+    <p>Mithilfe der Attribute <code>cols</code> und <code>rows</code> kann die Textarea eine bestimmte Anfangs-Größe Einnehmen</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;textarea cols="50" rows="10"&gt;&lt;textarea&gt;
+    </code></pre>
+  </section>
+
+  <section><textarea cols="50" rows="10"></textarea></section>
+
+  <section>
+    <h3>Beam me up! <code>button</code> um Daten zu versenden</h3>
+  </section>
+
+  <section>
+    <p>Mithilfe eines <code>&lt;button&gt;</code> kann das Formular abgeschickt werden.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;button type="submit"&gt;Absenden&lt;/button&gt;
+    </code></pre>
+  </section>
+
+  <section><button type="submit">Absenden</button></section>
+
+  <section>
+    <p>Der Browser verwendet die Daten aus dem Form-Tag (action + method), sowie die Eingaben aus den Formular-Feldern.</p>
+    <p>Der Browser versendet die Daten als key-value-Paare. Dabei wird das <code>name</code>-Attribut von jedem Eingabefeld als <strong>key</strong> verwendet.</p>
+  </section>
+</section>

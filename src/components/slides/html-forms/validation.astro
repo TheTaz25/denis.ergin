@@ -1,0 +1,146 @@
+<!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
+<section>
+  <section>
+    <h2>Ist das so richtig? Validierung von Formularen</h2>
+  </section>
+
+  <section>
+    <p>Disclaimer Vorweg:</p>
+    <p>Vertraue niemals von Nutzern eingegebene Daten, selbst wenn eine (Vor)-Validierung im Frontend geschieht!</p>
+    <p>Es sollte sowohl auf der Frontend als auch auf der Backend-Seite validiert werden. Der Nutzer sieht was er falsch gemacht hat und auf der Server-Seite kann man von "sicheren" Daten ausgehen.</p>
+  </section>
+
+  <section>
+    <p>Validierung im Frontend passiert auf 2 Arten:</p>
+    <ul>
+      <li>In der Komponente (Tag) eingebaute Attribute die eine Validierung durchführen</li>
+      <li>Eine dynamische Validierung mithilfe von JavaScript</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Diese Präsentation fokusiert sich auf Attribute die den Tags mitgegeben werden können.</p>
+    <p>Drückt ein Nutzer auf den Absende-Button, so validiert der Browser alle Eingabefelder innerhalb des <code>form</code>-Elementes</p>
+    <p>Das Verhalten bei einer Fehlerhaften Eingabe variiert von Browser zu Browser</p>
+  </section>
+
+  <section>
+    <h3>Eine Notwendigkeit: * (required)</h3>
+  </section>
+
+  <section>
+    <p>Das Attribut <code>required</code> kann als "boolsches" Attribut ohne Wert in einer Komponente stehen.</p>
+    <p>Sie sorgt dafür, dass der User einen Wert eingeben haben muss, bevor das Formular durch den Browser versendet wird.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;form&gt;
+        &lt;label for="input"&gt;Eingabe&lt;/label&gt;
+        &lt;input type="text" id="input" required&gt;
+        &lt;input type="submit"&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <form>
+      <label for="input">Eingabe</label>
+      <input type="text" name="value" id="input" required>
+      <input type="submit">
+    </form>
+  </section>
+
+  <section>
+    <h3>Eingabe-Länge beschränken: mit <code>minlength &amp; maxlength</code></h3>
+  </section>
+
+  <section>
+    <p>Mithilfe der Attribute <code>minlength &amp; maxlength</code> kann bei Text-Basierten Eingaben auf eine mindestlänge des Eingegebenen Textes (Zeichenlänge) erzwungen werden.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;form&gt;
+        &lt;label for="input"&gt;Eingabe (3-15 Zeichen)&lt;/label&gt;
+        &lt;input type="text" id="input" minlength="3" maxlength="15"&gt;
+        &lt;input type="submit"&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <form>
+      <label for="input">Eingabe (3-15 Zeichen)</label>
+      <input type="text" name="value" id="input" minlength="3" maxlength="15">
+      <input type="submit">
+    </form>
+  </section>
+
+  <section>
+    <p>Das Attribut <code>maxlength</code> sorgt dafür, dass auch nach dem 15. Zeichen kein weiteres Eingegeben werden kann.</p>
+    <p><code>minlength</code> führt bei zu wenigen Zeichen zum gleichen Effekt wie beim Attribut <code>required</code> (aber mit einer spezifischen Fehlermeldung)</p>
+  </section>
+
+  <section>
+    <h3>Ober- und Untergrenzen bei Zahlen: <code>min &amp; max</code></h3>
+  </section>
+
+  <section>
+    <p>Wie bereits in einer vorherigen Slide gesehen, dienen die Attribute <code>min &amp; max</code> dazu, obere sowie untere Grenzen in einer Zahleneingabe festzulegen.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;form&gt;
+        &lt;label for="input"&gt;Eingabe Zahl (1 bis 10)&lt;/label&gt;
+        &lt;input type="number" id="input" min="1" max="10" value="1"&gt;
+        &lt;input type="submit"&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <form>
+      <label for="input">Eingabe Zahl (1 bis 10)</label>
+      <input type="number" name="value" id="input" min="1" max="10" value="1">
+      <input type="submit">
+    </form>
+  </section>
+
+  <section>
+    <h3>Komplexe Textvalidierung mithilfe von <code>pattern</code></h3>
+  </section>
+
+  <section>
+    <p>Pattern bietet ein Effektives mittel um komplexe Anforderungen an Texte zu prüfen</p>
+    <p>Das Pattern wird mithilfe eines regulären Ausdrucks (Regular Expression) definiert</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;form&gt;
+        &lt;label for="input"&gt;Eingabe (banane oder kirsche)&lt;/label&gt;
+        &lt;input type="text" id="input" pattern="banane|kirsche"&gt;
+        &lt;input type="submit"&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <form>
+      <label for="input">Eingabe (banane oder kirsche)</label>
+      <input type="text" name="value" id="input" pattern="banane|kirsche">
+      <input type="submit">
+    </form>
+  </section>
+
+  <section>
+    <h3>Validierung mittels <code>type</code>?!</h3>
+  </section>
+
+  <section>
+    <p>Wie vielleicht bereits beobachtet, haben Eingabefelder wie z.B. <code>type="email"</code> bereits eine selber eingebaute Validierung.</p>
+    <p>Diese Validierung "reicht" aber zumeist nicht und wird mithilfe von <code>pattern</code> und JavaScript erweitert um den Anforderungen gerecht zu werden.</p>
+  </section>
+</section>

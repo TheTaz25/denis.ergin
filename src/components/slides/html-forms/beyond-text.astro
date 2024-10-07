@@ -1,0 +1,191 @@
+<section>
+  <section>
+    <h2>Eingaben über Texte hinaus</h2>
+  </section>
+  <section>
+    Neben den bisher vorgestellten Möglichkeiten, bietet HTML mit <code>input</code> und weiteren Elementen zusätzliche Eingabemöglichkeiten
+  </section>
+
+  <section>
+    <h3><code>input type="radio"</code></h3>
+  </section>
+
+  <section>
+    <p>Dieser Eingabetyp erstellt "Radioboxen", Elemente die gruppiert werden können und nur ein Element gleichzeitig ausgewählt sein darf.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;input type="radio" name="frucht" id="apfel" value="Apfel"&gt;
+      &lt;input type="radio" name="frucht" id="birne" value="Birne"&gt;
+      &lt;input type="radio" name="frucht" id="banane" value="Banane"&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Hinweis: Alle Inputs wurden mit einem Label versehen</p>
+    <p>
+      <label for="apfel">Apfel</label>
+      <input type="radio" name="frucht" id="apfel" value="Apfel">
+    </p>
+    <p>
+      <label for="birne">Birne</label>
+      <input type="radio" name="frucht" id="birne" value="Birne">
+    </p>
+    <p>
+      <label for="banane">Banane</label>
+      <input type="radio" name="frucht" id="banane" value="Banane">
+    </p>
+  </section>
+
+  <section>
+    <ul>
+      <li>Die Gruppierung erfolgt mithilfe des Attributes <code>name</code></li>
+      <li>Gruppierte Elemente erlauben es nur, dass ein Element gleichzeitig ausgewählt ist</li>
+      <li>"Geeignet" für bis zu 5 Auszuwählende Elemente</li>
+      <li>Alternative bei mehr Elementen existiert</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3><code>input type="checkbox"</code></h3>
+  </section>
+
+  <section>
+    <p>
+      Checkboxen erlauben eine <code>true/false</code> Abfrage beim User im Stil einer anklickbaren Checkbox
+    </p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim>
+      &lt;input type="checkbox" name="akzeptiert" id="accepted"&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Hinweis: Dieser Checkbox wurde zusätzlich ein Label hinzugefügt</p>
+    <p><label for="accept">Akzeptieren?</label><input type="checkbox" name="accept" id="accept"></p>
+  </section>
+
+  <section>
+    <h3>Lange Listen: <code>select</code></h3>
+  </section>
+
+  <section>
+    <p>Das <code>select</code>-Element erlaubt es, lange Listen in einem extra Container mit einer Scrollbar anzuzeigen.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;select name="animals"&gt;
+        &lt;option value="cat"&gt;Katze&lt;/option&gt;
+        &lt;option value="dog"&gt;Hund&lt;/option&gt;
+        &lt;option value="bird"&gt;Vogel&lt;/option&gt;
+      &lt;/select&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <label for="animals">Tiere</label>
+    <select name="animals" id="animals">
+      <option value="cat">Katze</option>
+      <option value="dog">Hund</option>
+      <option value="bird">Vogel</option>
+    </select>
+  </section>
+
+  <section>
+    <p>Eine <code>option</code> mit <code>value=""</code> dient als Anzeige eines noch nicht ausgewählten Wertes</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;select name="animals"&gt;
+        &lt;option value=""&gt;Biete wähle ein Tier&lt;/option&gt;
+        &lt;option value="cat"&gt;Katze&lt;/option&gt;
+        &lt;option value="dog"&gt;Hund&lt;/option&gt;
+        &lt;option value="bird"&gt;Vogel&lt;/option&gt;
+      &lt;/select&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <label for="animals">Tiere</label>
+    <select name="animals" id="animals">
+      <option value="">Biete wähle ein Tier</option>
+      <option value="cat">Katze</option>
+      <option value="dog">Hund</option>
+      <option value="bird">Vogel</option>
+    </select>
+  </section>
+
+  <section>
+    <p>Wenn mehrere Optionen Auswählbar sein sollen, lässt sich dies mit dem <code>multiple</code>-Attribut verwirklichen.</p>
+    <p>Dabei wird das <code>select</code> als eine Box mit mehrere Zeilen (mit Scroll) dargestellt. Mehrere Optionen können gleichzeitig mit STRG/CMD ausgewählt werden.</p>
+  </section>
+
+  <section>
+    <p>Falls eine Option mit leerem Wert (<code>value=""</code>) existiert, kann dieses mit dem Attribut <code>disabled</code> nicht Anwählbar angezeigt werden.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;select name="animals"&gt;
+        &lt;option value="" disabled&gt;Biete wähle ein Tier&lt;/option&gt;
+        &lt;option value="cat"&gt;Katze&lt;/option&gt;
+        &lt;option value="dog"&gt;Hund&lt;/option&gt;
+        &lt;option value="bird"&gt;Vogel&lt;/option&gt;
+      &lt;/select&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <label for="animals">Tiere</label>
+    <select name="animals" id="animals" multiple>
+      <option value="" disabled>Biete wähle mindestens ein Tier</option>
+      <option value="cat">Katze</option>
+      <option value="dog">Hund</option>
+      <option value="bird">Vogel</option>
+    </select>
+  </section>
+
+  <section>
+    <p>Weiter lassen sich die Optionen in einem <code>select</code> mithilfe des Tag <code>optgroup</code> kategorisieren</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;select name="animals"&gt;
+        &lt;optgroup label="Katzenrassen"&gt;
+          &lt;option value="bsh"&gt;British Shorthair&lt;/option&gt;
+          &lt;option value="mc"&gt;Maine Coon&lt;/option&gt;
+        &lt;/optgroup&gt;
+        &lt;optgroup label="Hunderassen"&gt;
+          &lt;option value="gs"&gt;Schäferhund&lt;/option&gt;
+          &lt;option value="poodle"&gt;Pudel&lt;/option&gt;
+        &lt;/optgroup&gt;
+      &lt;/select&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <label for="animals">Rassen</label>
+    <select name="animals" id="animals">
+      <optgroup label="Katzenrassen">
+        <option value="bsh">British Shorthair</option>
+        <option value="mc">Maine Coon</option>
+      </optgroup>
+      <optgroup label="Hunderassen">
+        <option value="gs">Schäferhund</option>
+        <option value="poodle">Pudel</option>
+      </optgroup>
+    </select>
+  </section>
+
+  <section>
+    <p>Select bietet (auch heutzutage) einen großen Nachteil: Die Elemente sind schwer zu stylen.</p>
+    <p>Falls eine visuell ansprechendere Komponente gewünscht ist, muss eine eigene implementiert werden (inklusive Unterstüztung von Barrierefreiheits-Features)</p>
+    <p>Alternativ bietet sich auch die Nutzung von Komponenten-Bibliotheken an.</p>
+  </section>
+</section>
