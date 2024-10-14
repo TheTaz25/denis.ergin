@@ -1,0 +1,45 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="HTML Aufgabe 5 - Formulare">
+  <h1>Ein Formular bauen</h1>
+  <p>Für diese Aufgabe soll ein Formular entwickelt werden.</p>
+  <p>
+    Das Formular soll den Nutzer einen beliebigen Film bewerten lassen.
+    Der Nutzer gibt den Film-Namen selber ein, kann eine kurze Rezension dazu verfassen, soll das Genre des Films angeben können (anhand von vordefinierten Genres) und soll mehrere Aspekte des Films auf einer Skala von 1 bis 10 bewerten.
+  </p>
+
+  <p>Das Formular soll folgendermaßen programmiert sein:</p>
+  <ul>
+    <li>
+      Ein Textfeld zum Eingeben des Names des Filmes
+      <ul>
+        <li>Der <code>name</code> des Textfeldes ist <strong>filmName</strong></li>
+        <li>Die maximale Eingabelänge des Textes soll 50 Zeichen sein</li>
+      </ul>
+    </li>
+    <li>
+      Eine Textarea zum Eingeben einer kurzen Rezension
+      <ul>
+        <li>Der <code>name</code> des Feldes ist <strong>review</strong></li>
+        <li>Die maximale Eingabelänge des Textes soll 1000 Zeichen sein</li>
+        <li>Das Textfeld soll mindestens 6 Zeilen hoch und 100 Spalten breit sein.</li>
+      </ul>
+    </li>
+    <li>
+      Ein Select zum Auswählen des Genres
+      <ul>
+        <li>Der <code>name</code> des Feldes ist <strong>genre</strong></li>
+        <li>Die Select-Box soll eine vorderfinierte Liste an Genres beinhalten, welche Genres dies sind, überbleibt dem Entwickler</li>
+      </ul>
+    </li>
+    <li>
+      Eine oder mehrere Slider zum Angeben von spezifischen Aspekten des Films (z.B. Gesamtbewertung, Spannung, etc.)
+      <ul>
+        <li>Mögliche <code>name</code> sind: <strong>overall</strong>, <strong>action</strong>, <strong>fun</strong>, <strong>romance</strong></li>
+        <li>Mögliche Werte bewegen sich zwischen 1 und 10</li>
+      </ul>
+    </li>
+  </ul>
+</Layout>
