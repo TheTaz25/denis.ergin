@@ -1,0 +1,53 @@
+---
+import Title from './title.astro'
+import WhatIsCss from "./what-is-css.astro";
+import HowToEmbed from './how-to-embed.astro';
+import BasicSelectors from './basic-selectors.astro'
+---
+
+<div class="slides">
+  <Title />
+  <WhatIsCss />
+  <HowToEmbed />
+  <BasicSelectors />
+</div>
+
+<style lang="scss" is:global>
+.apply-style {
+  &.one {
+    span {
+      color: hotpink;
+    }
+    span.meine-klasse {
+      color: coral;
+    }
+    span#meine-id {
+      color: brown;
+    }
+  }
+
+  &.two {
+    span.eins.zwei {
+      color: green;
+    }
+    span.eins {
+      color: blue;
+    }
+  }
+
+  &.three {
+    .bold {
+      font-weight: bold;
+    }
+    .font-green {
+      color: green;
+    }
+    .font-blue {
+      color: blue;
+    }
+    .font-red {
+      color: red;
+    }
+  }
+}
+</style>

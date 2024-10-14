@@ -1,0 +1,64 @@
+<section>
+  <section>
+    <h2>Styles im HTML einbinden</h2>
+  </section>
+  <section>
+    <p>Es gibt 3 Möglichkeiten CSS auf einer HTML-Seite zu verwenden:</p>
+    <ul>
+      <li>Inline-Styles</li>
+      <li>Style-Tag innerhalb der Website</li>
+      <li>Eine CSS-Datei die im HTML inkludiert wird</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Inline-Styles</h3>
+  </section>
+  <section>
+    <p>
+      Die meisten HTML-Elemente können mithilfe des <code>style</code> Attributes direkt gestyled werden.
+    </p>
+    <p>
+      Im Normalfall sollte von dieser Möglichkeit abgesehen werden, da inline-Styles eine höhere "Wichtigkeit" haben als andere Styling-Methoden und eine Suche nach einem Styling-Fehler sehr mühselig wird.
+    </p>
+  </section>
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;span style="color: red;"&gt;
+        Hier könnte Ihre Werbung stehen!
+      &lt;/span&gt;
+    </code></pre>
+  </section>
+  <section>
+    <h3>Das <code>style</code>-Tag</h3>
+  </section>
+  <section>
+    <p>Mithilfe des Style-Tag können mehrere Regeln auf einmal definiert werden, die Mithilfe von Selektoren bestimmte Elemente im HTML stylen</p>
+  </section>
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;style&gt;
+        // Hier sind die selektoren sowie die dazugehörigen Styles zu finden!
+      &lt;/style&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Styles in einer CSS-Datei definieren</h3>
+  </section>
+  <section>
+    <p>Die wahrscheinlich üblichste Variante ist es, die Style-Deklarationen in einer gesonderten Datei zu definieren und diese im HTML einzubinden</p>
+  </section>
+  <section>
+    <p>Fördert die "Portabilität" zwischen HTML-Dateien</p>
+    <p>Alles an einem Platz</p>
+    <p>Seperation of Concerns</p>
+  </section>
+  <section>
+    <p>Die Einbindung von CSS in HTML-Dateien erfolgt mit dem <code>link</code>-Tag</p>
+  </section>
+  <section>
+    <pre class="html"> <code data-trim data-line-numbers>
+      &lt;link rel="stylesheet" href="style.css"&gt;
+    </code></pre>
+  </section>
+</section>

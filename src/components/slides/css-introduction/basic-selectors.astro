@@ -1,0 +1,137 @@
+<section>
+  <section>
+    <h2>Nur bestimmte Elemente stylen - <code>Selektoren</code></h2>
+  </section>
+
+  <section>
+    <p>Bisher haben wir gesehen, wie wir Styles einbinden können, ein paar erste "Grundregeln" denen CSS folgt und wie wir Textfarbe mit <span style="color: hotpink;">color</span> ändern können.</p>
+  </section>
+
+  <section>
+    <p>
+      Nun möchten wir näher betrachten, wie man Selektoren benutzt um nur bestimmte Elemente zu stylen.
+    </p>
+  </section>
+
+  <section>
+    <h3>Tags stylen</h3>
+  </section>
+  <section>
+    <p>
+      Die "einfachste" Anwedung von styles geschieht durch die Tag-Selektoren.
+      Wir können einfach schreiben, welches Tag gestyled werden soll. Style-Regeln werden dabei in geschweiften Klammer platziert
+    </p>
+  </section>
+  <section>
+    <pre class="css"><code data-trim data-line-numbers="1|2" is:raw>
+      span {
+        color: hotpink;
+      }
+    </code></pre>
+    <span style="color: hotpink;">Hallo Welt!</span>
+  </section>
+
+  <section>
+    <h3>Klassen &amp; ID's</h3>
+  </section>
+  <section>
+    <p>Weitere gängige Werkzeuge für die Selektierung sind Klassen und ID's.</p>
+    <p>Klassen-Namen werden in CSS mit einem Punkt (<code>.</code>) prefixed.</p>
+    <p>ID's werden mit einem Hashtag (<code>#</code>) prefixed.</p>
+  </section>
+  <section>
+    <pre><code data-trim data-line-numbers="1-3|4-6|7-9" is:raw>
+      span {
+        color: hotpink;
+      }
+      span.meine-klasse {
+        color: coral;
+      }
+      span#meine-id {
+        color: brown;
+      }
+    </code></pre>
+    <div class="apply-style one">
+      <span>Ich bin nur ein Span!</span>
+      <br>
+      <span class="meine-klasse">Ich habe eine Klasse "<code>meine-klasse</code>"</span>
+      <br>
+      <span id="meine-id">Ich habe eine ID "<code>meine-id</code>"</span>
+    </div>
+  </section>
+
+  <section>
+    <h3>Spezifität</h3>
+  </section>
+  <section>
+    <p>Nun ein paar weitere Regeln: Eine ID ist spezifischer als eine Klasse ist spezfischer als ein Tag-Selektor</p>
+  </section>
+  <section>
+    <p>Es ist möglich, mehrere Klassen-Namen eines Elements zu selektieren:</p>
+  </section>
+  <section>
+    <pre><code data-trim data-line-numbers="1-3|4-6|7-9" is:raw>
+      span.eins {
+        color: blue;
+      }
+      span.eins.zwei {
+        color: green;
+      }
+    </code></pre>
+    <div class="apply-style two">
+      <span class="eins">Klase "eins"</span>
+      <br>
+      <span class="zwei">Klase "zwei"</span>
+      <br>
+      <span class="eins zwei">Klase "eins und zwei"</span>
+    </div>
+  </section>
+  <section>
+    <p>Weil das letzte <code>span</code> zwei "zutreffende" Klassen hat, hat dies mehr Gewicht (1 vs 2)</p>
+    <p>Zusätzlich ist nun der <code>span</code>-Selektor hinfällig: Da eine Klasse generell spezifischer wie ein Tag ist, wird der Tag-Selektor "überflüssig".</p>
+  </section>
+  <section>
+    <p>Dies trifft natürlich nicht in Situationen zu, in denen explizit ein bestimmtes Tag mit einer bestimmten Klasse gestyled werden soll.</p>
+    <p>In der Regel wird aber vermehrt einfach nur mit einer Klasse gestyled (auch hier wieder für die wiederverwendbarkeit).</p>
+  </section>
+
+  <section>
+    <p>Manchmal werden Klassen auch als Singulare "Modifikationen" auf Elemente "gepackt".</p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;span class="bold"&gt;Fetter Text&lt;/span&gt;
+      &lt;span class="font-blue"&gt;Blauer Text&lt;/span&gt;
+      &lt;span class="font-blue bold"&gt;Blauer, fetter Text&lt;/span&gt;
+    </code></pre>
+    <div class="apply-style three">
+      <span class="bold">Fetter Text</span>
+      <br>
+      <span class="font-blue">Blauer Text</span>
+      <br>
+      <span class="font-blue bold">Blauer, fetter Text</span>
+      <br>
+    </div>
+  </section>
+
+  <section>
+    <p>Es ist auch möglich beliebige Attribute eines HTML-Tags zu selektieren und zum stylen zu verwenden</p>
+    <pre class="css"><code data-trim data-line-numbers="1-5|6-10" is:raw>
+      <!-- "Zählt" sobald ein Element
+        dieses Attribut definiert hat -->
+      span[data-red] {
+        color: red;
+      }
+      <!-- "Zählt", sobald ein Element
+        das Attribut mit exaktem Wert hat  -->
+      span[data-color="red"] {
+        color: red;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Was ist besser? Jedes Element speziell an seine Bedürfnisse stylen? Jedes Element mit Klassen "vollpacken" um den gewünschten Style zu erhalten?</p>
+  </section>
+  <section>
+    <p>Beide Wege sind valide und natürlich haben sich auch Systeme hierfür Entwickelt, die das ermöglichen. Trotzdem ist und bleibt die Entscheidung im Team bei den Entwicklern.</p>
+  </section>
+</section>
