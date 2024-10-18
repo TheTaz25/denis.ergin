@@ -1,0 +1,57 @@
+---
+import { Icon } from 'astro-icon/components'
+interface Props {
+  to: string;
+  color?: 'green' | 'rose' | 'violet' | 'blue';
+}
+
+const { color, to } = Astro.props;
+---
+
+<a class:list={["card", color]} href={to}>
+  <slot />
+  <Icon name="arrow" class="icon"/>
+</a>
+
+<style>
+.card {
+  background-color: var(--navigation-background-color);
+  color: var(--foreground-color);
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  text-decoration: none;
+  font-size: large;
+  font-weight: bold;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 100ms ease-in;
+
+  & .icon {
+    font-size: xx-large;
+  }
+  
+  &.green {
+    background-color: #004052;
+  }
+
+  &.violet {
+    background-color: #3a015c;
+  }
+
+  &.rose {
+    background-color: #45040c;
+  }
+
+  &.blue {
+    background-color: #1d2d44;
+  }
+
+  &:hover {
+    border-bottom: 2px solid white;
+  }
+}
+</style>
