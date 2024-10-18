@@ -1,0 +1,77 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from './atoms/Button.astro';
+import Link from './atoms/Link.astro';
+---
+
+<div class="nav-wrapper">
+  <Button className="nav-open">
+    <Icon name="ham" />
+    Menü
+  </Button>
+</div>
+<nav aria-hidden="true" class="main">
+  <Button className="nav-close" aria-label="Navigation schließen" type="ghost">
+    Menü schließen
+  </Button>
+  <ul>
+    <li><Link to="/">Startseite</Link></li>
+    <li><Link to="/knowledge-base">Knowledge-Base</Link></li>
+  </ul>
+</nav>
+
+<script>
+function toggleMenu() {
+  const targetAttr = 'aria-hidden';
+  const nav = document.querySelector('nav.main') as HTMLElement;
+  const nextState = nav.getAttribute(targetAttr) === 'true' ? 'false' : 'true';
+  nav.setAttribute(targetAttr, nextState);
+}
+
+const openbutton = document.querySelector('button.nav-open') as HTMLButtonElement;
+openbutton.addEventListener('click', toggleMenu);
+const closeButton = document.querySelector('button.nav-close') as HTMLButtonElement; 
+closeButton.addEventListener('click', toggleMenu);
+</script>
+
+<style lang="scss">
+div.nav-wrapper {
+  position: relative;
+}
+
+nav.main {
+  position: absolute;
+  height: calc(100vh - 2rem);
+  max-width: 90vw;
+  width: 300px;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  transition: left 150ms ease-out;
+  background-color: var(--navigation-background-color);
+  border-right: 2px solid #8da9c4;
+  padding-left: 2rem;
+  padding-top: 2rem;
+}
+
+nav.main ul {
+  list-style: none;
+  padding-left: 0;
+  line-height: 2.5rem;
+  font-size: 1.3rem;
+}
+
+nav.main[aria-hidden="true"] {
+  left: -100vw;
+}
+
+nav.main[aria-hidden="false"] {
+  left: 0rem;
+}
+
+button.nav-open {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+}
+</style>

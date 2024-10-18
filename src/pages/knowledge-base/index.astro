@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon/components'
+import Card from '../../components/atoms/Card.astro'
+import HorizontalSlider from '../../components/atoms/HorizontalSlider.astro'
+import { getCollection } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+
+const dhbwModules = await getCollection('dhbw', (module) => module.data.show);
+---
+
+<Layout title="Startseite der Knowledge-Base">
+  <section>
+    <h1>Startseite der Knowledge-Base</h1>
+    <p>
+      Hier findet Ihr verschiedene Einträge / Beiträge / innere Monologe jedweder Art von Wissen, die ich als Entwickler sammeln und teilen kann oder will. Die Inhalte sollten (im besten Fall) mit der Zeit mehr werden, eine Garantie "regelmäßig" etwas zu verfassen kann ich aber nicht geben.
+      </p>
+      <p>
+      Zusätzlich zu den Inhalten werden hier auch Informationen aufbereitet, die ich als Dozent an der DHBW Karlsruhe in den Module Web Engineering I sowie Web Engineering II präsentiere.
+    </p>
+  </section>
+
+  <section>
+    <h2>DHBW Module</h2>
+    <p>
+      Hier findet Ihr alles rund um die Module die ich als Dozent für die DHBW verfasst habe.
+    </p>
+    <HorizontalSlider>
+      {dhbwModules.map((module) => (
+        <Card to={`${module.data.staticPath}${module.slug}`} class="module-card">
+          <span class="card-title">{module.data.title}</span>
+          <Icon name="arrow" class="arrow" />
+        </Card>
+      ))}
+    </HorizontalSlider>
+  </section>
+</Layout>
+
+<style>
+.module-card {
+  height: 5rem;
+  display: inline-flex;
+  min-width: 250px;
+  justify-content: space-between;
+  margin-right: 1rem;
+  color: var(--foreground-color);
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 100ms ease-in;
+}
+
+.module-card:hover {
+  border-bottom: 2px solid white;
+}
+
+.module-card .arrow {
+  --size: 2rem;
+  border-radius: 50%;
+  height: calc(var(--size) / 2);
+  width: calc(var(--size) / 2);
+  padding: calc(var(--size) / 3);
+  background-color: var(--button-background-color);
+  align-self: flex-end;
+}
+
+.module-card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+</style>

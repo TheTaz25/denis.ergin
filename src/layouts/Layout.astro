@@ -1,6 +1,6 @@
 ---
-import Link from '../components/atoms/Link.astro';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Navigation from '../components/nav.astro'
+import { getLangFromUrl } from '../i18n/utils';
 import '../styles/global.css'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 const { title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+// const t = useTranslations(lang);
 ---
 
 <!doctype html>
@@ -24,10 +24,7 @@ const t = useTranslations(lang);
 	</head>
 	<body>
 		<header>
-			<nav>
-				<Link to="/">{t('nav.home')}</Link>
-				<Link to="/else">{t('nav.knowledgeBase')}</Link>
-			</nav>
+			<Navigation />
 		</header>
 		<main>
 			<slot />
@@ -35,23 +32,12 @@ const t = useTranslations(lang);
 	</body>
 </html>
 <style is:global lang="scss">
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
+	html, a:visited {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
-		color: white;
+		background-color: var(--background-color);
+		color: var(--foreground-color);
 	}
-	main {
+	body {
 		max-width: 1200px;
 		margin: 0 auto;
 	}
@@ -66,11 +52,10 @@ const t = useTranslations(lang);
 			Courier New,
 			monospace;
 	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 4rem;
-		margin: 1rem 0 2rem 0;
+	header {
+		margin: 1rem 1rem;
+	}
+	main {
+		margin: 0 1rem;
 	}
 </style>

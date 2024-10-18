@@ -1,0 +1,19 @@
+<div class="module-slider">
+  <div class="slider-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+.module-slider {
+  overflow-x: auto;
+  display: flex;
+}
+
+.slider-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  overflow-y: visible;
+}
+</style>

@@ -1,0 +1,11 @@
+:root {
+  --background-color: #051923;
+  --foreground-color: #eef4ed;
+
+  --navigation-background-color: #003554;
+  --button-background-color: #0582ca;
+  --button-background-color-translucent: #0582ca33;
+  --button-hover-color: #006494;
+  --button-active-color: #051923;
+  --button-fg-color: white;
+}

@@ -1,0 +1,23 @@
+---
+interface Props {
+  to: string;
+  class?: string;
+}
+
+const { to, class: className, ...rest } = Astro.props;
+---
+
+<a class:list={["card", className]} href={to} {...rest}>
+  <slot />
+</a>
+
+<style>
+.card {
+  background-color: var(--navigation-background-color);
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  max-width: 80vw;
+  text-decoration: none;
+}
+</style>
