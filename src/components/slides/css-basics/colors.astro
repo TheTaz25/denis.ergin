@@ -1,0 +1,81 @@
+<section>
+  <section>
+    <h2>Farben</h2>
+  </section>
+
+  <section>
+    <p>Die 2 wichtigsten Farb-Eigenschaften sind</p>
+    <p><code>background-color & color</code></p>
+    <p>Mit diesen, lassen sich Hintergrundfarben und Textfarben einstellen</p>
+  </section>
+  <section>
+    <p>Wie sind Farben definiert?</p>
+  </section>
+  <section>
+    <p>CSS "bietet" Farben an, die mit keywords abrufbar sind:</p>
+    <ul>
+      <li>red</li>
+      <li>green</li>
+      <li>blue</li>
+      <li>hotpink</li>
+      <li>crimson</li>
+      <li>lightgray</li>
+      <li>Und viele mehr...</li>
+    </ul>
+  </section>
+  <section>
+    <h3>RGB &amp; Hex-Notation &amp; weitere</h3>
+  </section>
+  <section>
+    <p>Kurz zur Farblehre:</p>
+    <p>Das gängiste Model um Farben darzustellen ist eine Mischung aus den 3 Grundfarben Rot, Blau, Grün</p>
+  </section>
+  <section>
+    <p>CSS bietet 2 (4) Optionen um diese darzustellen</p>
+    <p>Hexadezimal mit einem Hashtag davor: <code>#<span style="color: red;">RR</span><span style="color: green;">GG</span><span style="color: blue;">BB</span>(<span>AA</span>)
+    </code></p>
+    <p>
+      CSS-Funktion "rgb":
+      <br>
+      <code>rgb(<span style="color: red;">R</span>, <span style="color: green;">G</span>, <span style="color: blue;">B</span>);</code>
+      <br>
+      <code>rgba(<span style="color: red;">R</span>, <span style="color: green;">G</span>, <span style="color: blue;">B</span>, A);</code>
+    </p>
+  </section>
+  <section>
+    <p><code>A</code> bezeichnet hier in diesem Fall den Alpha-Channel. Damit wird die Transparenz angegeben.</p>
+    <p>Jeder Farbwert darf zwischen 0 und 255 liegen (in Hex: 00 bis FF), Alpha-Werte in Hex-Notation auch, aber in der <code>rgba</code>-Funktion liegt dieser Wert zwischen 0 und 1 ()</p>
+    <p>Der Wert 0 definiert dabei keine Farbe, 255 die volle Farbkraft.</p>
+  </section>
+  <section>
+    <p><code>#FF0000</code>?</p>
+  </section>
+  <section style="color: #f00">
+    <p><code>#FF0000</code>!</p>
+  </section>
+  <section>
+    <p><code>#0066FF</code>?</p>
+  </section>
+  <section style="color: #06f">
+    <p><code>#0066FF</code>!</p>
+  </section>
+  <section>
+    <p><code>#13df71</code>?</p>
+  </section>
+  <section style="color: #13df71">
+    <p><code>#13df71</code>!</p>
+  </section>
+  <section>
+    <p><code>#13 df 71 55</code>?</p>
+  </section>
+  <section style="color: #13df7155">
+    <p><code>#13 df 71 55</code>!</p>
+  </section>
+  
+  <section>
+    <p>Eine gängige Alternative zur RGB-Welt, ist HSL (Hue, Saturation, Luminance/Lightness)</p>
+  </section>
+  <section>
+    <p>Diese Werte werden mit der CSS-Funktion <code>hsl(0 - 360, 0 - 100, 0 - 100)</code> angegeben</p>
+  </section>
+</section>

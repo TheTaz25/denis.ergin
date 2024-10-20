@@ -20,5 +20,13 @@
       "  <p>$2</p>",
       "</section>"
     ]
-  }
+  },
+	"HighlightJS": {
+		"prefix": "hljs",
+		"body": [
+			"<pre class=\"$1\"><code data-trim data-line-numbers>",
+			"$2",
+			"</code></pre>$3"
+		]
+	}
 }

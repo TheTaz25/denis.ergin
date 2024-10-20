@@ -1,0 +1,37 @@
+---
+import Title from './title.astro'
+import Colors from './colors.astro';
+import Font from './font.astro';
+---
+
+<div class="slides">
+  <Title />
+  <Colors />
+  <Font />
+</div>
+
+<style lang="scss" is:global>
+.apply-styles {
+  &.one {
+    .font-large {
+      font-size: 8rem;
+    }
+
+    .font-bold {
+      font-weight: 900;
+    }
+
+    .font-thin {
+      font-weight: 100;
+    }
+
+    .letter-spacing {
+      letter-spacing: 8px;
+    }
+
+    .line-height {
+      line-height: 20px;
+    }
+  }
+}
+</style>
