@@ -11,8 +11,19 @@ import Font from './font.astro';
 </div>
 
 <style lang="scss" is:global>
+@font-face {
+  font-family: 'Kablammo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Kablammo.ttf") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 .apply-styles {
   &.one {
+    &.helvetica {
+      font-family: "American Typewriter";
+    }
     .font-large {
       font-size: 8rem;
     }
@@ -31,6 +42,100 @@ import Font from './font.astro';
 
     .line-height {
       line-height: 20px;
+    }
+
+    .word-spacing-1 {
+      word-spacing: 1rem;
+    }
+    .word-spacing-2 {
+      word-spacing: 2rem;
+    }
+    .word-spacing-3 {
+      word-spacing: 3rem;
+    }
+    
+    .underline {
+      text-decoration: underline;
+    }
+    .overline {
+      text-decoration: overline;
+    }
+    .strike-through {
+      text-decoration: line-through;
+    }
+
+    .all-decorations {
+      text-decoration: underline overline line-through solid;
+    }
+
+    .double {
+      text-decoration-style: double;
+    }
+    .dotted {
+      text-decoration-style: dotted;
+    }
+    .dashed {
+      text-decoration-style: dashed;
+    }
+    .wavy {
+      text-decoration-style: wavy;
+    }
+
+    .thick-line {
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-thickness: 1rem;
+    }
+
+    .decorate {
+      text-decoration: underline wavy 3px blue;
+    }
+
+    .start {
+      text-align: start;
+    }
+    .end {
+      text-align: end;
+    }
+    .center {
+      text-align: center;
+    }
+    .justify {
+      text-align: justify;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    .bloody {
+      text-shadow: 5px 5px 10px red;
+    }
+
+    .noteworthy-and-other {
+      font-family: Noteworthy, Source Sans Pro, -apple-system, sans-serif, monospace;
+    }
+
+    .kablammo {
+      font-size: 6rem;
+      font-family: Kablammo;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-variation-settings:"MORF" 2;
+      animation: MORF 5s infinite;
+    }
+
+    @keyframes MORF {
+      0% {
+        font-variation-settings: "MORF" 0;
+      }
+      50% {
+        font-variation-settings: "MORF" 60;
+      }
+      100% {
+        font-variation-settings: "MORF" 0;
+      }
     }
   }
 }
