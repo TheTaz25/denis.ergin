@@ -1,0 +1,123 @@
+<section>
+  <section>
+    <h2>Abstände</h2>
+    <p>Freiraum mit <code>margin</code> und <code>padding</code></p>
+  </section>
+
+  <section>
+    <p>Die bisher erstellten Inhalte liegen Teils sehr nah beinander</p>
+    <p>Dem können wir insgesamt mit margin's und padding's entgegen um Negativräume (allgemein auch "Whitespace") zu erstellen.</p>
+    <p>Im UI-Design sind diese Negativräume von großer Wichtigkeit. Mit diesen Mitteln lassen sich Inhalte geschickt in Szene setzen.</p>
+  </section>
+
+  <section>
+    <p>In der vorherigen Sektion haben wir Borders kennen gelernt.</p>
+    <p>Padding und Margin setzten sich jeweils nach außen und innen des Borders und erlauben so, den Inhalt vom Border und die gesamte Umliegende Box von anderen Boxen mit Abstand zu versorgen.</p>
+  </section>
+
+  <section>
+    <p>Einfaches Beispiel: 3 Boxen</p>
+    <div class="apply-styles three">
+      <div class="box">Box eins</div><div class="box">Box zwei</div><div class="box">Box drei</div>
+    </div>
+    <p>Text hat keinen Abstand zum Rand, Boxen haben keinen Abstand zueinander</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .box {
+        border: 4px solid black;
+      }
+      .pad {
+        padding: 1rem;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Padding</p>
+    <div class="apply-styles three">
+      <div class="box">Box eins</div><div class="box pad">Box zwei, mit 1rem padding</div><div class="box">Box drei</div>
+    </div>
+    <p>Es lässt sich beobachten, dass die Box zwischen Text und Rand auf einmal Platz erhalten hat (und dabei den Rand nach außen drängt)</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+    .box { ... }
+    .margin {
+      margin: 1rem;
+    }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Margin</p>
+    <div class="apply-styles three">
+      <div class="box">Box eins</div><div class="box margin">Box zwei, mit 1rem margin</div><div class="box">Box drei</div>
+    </div>
+    <p>Nun hat Box #2 Abstand zu den Boxen #1 und #2 erhalten, dabei "wächst" der Rand nicht.</p>
+  </section>
+
+  <section>
+    <p>Margin & Padding zusammen</p>
+    <div class="apply-styles three">
+      <div class="box">Box eins</div><div class="box margin pad">Box zwei,<br> mit 1rem margin und padding</div><div class="box">Box drei</div>
+    </div>
+  </section>
+
+  <section class="apply-styles four">
+    <div class="margin flex-center">
+      <span class="label">Margin</span>
+      <div class="border flex-center">
+        <span class="label">Border</span>
+        <div class="padding flex-center">
+          <span class="label">Padding</span>
+          <div class="content">
+            Inhalt!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Natürlich lässt sich jede Seite eines margin oder padding individuell einstellen</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .four-short {
+        padding: [top] [right] [bottom] [left];
+        margin: [top] [right] [bottom] [left];
+      }
+      .two-short {
+        padding: [vertical] [horizontal];
+        margin: [vertical] [horizontal];
+      }
+      .three-short {
+        padding: [top] [horizontal] [bottom];
+        margin: [top] [horizontal] [bottom];
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Auch hier können wir, wie bereits beim border, mit <code>block</code> und <code>inline</code> arbeiten. Die Richtungen sind dabei die gleichen wie im Falle des Borders.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .margin {
+        // Oben
+        margin-block-start: 1rem;
+        // Unten
+        margin-block-end: 1rem;
+        // Links
+        margin-inline-start: 1rem;
+        // Rechts
+        margin-inline-end: 1rem;
+      }
+    </code></pre>
+  </section>
+</section>
