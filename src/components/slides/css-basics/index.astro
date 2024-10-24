@@ -2,12 +2,14 @@
 import Title from './title.astro'
 import Colors from './colors.astro';
 import Font from './font.astro';
+import Border from './border.astro';
 ---
 
 <div class="slides">
   <Title />
   <Colors />
   <Font />
+  <Border />
 </div>
 
 <style lang="scss" is:global>
@@ -19,6 +21,58 @@ import Font from './font.astro';
   src: url("/fonts/Kablammo.ttf") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+.three-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template: "start-start block-start start-end" 1fr
+                 "inline-start center inline-end" 100px
+                 "end-start block-end end-end" 1fr /1fr 1fr 1fr;
+  font-family: monospace;
+
+  .block-start {
+    grid-area: block-start;
+    border-block-end: 4px solid black;
+  }
+  .inline-start {
+    grid-area: inline-start;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-inline-end: 4px solid black;
+  }
+  .center {
+    grid-area: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .inline-end {
+    grid-area: inline-end;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-inline-start: 4px solid black;
+  }
+  .block-end {
+    grid-area: block-end;
+    border-block-start: 4px solid black;
+  }
+
+  .start-start {
+    grid-area: start-start;
+  }
+  .start-end {
+    grid-area: start-end;
+  }
+  .end-start {
+    grid-area: end-start;
+  }
+  .end-end {
+    grid-area: end-end;
+  }
+}
+
 .apply-styles {
   &.one {
     &.helvetica {
@@ -123,7 +177,10 @@ import Font from './font.astro';
       font-weight: 400;
       font-style: normal;
       font-variation-settings:"MORF" 2;
-      animation: MORF 5s infinite;
+      
+      &:hover {
+        animation: MORF 5s infinite;
+      }
     }
 
     @keyframes MORF {
@@ -136,6 +193,74 @@ import Font from './font.astro';
       100% {
         font-variation-settings: "MORF" 0;
       }
+    }
+  }
+
+  &.two {
+    .base-border-wo-style {
+      border-color: darkslategrey;
+      border-width: 2rem;
+    }
+
+    .border-double {
+      border-style: double;
+    }
+
+    .border-dashed {
+      border-style: dashed;
+    }
+
+    .border-dotted {
+      border-style: dotted;
+    }
+
+    .border-inset {
+      border-style: inset;
+    }
+
+    .border-outset {
+      border-style: outset;
+    }
+
+    .with-border {
+      border: 5px solid black;
+    }
+
+    .border-single-def {
+      border-color: crimson;
+      border-width: 2rem;
+      border-style: ridge;
+    }
+
+    .seperated-border-style {
+      border-block-start: 0.5rem double blueviolet;
+      border-inline-end: 0.5rem dashed olivedrab;
+    }
+
+    .rounded-corners {
+      border: 3px solid darkblue;
+      border-radius: 1rem;
+    }
+
+    .fifty-percent-corners {
+      border: 3px solid darkblue;
+      border-radius: 50%;
+    }
+
+    .cornered-corners {
+      border: 3px solid darkblue;
+      border-radius: 0 0.5rem 1rem 2rem;
+    }
+
+    .animated-border-radius {
+      animation: border-radius 5s linear infinite;
+    }
+    @keyframes border-radius {
+      0% { border-radius: 2.5rem 0 0 0;}
+      25% { border-radius: 0 2.5rem 0 0;}
+      50% { border-radius: 0 0 0 2.5rem;}
+      75% { border-radius: 0 0 2.5rem 0;}
+      100% { border-radius: 2.5rem 0 0 0;}
     }
   }
 }

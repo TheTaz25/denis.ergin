@@ -1,0 +1,206 @@
+<section>
+  <section>
+    <h2>Borders (aka Grenze... Danke Google)</h2>
+  </section>
+
+  <section>
+    <p>Wir reden hier eigentlich über die Umrahmung von Elementen, entsprechend im Englischen: "Border"</p>
+  </section>
+
+  <section>
+    <p>Border benötigen 3 Definitionen:</p>
+    <ul>
+      <li>Der Stil (style): einfach, doppelt, gestrichelt, etc.</li>
+      <li>Die Breite (width)</li>
+      <li>Die Farbe (color)</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Ein einfaches Beispiel</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .with-border {
+        border: 5px solid black;
+      }
+    </code></pre>
+    <div class="apply-styles two">
+      <p class="with-border">
+        Ich bin ein Paragraph!
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <p>Natürlich lässt sich alles einzeln definieren</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .border-single-def {
+        border-color: crimson;
+        border-width: 2rem;
+        border-style: ridge;
+      }
+    </code></pre>
+    <div class="apply-styles two">
+      <p class="border-single-def">
+        Rote Farbe, <br>
+        Dickerer Rand, <br>
+        "Ridge"
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <p>Weitere Stile</p>
+    <br>
+    <div class="apply-styles two">
+      <p class="base-border-wo-style border-double">
+        style: <code>double</code>
+      </p>
+      <p class="base-border-wo-style border-dashed">
+        style: <code>dashed</code>
+      </p>
+      <p class="base-border-wo-style border-dotted">
+        style: <code>dotted</code>
+      </p>
+      <p class="base-border-wo-style border-inset">
+        style: <code>inset</code>
+      </p>
+      <p class="base-border-wo-style border-outset">
+        style: <code>outset</code>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h3>Einzelne Abschnitte mit Border versehen</h3>
+  </section>
+
+  <section>
+    <p>Es lassen sich auch einzelne, bzw gegenüber liegende Seiten mit einer Border stylen</p>
+  </section>
+
+  <section>
+    <p>Die Bereiche:</p>
+    <div class="three-grid">
+      <div class="block-start">
+        "block-start"
+      </div>
+      <div class="inline-start">
+        "inline-start"
+      </div>
+      <div class="center">
+        Der Inhalt
+      </div>
+      <div class="inline-end">
+        "inline-end"
+      </div>
+      <div class="block-end">
+        "block-end"
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>"Altgediente" CSS-Profis würden nun aber sagen: "Das sind <code>top</code>, <code>right</code>, <code>bottom</code> und <code>left</code>! "</p>
+    <p>Das stimmt so auch, es gibt die <border>border</border>-Definitionen mit den 4 Richtungen.</p>
+    <p>Diese Schreibweise ist älter. Die gerade vorgstellten Konzepte sind neuer und beachten die Richtung des Schrift-flusses (mehr dazu später)</p>
+  </section>
+
+  <section>
+    <p>
+      Für uns gilt erstmal:
+      <br><code>block</code> definiert die Vertikale Achse
+      <br>
+      <code>inline</code> definiert die Horizontale Achse
+    </p>
+    <p><code>start</code> sowie <code>end</code> definieren jeweils den Anfang und das Ende der Achse!</p>
+  </section>
+
+  <section>
+    <p>Entsprechend können wir nun den oberen und rechten Border separat stylen:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .seperated-border-style {
+        border-block-start: 0.5rem double blueviolet;
+        border-inline-end: 0.5rem dashed olivedrab;
+      }
+    </code></pre>
+    <div class="apply-styles two">
+      <p class="seperated-border-style">
+        Hier könnte dein Content stehen!
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h3>Abgerundete Borders</h3>
+  </section>
+
+  <section>
+    <p>Natürlich gibt es einen einfachen weg die Ecken in einer Border abzurunden!</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .rounded-corners {
+        border: 3px solid darkblue;
+        border-radius: 1rem;
+      }
+    </code></pre>
+    <div class="apply-styles two">
+      <p class="rounded-corners">
+        Abgerundete Ecken sind schon nice...
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <p>Prozentangaben gehen natürlich auch, sieht aber in einem nicht-quadratischen Block weniger toll aus:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .fifty-percent-corners {
+        border: 3px solid darkblue;
+        border-radius: 50%;
+      }
+    </code></pre>
+    <div class="apply-styles two">
+      <p class="fifty-percent-corners">
+        Sieht nicht mehr ganz so nice aus...
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <p>Es lässt sich auch jede Ecke einzeln mit einem eigenen Radius versehen:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .cornered-corners {
+        border: 3px solid darkblue;
+        border-radius: 0 0.5rem 1rem 2rem;
+      }
+    </code></pre>
+    <div class="apply-styles two">
+      <p class="cornered-corners">
+        Schon wieder etwas besser...
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <p>Selbstredend, hatte jede Ecke auch ihren eigenen (modernen) Namen</p>
+    <p><code>border-&lt;block&gt;-&lt;inline&gt;-radius</code></p>
+    <ul>
+      <li>border-start-start-radius -&gt; oben links</li>
+      <li>border-start-end-radius -&gt; oben rechts</li>
+      <li>border-end-start-radius -&gt; unten links</li>
+      <li>border-end-start-radius -&gt; unten rechts</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Das ganze nochmal visualisiert:</p>
+    <div class="three-grid apply-styles two">
+      <div class="start-start">start-start</div>
+      <div class="start-end">start-end</div>
+      <div class="center with-border animated-border-radius">Der Inhalt</div>
+      <div class="end-start">end-start</div>
+      <div class="end-end">end-end</div>
+    </div>
+  </section>
+</section>
