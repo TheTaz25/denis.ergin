@@ -1,0 +1,196 @@
+<section>
+  <section>
+    <h2>Media Queries</h2>
+  </section>
+
+  <section>
+    <p>Media Queries bilden einen Elementaren Bestandteil moderner Webentwicklung</p>
+    <p>Sie sorgen dafür, dass Elemente auf einer Website für mehrere "Viewports" angepasst werden.</p>
+    <p>Dadurch werden die Webseiten von heute "mobile Friendly". Sie sehen auf jedem Bildschirm gut aus (zumindest so die Theorie)</p>
+  </section>
+
+  <section>
+    <p>Aber was machen Media Queries nun?</p>
+    <p>Am ehesten kann man Media Queries wie eine if-Abfrage für bestimmte Medien-Typen und Features funktionieren.</p>
+    <p><code>Wenn Bildschirm nicht breiter ist als 500px, dann "erwäge" folgende Selektoren und Styles...</code></p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Wenn Verfügbare Breite kleiner gleich 900 pixel ist...
+      @media (width <= 900px) {
+        // style div's mit Klasse "small-styled"...
+        div.small-styled {
+          background-color: #f99;
+        }
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles mq-first">
+    <div class="small-styled">
+      Unter 900px habe ich einen roten Hintergrund!
+    </div>
+  </section>
+
+  <section>
+    <p>Das ganze geht auch für eine Reihe von weitere Features:</p>
+    <ul>
+      <li>hover</li>
+      <li>prefers-color-scheme</li>
+      <li>width &amp; height</li>
+      <li>orientation</li>
+      <li>Type</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Hover</h3>
+  </section>
+
+  <section>
+    <p>Dient zur Feststellung, ob das Gerät ein einfaches hovern zulässt.</p>
+    <p>Dies ist Normal der Fall, wenn das Gerät einen Mauszeiger besitzt.</p>
+    <p>Geräte mit Toucheingabe fallen nicht in diese Kategorie.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @media (hover: hover) {
+        // Geräte, die ein "präzises" hovern zulassen,
+        // werden von Selektoren erfasst.
+      }
+      @media (hover: none) { ... }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Touch-Geräte haben auch ein Gewisses "Hover"-Feature. Das hovern wird dabei ausgelöst wenn das Element angetippt wird und gleichzeitig der Finger vom Element wegbewegt wird.</p>
+  </section>
+
+  <section>
+    <h3>prefers-color-scheme</h3>
+  </section>
+
+  <section>
+    <p>Dieses Feature dient als Kommunikations-Schnittstelle zum Betriebssystem.</p>
+    <p>Im Betriebssystem kann heutzutage eingestellt werden, ob ein Light-Theme oder Dark-Theme in den Betriebssystem-Fenstern verwendet werden soll.</p>
+    <p>Mit <code>prefers-color-scheme</code> kann das abgefragt werden und Styles angewandt werden.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @media (prefers-color-scheme: light) {
+        // Betriebssystem-Standard-Einstellung
+        // Definiere Farben für helle Oberflächen (Light-Theme)
+      }
+
+      @media (prefers-color-scheme: dark) {
+        // Definiere Farben für dunkle Oberflächen (Dark-Theme)
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>width &amp; height</h3>
+  </section>
+
+  <section>
+    <p>Wie vorhin bereits vorgestellt. Es lassen sich Unter- und Obergrenzen für breite und/oder Höhe definieren.</p>
+    <p>Es können auch mehrere Abfragen für verschiedene Display-Breiten (auch Viewports genannt) definieren</p>
+    <p>Mobile, Tablet, Small-Desktop, Large-Desktop sind "gängige" Benamungen</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @media (width < 600px) {
+        // 599px und kleiner (mobile)
+      }
+      @media (600px =< width < 950px) {
+        // 600px bis 949px (tablet)
+      }
+      @media (950px =< width) {
+        // 950px und breiter (Desktop)
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Mobile First!?</h4>
+  </section>
+
+  <section>
+    <p>Eine gängige Taktik um Website-Inhalte zu implementieren, ist es "mobile-first" vorzugehen.</p>
+    <p>Dabei wird in der Implementierung zuerst die kleinste Viewport-Größe beachtet, sodass die Website auch auf kleinsten Geräten funktioniert.</p>
+    <p>Aktuelle Weiterentwicklung im Bereich der Webentwicklung deutet auf "Smallest Size First" hin.</p>
+  </section>
+
+  <section>
+    <p>Bei Smalles-Size-First, wird mit neueren Queries (Container-Queries) die Verfügbare Breite eines Elementes (anstatt der gesamte Viewport) abgefragt.</p>
+    <p>Je nachdem wie viel Breite zur Verfügung steht können so Inhalte innerhalb eines Elementes unterschiedlich gestyled werden.</p>
+  </section>
+
+  <section>
+    <h3>orientation</h3>
+  </section>
+
+  <section>
+    <p>Besonders für Mobile Geräte interessant (wenn auch ein Computer-Bildschrim in Portrait dargestellt werden kann).</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @media (orientation: portrait) {
+        // Hochkant (z.B. Normal gehaltenes Smartphone)
+      }
+
+      @media (orientation: landscape) {
+        // Querformat (z.B. Computer-Bildschirm; Breiter als Höher)
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Screen-Type</h3>
+  </section>
+
+  <section>
+    <p>Die Definition des Screen-Types ist nur noch wichtig, wenn man seine Website als PDF generieren lassen will (bzw. Ausdruckbar machen will)</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @media screen {
+        // Standard-Mäßige Darstellung von Inhalten
+        // Auf einem PC-Bildschirm
+      }
+      @media print {
+        // Spezielle Stylings für Druck-Inhalte (CMD+P oder CTRL+P)
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    Für ein Praxis-Beispiel, dient diese Webseite. Die Slides können auch als PDF exportiert werden.
+  </section>
+
+  <section>
+    <h3>Verknüpfungen mehrerer Media-Queries</h3>
+  </section>
+
+  <section>
+    <p>Manchmal ist es auch notwendig, mehrere Queries miteinander zu verknüpfen, man kann so komplexere Szenarien abbilden.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @media screen and (width <= 500px) {
+        // Kleine Bildschirme
+      }
+
+      @media (500px <= width), screen and (orientation: portrait) {
+        // Kleine Breiten ODER Bildschirme im Hochkant-Modus
+      }
+    </code></pre>
+  </section>
+</section>

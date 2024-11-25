@@ -1,0 +1,33 @@
+---
+interface Props {
+  amount: number
+}
+
+const { amount } = Astro.props;
+---
+
+<div class="flex">
+{ new Array(amount).fill(0).map((_, index) => (
+  <div class="child">
+    { index + 1 }
+  </div>
+)) }
+</div>
+
+<style>
+  .flex {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .child {
+    background: lightgray;
+    min-height: 150px;
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+

@@ -1,0 +1,128 @@
+<section>
+  <section>
+    <h2>Erweiterte Selektoren</h2>
+  </section>
+
+  <section>
+    <p>Soweit haben wir "einfache" Selektoren gesehen, die verwendet werden um Elemente anhand des Element-Types (z.B. <code>span, p, div</code>), oder dessen Attribute auszuwählen.</p>
+    <p>Dies ist aber nicht immer ausreichend, um alle Fälle in der Alltagsarbeit abzudecken.</p>
+  </section>
+
+  <section>
+    <h3>Child Selektierung</h3>
+  </section>
+
+  <section>
+    <p>In der HTML Dokumentenstruktur kann es häufig vorkommen, dass Elemente innereinander verschachtelt sind und Kindes-Elemente öfters den gleichen Klassennamen erhalten.</p>
+    <p>Mit einer einfachen Selektierung der Klasse kann es deshalb dazu kommen, das Elemente gestyled werden, die man eigentlich "nicht anfassen will".</p>
+    <p>Hierfür gibt es die Möglichkeit, Eltern-Elemente mit einer bestimmten Klassen zu definieren und Kinder mit bestimmten Klassen darin modifizieren/selektieren.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Style das Element mit der Klasse "inner"
+      // das sich innerhalb eines Elementes mit
+      // der Klasse "zwei befindet"
+      .eins .inner {
+        background-color: #bfc; // Hellgrün
+      }
+
+      .zwei .inner {
+        background-color: #9ff; // Hellrot
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles child-selector">
+    <div class="eins">
+      <div class="inner">.eins .inner (erscheint Hellgrün)</div>
+    </div>
+
+    <div class="zwei">
+      <div class="inner">.zwei .inner (erscheint Hellrot)</div>
+    </div>
+
+    <div class="inner">
+      .inner (hat keine Hintergrundfarbe)
+    </div>
+  </section>
+
+  <section>
+    <p>Die Reihenfolge ist hierbei wichtig, eine beliebige Tiefe mit mehreren Kindes-Kindern ist auch möglich.</p>
+    <p>Es macht keinen Unterschied, ob das Kind-Element direktes Kind, oder verschachteltes Kind ist:</p>
+  </section>
+
+  <section class="apply-styles child-selector">
+    <div class="eins">
+      <div class="level-1">
+        <div class="level-2">
+          <div class="inner">
+            .eins .level-1 .level-2 .inner (erscheint Hellgrün)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Wenn eine strengere Bindung notwendig ist, kann man dies mithilfe des "Child Combinator" Selektors tun.</p>
+  </section>
+
+  <section>
+    <h3>Child Combinator</h3>
+  </section>
+
+  <section>
+    <p>Der Child-Kombinator restriktiert die Selektion in dem Maß, dass ein Element ein direktes Child-Element zu einem Parent sein muss</p>
+    <p>Reduziert nochmals die Problematik, dass es zu ungewollten Selektionen von Elementen kommt</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .parent > .child {
+        background-color: #f99;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles child-combinator">
+    <div class="parent">
+      <div class="child">
+        .parent > .child (roter Hintergrund)
+      </div>
+    </div>
+
+    <div class="parent">
+      <div>
+        <div class="child">
+          .parent > div > .child
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Sibling-Selektor</h3>
+  </section>
+
+  <section>
+    <p>Mithilfe des Sibling-Selektors, lassen sich Elemente, die direkt nach einem anderen Element im Dokument erscheinen, selektieren.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .first + .second {
+        background-color: #f99;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles sibling">
+    <div class="first">
+      div.first
+    </div>
+    <div class="second">
+      div.second
+    </div>
+  </section>
+</section>

@@ -1,0 +1,482 @@
+---
+import NthBox from "./nth-box.astro"
+---
+
+<section>
+  <section>
+    <h2>Pseudo-Klassen</h2>
+  </section>
+
+  <section>
+    <p>Pseudo-Klassen werden dazu verwendet, HTML-Elemente mit einem Bestimmten Zustand zu selektieren.</p>
+    <p>Ein paar Beispiele dieser Zustände sind: Erstes Element eines bestimmten Typs, Maus-Hover, und weitere.</p>
+    <p>Pseudo-Selektoren zeichnen sich dadurch aus, dass sie mit einem Doppelpunkt (":hover") gekennzeichnet sind.</p>
+  </section>
+
+  <section>
+    <p><strong>first-child &amp; first-letter</strong></p>
+    <p><code>first-child</code> selektiert das erste Vorkommende Kind innerhalb eines Element dar.</p>
+    <p><code>first-letter</code> selektiert den ersten Buchstaben innerhalb der Kinder eines Containers.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Selektiere das erste Kind-Element innerhalb von .container
+      .container :first-child {
+        border: 4px solid #E58F65;
+      }
+      .container :first-letter {
+        color: red;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <p>Die Besten Programmiersprachen (nicht sortiert?):</p>
+    <ul class="container first">
+      <li>
+        Javascript
+        <ul>
+          <li>TypeScript</li>
+        </ul>
+      </li>
+      <li>Rust</li>
+      <li>Python</li>
+    </ul>
+  </section>
+
+  <section>
+    <p><code>:first-line</code></p>
+    <p>Mithilfe von Firstline, kann die erste Zeile (zum Beispiel in einem Paragraphen) gesondert gestyled werden</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Selektiere die erste Zeile im "container"
+      .container:first-line {
+        color: deeppink;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <p class="container second">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora sint, iure magnam, praesentium accusamus, fugit animi laboriosam aut ullam commodi nihil alias! Id provident numquam minus tempora ducimus ad natus.
+    </p>
+  </section>
+
+  <section>
+    <p>
+      <code>:first-of-type</code>
+    </p>
+    <p>Mit diesem Pseudoselektor lässt sich ein bestimmtes Element innerhalb eines Containers selektieren</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .container.third p:first-of-type {
+        font-weight: bold;
+        color: royalblue;
+      }
+    </code></pre>
+  </section>
+
+
+  <section class="apply-styles pseudo">
+    <div class="container third">
+      <p>Erster Paragraph</p>
+      <p>Zweiter Paragraph</p>
+    </div>
+  </section>
+
+  <section>
+    <p>Nicht nur das erste Element selektieren: <code>nth</code>-Selektoren</p>
+    <p><code>first-child und first-of-type</code> lassen sich auch für Elemente an anderer als erster Stelle definieren:</p>
+  </section>
+
+  <section>
+    <ul>
+      <li>:nth-child()</li>
+      <li>:nth-last-child() (wie child, zählt aber vom Ende)</li>
+      <li>:nth-of-type()</li>
+      <li>:nth-last-of-type() (wie of-type, zählt aber vom Ende)</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Es wird aufgefallen sein: <code>:nth-child()</code> sowie die anderen <code>:nth-*()</code> Varianten haben am Ende Runde Klammern, die diesen Selektor so aussehen lassen, als werde eine Funktion (oder ähnlich) aufgerufen.</p>
+    <p>Innerhalb der Klammer wird Angegeben in welchen Abständen die Elemente selektiert werden.</p>
+  </section>
+
+  <section>
+    <p>Beispiel-"Grid", jede einzelne Box hat die Klasse "child", der Parent-Container hat die Klasse "flex"</p>
+    <NthBox amount={5} />
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Selektiere das 2. Element mit der Klasse "child"
+      .child:nth-child(2) {
+        background-color: #E58F65;
+      }
+
+      // Alternative Schreibweise mit "of"-Keyword
+      // (diesmal das 4. Kind)
+      :nth-child(4 of .child) {
+        background-color: #E58F65;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <p>Jetzt sind alle geraden Kind-Elemente "selektiert"</p>
+    <div class="container fourth">
+      <NthBox amount={5} />
+    </div>
+  </section>
+
+  <section>
+    <p>Aber das geht auch einfacher:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Selektiert alle gerad-zahligen Vorkommnisse von "child"
+      :nth-child(even of .child) {
+        background-color: #E58F65
+      }
+
+      // Selektiert alle ungerad-zahligen Vorkommnisse von "child"
+      :nth-child(odd of .child) {
+        background-color: rgb(126, 154, 240);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <div class="container fifth">
+      <NthBox amount={5} />
+    </div>
+  </section>
+
+  <section>
+    <p>Nun etwas Mathe</p>
+    <p>der <code>nth</code>-Selektor lässt auch eine Formel zu:</p>
+    <p><code>An+B</code>, dabei ist <code>n</code> "gedanklich" eine natürliche Zahl</p>
+  </section>
+
+  <section>
+    <p>Beispiele:</p>
+    <hr>
+    <p><code>:nth-child(2n)</code> <br>- Selektiert jedes 2. Element (even)</p>
+    <hr>
+    <p><code>:nth-child(2n + 1)</code> <br>- Selektiert jedes 2. Element, beginnend ab dem 1. Element (odd)</p>
+    <hr>
+    <p><code>(n+7)</code> <br>- Selektiert das 7. und alle darauffolgenden Elemente</p>
+    <hr>
+    <p><code>(-n+3)</code> <br>- Selektiert die ersten drei Elemente</p>
+  </section>
+
+  <section>
+    <h3>Ein <code>before &amp; after</code></h3>
+  </section>
+
+  <section>
+    <p>Jedes Element hat 2 Pseudo-Elemente die zusätzliches Styling für dieses Element zulassen.</p>
+    <p>Diese Pseudeo Elemente befinden sich "vor" und "nach" dem eigentlichen Element und werden mit <code>::before</code> und <code>::after</code> selektiert und modifiziert.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .before-and-after::before {
+        content: '>>before<<';
+        background-color: rgb(255, 255, 172);
+      }
+
+      .before-and-after::after {
+        content: '>>after<<';
+        background-color: rgb(255, 194, 201);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <p>Beispiel</p>
+    <div class="container sixth">
+      <span class="before-and-after">
+        Ich bin nicht alleine...
+      </span>
+    </div>
+  </section>
+
+  <section>
+    <p>Der Text in <code>content</code> wird entsprechend angezeigt, dies ist aber nicht der einzige Use-Case.</p>
+    <p>Tools wie <a href="https://cssarrowplease.com" target="_blank" rel="noopener noreferrer">CSS Arrow Please!</a> nutzen before und after, um z.B. eine "Sprechblase" zu erstellen</p>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <div class="container seventh">
+      <div class="arrow-box">
+        CSS Arrow Please!
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Aktivierter Zustand mit <code>:active</code></h3>
+  </section>
+
+  <section>
+    <p>Es gibt paar Pseudo-Klassen die einen Interaktiven Zustand von bestimmten Elementen stylen</p>
+    <p>Die erste Pseudo-Klasse dieser Art ist <code>:active</code>. Dieser Zustand wird für <code>button</code> und <code>a</code> Elemente verwendet.</p>
+    <p>Der "active" Zustand herrscht typischerweise, solange der Nutzer die (Primäre) Maustaste gedrückt hält.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers="1-14|16-19" is:raw>
+      button {
+        padding: 1rem 2rem;
+        border: none;
+        outline: none;
+        background-color: white;
+        border: 4px solid black;
+        border-radius: 1rem;
+        font-size: xx-large;
+        cursor: pointer;
+        box-shadow: 24px 24px 0 black;
+        transition: 
+          box-shadow 333ms ease-in-out,
+          transform 333ms ease-in-out;
+      }
+
+      button:active {
+        box-shadow: 12px 12px 0 black;
+        transform: translateY(4px);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <div class="container eighth">
+      <button>Drück mich!</button>
+    </div>
+  </section>
+
+  <section>
+    <h3>Wenn der Mauszeiger über einem Element ist: <code>:hover</code></h3>
+  </section>
+
+  <section>
+    <p>Mit <code>:hover</code> können wir auf den Zustand reagieren, wenn der Nutzer mit dem Mauszeiger über einem Element "schwebt".</p>
+    <p>Mit dieser Pseudo-Klasse lässt sich sehr schnell ein Interaktives Element für den Nutzer identifizieren.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers="1-8|10-12" is:raw>
+      .card {
+        border: 4px solid black;
+        max-width: 300px;
+        padding: 2rem;
+        border-radius: 2rem;
+        box-shadow: 6px 6px 10px #0006;
+        transition: box-shadow 150ms ease-in-out;
+      }
+
+      .card:hover {
+        box-shadow: 24px 24px 16px #0006;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <div class="container ninth">
+      <div class="card">
+        Hallo, ich bin eine "typische" Karte die einen Inhalt anzeigen soll!
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Die Negierung von Selektoren mit <code>:not()</code></h3>
+  </section>
+
+  <section>
+    <p><code>:not(...)</code> ist eine Pseudoklassen-Funktion. Innerhalb der Klassen kann ein CSS-Selektor beschrieben werden und die Selektion wird dadurch negiert</p>
+    <p>Nach der Idee "Selektiere alle Elemente die folgendes nicht haben..."</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      p:not(.important) {
+        background-color: #282; // Grün
+        color: white;
+      }
+
+      p.important {
+        background-color: #822; // Rot
+        color: white;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles not">
+    <p class="important">Ich bin <code>.important</code></p>
+    <p class="normal">Ich bin <code>.normal</code></p>
+  </section>
+
+  <section>
+    <h3><code>:where() &amp; :is()</code></h3>
+  </section>
+
+  <section>
+    <p>Folgendes Szenario</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;ol&gt;
+        &lt;li&gt;Level 1 - Item 1&lt;/li&gt;
+        &lt;li&gt;&lt;ul&gt;
+          &lt;li&gt;Level 2 - Item 1&lt;/li&gt;
+          &lt;li&gt;Level 2 - Item 2&lt;/li&gt;
+          &lt;li&gt;
+            &lt;ol&gt;
+              &lt;li&gt;Level 3 - Item 1&lt;/li&gt;
+            &lt;/ol&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;&lt;/li&gt;
+      &lt;/ol&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <ol>
+      <li>Level 1 - Item 1</li>
+      <li><ul>
+        <li>Level 2 - Item 1</li>
+        <li>Level 2 - Item 2</li>
+        <li>
+          <ol>
+            <li>Level 3 - Item 1</li>
+          </ol>
+        </li>
+      </ul></li>
+    </ol>  
+  </section>
+
+  <section>
+    <p>Wir haben also ineinander verschachtelte Listen (mit unterschiedlichen Listen-Typen)</p>
+    <p>Nehmen wir nun an, dass es auch sein kann, dass wir nicht sicher sein können ob die "Reihenfolge" der Listentypen immer gleich sein wird</p>
+    <p>Wie müssten CSS-Styles aussehen, um alle Fälle abdecken zu können?</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      ul,ol {...} // Level 1 Styles
+      ul,ol ul {...} // Level 2 Styles
+      ul,ol ol {...} // Level 2 Styles
+      ul,ol ul ul {...} // Level 3 Styles
+      ul,ol ul ol {...} // Level 3 Styles
+      ul,ol ol ul {...} // Level 3 Styles
+      ul,ol ol ol {...} // Level 3 Styles
+    </code></pre>
+  </section>
+
+  <section class="apply-styles not-where">
+    <ol>
+      <li>Level 1 - Item 1</li>
+      <li><ul>
+        <li>Level 2 - Item 1</li>
+        <li>Level 2 - Item 2</li>
+        <li>
+          <ol>
+            <li>Level 3 - Item 1</li>
+          </ol>
+        </li>
+      </ul></li>
+    </ol>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      :where(ul, ol) {} // Level 1 Styles
+      :where(ul, ol) :where(ul, ol) {} // Level 2 Styles
+      :where(ul, ol) :where(ul, ol) :where(ul, ol) {} // Level 3 Styles
+    </code></pre>
+  </section>
+
+  <section class="apply-styles where">
+    <ol>
+      <li>Level 1 - Item 1</li>
+      <li><ul>
+        <li>Level 2 - Item 1</li>
+        <li>Level 2 - Item 2</li>
+        <li>
+          <ol>
+            <li>Level 3 - Item 1</li>
+          </ol>
+        </li>
+      </ul></li>
+    </ol>
+  </section>
+
+  <section>
+    <p>Welche Schlüsse ziehen wir hieraus?</p>
+    <ol>
+      <li>Lange, komplexe (geschachtelte) Queries benötigen viele "Iterationen"</li>
+      <li>Die Erweiterbarkeit kann darunter leiden</li>
+      <li>Grund für viele Bugs in Bezug auf CSS-Stylings</li>
+    </ol>
+  </section>
+
+  <section>
+    <p><code>:where &amp; :is</code> verhalten sich nach außen gleich. Wir können eine Komma-separierte Liste an CSS-Selektoren hinein kippen, wenn einer davon "matched" reicht das aus um die Stylings anzuwenden.</p>
+  </section>
+
+  <section>
+    <p>Wo sind dann die Unterschieden zwischen <code>where &amp; is</code>?</p>
+  </section>
+
+  <section>
+    Matches mit <code>where</code>, zählen nicht zur "Spezifität" des selektierten Elementes, <code>is</code> zählt die am besten passende Spezifität.
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;p class="test"&gt;Hier steht ein Text!&lt;/p&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      p:where(.test) {
+        background-color: black;
+      }
+
+      p {
+        background-color: #002;
+        color: white;
+
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles where-specifity">
+    <p class="test">Hier steht ein Text!</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      p:is(.test) {
+        background-color: white;
+        color: black;
+      }
+
+      p {
+        background-color: #002;
+        color: white;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles is-specifity">
+    <p class="test">Hier steht ein Text!</p>
+  </section>
+</section>
