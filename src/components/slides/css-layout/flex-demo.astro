@@ -1,0 +1,18 @@
+---
+interface Props {
+  wrapper: string;
+  container: string;
+  children: string;
+  count: number;
+}
+
+const { wrapper, container, children, count } = Astro.props;
+---
+
+<div class={wrapper}>
+  <div class={container}>
+    { Array(count).fill(0).map((_, index) => (
+      <div class={children}>Container {index + 1}</div>
+    ))}
+  </div>
+</div>

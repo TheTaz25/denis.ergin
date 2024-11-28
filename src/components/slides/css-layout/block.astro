@@ -1,0 +1,39 @@
+<section>
+  <section>
+    <h2>Display - Block (Flow)</h2>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // "ältere" Schreibweise
+      .block {
+        display: block;
+      }
+  
+      // "modernere" Schreibweise
+      .block {
+        display: block flow;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Block-Flow-Verhalten</h3>
+  </section>
+
+  <section>
+    <ul>
+      <li>Nimmt die gesamte Verfügbare Breite ein</li>
+      <li>Inhalt davor und danach wird darüber und darunter platziert</li>
+      <li>Innerer Inhalte folgt "Standardverhalten". Wie man normalen Textfluss gewohnt ist (DE: Left-To-Right, Top-To-Bottom)</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="apply-styles inline" style="background-color: lightgrey;">
+      Hier steht etwas Text davor;
+      <div style="background-color: hotpink;">Dann kommt ein block-flow span;</div>
+      Und dann kommt noch etwas Text danach
+    </div>
+  </section>
+</section>

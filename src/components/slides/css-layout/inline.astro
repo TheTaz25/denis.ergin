@@ -1,0 +1,51 @@
+<section>
+  <section>
+    <h2>Display - Inline (Flow)</h2>
+  </section>
+
+  <section>
+    <p>
+      Um einen beliebiges Tag in ein <code>inline</code>-Verhalten zu zwingen, reicht folgendes aus:
+    </p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // "ältere" Schreibweise
+      .inline {
+        display: inline;
+      }
+
+      // "modernere" Schreibweise
+      .inline {
+        display: inline flow;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>
+      Zum aktuellen Zeitpunk, gibt es eine neuere Schreibweise, die aus 2 "Kommandos" besteht.
+    </p>
+    <p>Zum einen wird definiert wie sich das äußere Verhalten andere Elemente auswirkt: inline oder block</p>
+    <p>Zum anderen wird das innere Verhalten definiert. Dies bezeichnet das Layout-Verhalten: flow, flex oder grid</p>
+  </section>
+
+  <section>
+    <h3>Inline-Flow-Verhalten</h3>
+  </section>
+
+  <section>
+    <ul>
+      <li>Nimmt nur den Platz ein, den der Inhalt braucht</li>
+      <li>Lässt Zeilenumbrüche zu</li>
+      <li>Inhalt davor und danach kann sich in der gleichen "Zeile" befinden</li>
+      <li>Innerer Inhalte folgt "Standardverhalten". Wie man normalen Textfluss gewohnt ist (DE: Left-To-Right, Top-To-Bottom)</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="apply-styles inline" style="background-color: lightgrey;">
+      Hier steht etwas Text davor;
+      <span style="background-color: hotpink;">Dann kommt ein inline-flow span;</span>
+      Und dann kommt noch etwas Text danach
+    </div>
+  </section>
+</section>

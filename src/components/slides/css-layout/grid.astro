@@ -1,0 +1,390 @@
+---
+import GridDemo from "./grid-demo.astro"
+---
+
+<section>
+  <section>
+    <h2>CSS Grid Layout</h2>
+  </section>
+
+  <section>
+    <p>Lange Zeit wurde mit dem Flexbox Layout etwas versucht zu lösen, was heute ein neueres System löst: Grids</p>
+    <p>Mittels Flexbox wurden Elemente mit festen breiten und Margins versehen, sodass sie wie in einem Grid genutzt werden können.</p>
+  </section>
+
+  <section>
+    <p>Die Moderne Lösung: <code>display: grid;</code></p>
+    <p>Das CSS-Grid bietet viele fundamentale aber auch innovative Wege um ein Grid zu definieren und Inhalte darin zu positionieren.</p>
+    <p>Mittels dem Grid, können Elemente in einem 2-Dimensionalen Raster positioniert werden.</p>
+  </section>
+
+  <section class="apply-styles">
+    <p>Fangen wir mit dem Grundbausteinen an. Unsere "Spielwiese" wird wie folgt aussehen:</p>
+    <GridDemo container="" count={6} wrapper=""/>
+  </section>
+
+  <section>
+    <p>Nun nehmen wir das Parent-Element und machen es zu einem Grid:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .parent {
+        display: grid;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das Ergebnis ist nun wie folgt:</p>
+    <GridDemo wrapper="apply-styles grid" container="parent" count={6} />
+  </section>
+
+  <section>
+    <p>Es passiert zunächst nicht viel...</p>
+  </section>
+
+  <section>
+    <p>Das ist so richtig. Mit einem CSS Grid müssen wir dem Grid mitteilen wie Spalten / Zeilen aufgeteilt werden sollen.</p>
+    <p>Dies kann auf mehrere Arten Geschehen:</p>
+  </section>
+
+  <section>
+    <h3>grid-template-columns <br>grid-template rows</h3>
+  </section>
+
+  <section>
+    <p>Mit <code>grid-template-columns</code> und <code>grid-template-rows</code> wird ausgedrückt, wie Breit Spalten, und wie hoch Zeilen sein sollen.</code></p>
+    <p>Es müssen nicht beide keywords verwendet werden, Spalten und Zeilen nehmen die benötigte Höhe oder Breite ein, wenn eine Definition fehlt.</p>
+  </section>
+
+  <section>
+    <p>Teilen wir nun das Grid in 3 Spalten auf. Jede Spalte hat 200px Breite</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .cols-200-200-200 {
+        grid-template-columns: 200px 200px 200px;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="parent cols-200-200-200" count={6}/>
+  </section>
+
+  <section>
+    <p>Wir sehen, die sechs Kind-Elemente reihen sich in 2 Zeilen zu je 3 Spalten an.</p>
+    <p>Natürlich sind 200px mal 3 recht spezifisch und so gesehen auch nicht wirklich Mobile-Friendly.</p>
+    <p>Dafür hat das CSS-Grid eine "spezielle" Einheit: Die "Fraction" (fr).</p>
+  </section>
+
+  <section>
+    <p>1fr wirkt sich je nach Situation verschieden aus. Nutzen wir zunächst die neue Einheit über alle Elemente gleichermaßen aus:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .cols-even {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Jede Spalte nimmt nun die exakt gleiche Breite ein, wobei die komplette vorhandene Viewport-Breite verwendet wird:</p>
+    <GridDemo wrapper="apply-styles grid" container="parent cols-even" count={6} />
+  </section>
+
+  <section>
+    <p>Wie sieht nun die Verwendung von Mischformen aus?</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .cols-mixed {
+        grid-template-columns: 20% 1fr 250px;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Die erste Spalte nimmt nun 1/5 der Breite ein, die 3. Spalte 250px.</p>
+    <p>Unter verschiedenen Displays kann die Angabe nur ein "maximum" sein. Das Grid versucht dabei sein bestes um den Platz zu verteilen.</p>
+    <GridDemo wrapper="apply-styles grid" container="parent cols-mixed" count={6} />
+  </section>
+
+  <section>
+    <p>Wichtig beim "mischen" von Fraction-Units und Absoluten Größen:</p>
+    <p>Das Grid gibt den absoluten Breiten Vorrang. Erst danach wird die restsliche Verfügbare Breite an Fractions verteilt. Ein Beispiel:</p>
+    <p><code>grid-template-columns: 200px 1f 4fr</code></p>
+  </section>
+  
+  <section>
+    <p><code>grid-template-columns: 200px 1f 4fr</code></p>
+    <p>Zuerst werden die 200px der ersten Spalte zugewiesen, die restliche Breite wird durch 5 (1fr + 4fr) geteilt und dann entsprechen "1 zu 5" und "4 zu 5" verteilt.</p>
+    <hr>
+    <p>Rechenbeispiel bei einer Verfügbaren Breite von 700px:</p>
+    <p>200px für Spalte #1, 500px bleiben übrig. <br>500px durch insgesamt 5fr geteilt sind 100px je 1fr. Spalte #2 erhält demnach 100px Breite und Spalte 3 400px Breite.</p>
+  </section>
+
+  <section>
+    <p>Nun lasst uns die fr-Einheit nutzen um der ersten Spalte 50% und den restlichen Spalten jeweils 25% Platz zuzusprechen:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .cols-2-1-1 {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="parent cols-2-1-1" count={6} />
+  </section>
+
+  <section>
+    <h4>Wiederholende Grids mit <code>repeat</code></h4>
+  </section>
+
+  <section>
+    <p>Es ist bei sich gleich Verhaltenden Breitenangaben (z.b. 1fr 1fr 1fr 1fr...) eine Hilfsfunktion <code>"repeat"</code> zu verwenden:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .cols-repeat-1fr {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="parent cols-repeat-1fr" count={6} />
+  </section>
+
+  <section>
+    <p><code>repeat</code> nimmt dabei auch mehrere Einheiten an, die "Funktion" wiederholt einfach den 2. Parameter so oft wie in Paramter 1 beschrieben:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .cols-repeat-1-2 {
+        grid-template-columns: repeat(2, 1fr 2fr);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="parent cols-repeat-1-2" count={6} />
+  </section>
+
+  <section>
+    <h4>Implizite Spalten und Zeilen</h4>
+  </section>
+
+  <section>
+    <p>Bisher haben wir mit <code>grid-template-columns</code> <strong>explizit</strong> Spalten erzeugt.</p>
+    <p>Nachdem die erste Zeile voll besetzt war, hat das CSS-Grid automatisch eine 2. Zeile generiert und weitere Elemente dort hinein gepackt.</p>
+    <p>Diese Zeilen wurden <strong>implizit</strong> generiert. Wir können dies aber in gewisser Weise steuern:</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .rows-auto-200 {
+        grid-auto-rows: 200px;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p><code>grid-auto-rows</code> teilt den impliziten Zeilen mit, wie viel Höhe diese einnehmen sollen:</p>
+    <GridDemo wrapper="apply-styles grid" container="parent cols-repeat-1fr-3 rows-auto-200" count={6} />
+  </section>
+
+  <section>
+    <h4><code>minxmax</code> für automatische Implizite Sektionen</h4>
+  </section>
+
+  <section>
+    <p>Es macht auch hier natürlich wenig Sinn, feste Werte für die Spalten oder Zeilen mit der <code>grid-auto</code>-Syntax zu vergeben.</p>
+    <p>Auch hierfür gibt es wieder Möglichkeiten: <code>minmax</code></p>
+    <p>Mithilfe dieser CSS-Funktion können wir mindest- sowie maximale Höhe angeben, die das Grid (genauer gesagt dessen Zellen) einnehmen soll.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .rows-auto-minmax {
+        grid-auto-rows: minmax(150px, auto);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles grid">
+    <div class="parent cols-repeat-1fr-3 rows-auto-minmax">
+      <div class="grid-child">Kind 1</div>
+      <div class="grid-child">
+        Kind 2, aber mit mehr Inhalt...
+        <br>
+        Am besten mehrere Zeilen lang
+      </div>
+      <div class="grid-child">Kind 3</div>
+      <div class="grid-child">Kind 4</div>
+      <div class="grid-child">Kind 5</div>
+      <div class="grid-child">Kind 6</div>
+    </div>
+  </section>
+
+  <section>
+    <p>Wie erwähnt, sorgt <code>minmax</code>, dass die Spalte oder Zeile eine mindest und maximale Höhe, beziehungsweise Breite, einnimmt.</p>
+    <p>Das keyword <code>auto</code> für den "max"-Teil sorgt dafür, das sich die maximale Höhe anhand des Inhaltes, der größten Zelle, bemessen wird.</p>
+    <p>An unserem Beispiel bedeutet dies konkret: 150px mindestens hoch, ansonsten an der höchsten Zelle orientieren.</p>
+  </section>
+
+  <section>
+    <h4>
+      Die erste Grid-Superkraft: <br>
+      Grid-Lines und Item-Positionierung
+    </h4>
+  </section>
+
+  <section>
+    <p>Wenn wir mittels <code>grid-template-columns</code> Spalten (und implizit Zeilen) erzeugen, können wir den einzelnen Kind-Elementen mitteilen, wie viele Spalten/Zeilen sie einnehmen sollen.</p>
+    <p>Bei der Erstellung von beispielsweise Spalten, können wir uns Gedanklich jeden Bereich zwischen den Spalten (Ränder miteinbezogen) durchnummeriert vorstellen</p>
+  </section>
+
+  <section class="apply-styles grid">
+    <div class="demo-grid-lines">
+      <div class="no"><span>1</span></div>
+      <div>Spalte #1</div>
+      <div class="no"><span>2</span></div>
+      <div>Spalte #2</div>
+      <div class="no"><span>3</span></div>
+      <div>Spalte #3</div>
+      <div class="no"><span>4</span></div>
+    </div>
+  </section>
+
+  <section>
+    <p>Das Konzept der Nummerierung lässt sich auch 1 zu 1 auf Zeilen übertragen.</p>
+    <p>Lasst uns nun eine Box erstellen, die über alle Spalten "gezogen" wird:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .box-0 {
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="col-start-end cols-repeat-1fr-3 parent rows-auto-200" count={1} />
+  </section>
+
+  <section>
+    <p>Es lassen sich auch start &amp; end für rows (Zeilen) definieren:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .box-0 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+
+      .box-1 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="col-row-start-end cols-repeat-1fr-3 parent rows-auto-200" count={4} />
+  </section>
+
+  <section>
+    <p>Es ist auch deutlich ersichtlich, dass weitere Elemente die "leer gelassenen" Bereiche automatisch auffüllen.</p>
+    <p>Das ganze lässt sich aber auch wieder kürzer schreiben:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .box-0 {
+        grid-column: 1 / 3;
+      }
+
+      .box-1 {
+        grid-column: 3 / 4;
+        grid-row: 1 / 3;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="col-row-start-end-shorter cols-repeat-1fr-3 parent rows-auto-200" count={4} />
+  </section>
+
+  <section>
+    <h4>
+      Grid-Superkraft #2: <br>
+      <code>template-areas &amp; named areas</code>
+    </h4>
+  </section>
+
+  <section>
+    <p>Eine etwas "verständlichere" Art und Weise das Grid zu definieren und dessen Kinder zu positionieren ist mittels benannten Elementen.</p>
+    <p>Als Beispiel werden wir ein klassisches Homepage-Layout kreieren.</p>
+    <p>Benennen wir zuerst die Kind-Elemente die sich später im Grid befinden werden:</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .box-0 {
+        grid-area: header;
+      }
+      .box-1 {
+        grid-area: menu;
+      }
+      .box-2 {
+        grid-area: content;
+      }
+      .box-3 {
+        grid-area: footer;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Zur Feststellung: Wir können den Bereichen jeden Namen geben den wir wollen.</p>
+    <p>Als nächstes definieren wir die Grid-Struktur mittels <code>grid-template-columns &amp; grid-auto-rows</code></p>
+  </section>
+
+  <section>
+    <p>Altbekanntes: Ein Grid mit 3 (gleichgroßen) Spalten, Zeilen implizit mit minmax</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Nun benutzen wir <code>grid-template-areas</code>, um dem Grid mitzuteilen wie die Kind-Elemente verteilt werden sollen. Dafür benutzen wir die zuvor verwendeten Namen.</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .grid {
+        // ...
+        grid-template-areas:
+          "header header header"
+          "menu content content"
+          "menu content content"
+          "footer footer footer";
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das Ergebnis:</p>
+    <GridDemo wrapper="apply-styles grid" container="template-area-1" count={4} />
+  </section>
+
+  <section>
+    <p>Falls wir wollen, dass in einer "Zelle" kein Inhalt angezeigt wird, können wir einfach nur einen Punkt schreiben:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .grid {
+        // ...
+        grid-template-areas:
+          "header header header"
+          "menu content content"
+          ". content content"
+          "footer footer footer";
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <GridDemo wrapper="apply-styles grid" container="template-area-2" count={4} />
+  </section>
+
+  <section>
+    <p>Zu guter letzt: Auch im Grid lässt sich <code>gap</code> wie bereits in der Flexbox verwenden.</p>
+  </section>
+</section>

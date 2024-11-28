@@ -1,0 +1,379 @@
+---
+import Title from './title.astro';
+import BoxModel from './box-model.astro';
+import InlineFlow from './inline.astro';
+import BlockFlow from './block.astro';
+import Flex from './flex.astro';
+import Grid from './grid.astro';
+---
+
+<div class="slides">
+  <Title />
+  <BoxModel />
+  <InlineFlow />
+  <BlockFlow />
+  <Flex />
+  <Grid />
+</div>
+
+<style lang="scss" is:global>
+.apply-styles {
+  &.four {
+    span.label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+    }
+    .flex-center {
+      display: inline-flex;
+      position: relative;
+      padding: 5rem;
+    }
+    .margin {
+      background-color: greenyellow;
+    }
+    .border {
+      background-color: orange;
+    }
+    .padding {
+      background-color: lightseagreen;
+    }
+    .content {
+      display: inline;
+      padding: 2rem;
+      background-color: black;
+      color: white;
+    }
+  }
+
+  &.flexbox {
+    .bordered {
+      background-color: burlywood;
+    }
+    .child {
+      background-color: aquamarine;
+      border: 2px solid black;
+      padding: 0.5rem;
+    }
+    .flex {
+      display: flex;
+    }
+
+    .wrap {
+      flex-wrap: wrap;
+    }
+    .no-wrap {
+      flex-wrap: nowrap;
+    }
+    .wrap-reverse {
+      flex-wrap: wrap-reverse;
+    }
+
+    .uniform {
+      width: calc(1/3 * 100%);
+    }
+
+    .alternative-box {
+      box-sizing: border-box;
+    }
+
+    .gapped {
+      gap: 0.5rem;
+    }
+    .child-width-gapped {
+      width: calc(1/3 * 100% - 0.5rem);
+    }
+
+    .row {
+      flex-direction: row;
+    }
+    .row-reversed {
+      flex-direction: row-reverse;
+    }
+    .column {
+      flex-direction: column;
+    }
+    .column-reversed {
+      flex-direction: column-reverse;
+    }
+
+    .jc-c {
+      justify-content: center;
+    }
+
+    .jc-fs {
+      justify-content: flex-start;
+    }
+
+    .jc-fe {
+      justify-content: flex-end;
+    }
+
+    .jc-sa {
+      justify-content: space-around;
+    }
+
+    .jc-sb {
+      justify-content: space-between;
+    }
+
+    .jc-se {
+      justify-content: space-evenly;
+    }
+
+    .fourtyfive-percent {
+      box-sizing: border-box;
+      width: 45%;
+    }
+
+    .higher {
+      height: 450px;
+      align-items: flex-start;
+    }
+
+    .ai-fs {
+      align-items: flex-start;
+    }
+    .ai-fe {
+      align-items: flex-end;
+    }
+    .ai-c {
+      align-items: center;
+    }
+    .ai-s {
+      align-items: stretch;
+    }
+
+    .ac-fs {
+      align-content: flex-start;
+    }
+    .ac-fe {
+      align-content: flex-end;
+    }
+    .ac-sa {
+      align-content: space-around;
+    }
+    .ac-sb {
+      align-content: space-between;
+    }
+    .ac-se {
+      align-content: space-evenly;
+    }
+  }
+
+
+  &.flex-grow-1 {
+      .flex {
+        display: flex;
+        background-color: darkgoldenrod;
+        gap: 1rem;
+
+        & > div {
+          padding: 1rem;
+          background-color: #99f;
+        }
+      }
+
+      .child-1 {
+        flex-grow: 1;
+      }
+
+      .child-2 {
+        flex-grow: 2;
+      }
+
+      .child-3 {
+        flex-grow: 3;
+      }
+    }
+
+  &.flex-basis {
+      .flex {
+        display: flex;
+        background-color: darkgoldenrod;
+        gap: 1rem;
+
+        & > div {
+          padding: 1rem;
+          background-color: #99f;
+        }
+      }
+
+      .child-1 {
+        flex-grow: 1;
+      }
+
+      .child-2 {
+        flex-grow: 1;
+        flex-basis: 50%;
+      }
+
+      .child-3 {
+        flex-grow: 1;
+      }
+    }
+
+    &.order {
+      .flex {
+        display: flex;
+        background-color: darkgoldenrod;
+        gap: 1rem;
+
+        & > div {
+          padding: 1rem;
+          background-color: #99f;
+          flex: 1 0 auto;
+        }
+      }
+
+      .child-2 { order: -1; }
+      .child-3 { order: 5; }
+      .child-4 { order: 2; }
+    }
+
+  .grid-child {
+    background-color: darkgoldenrod;
+    padding: 0.5rem;
+    border: 2px solid black;
+  }
+
+  &.grid {
+    .parent {
+      display: grid;
+    }
+
+    .cols-200-200-200 {
+      grid-template-columns: 200px 200px 200px;
+    }
+
+    .cols-even {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .cols-mixed {
+      grid-template-columns: 20% 1fr 250px;
+    }
+
+    .cols-2-1-1 {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .cols-repeat-1fr {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cols-repeat-1-2 {
+      grid-template-columns: repeat(2, 1fr 2fr);
+    }
+
+    .cols-repeat-1fr-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .rows-auto-200 {
+      grid-auto-rows: 200px;
+    }
+
+    .rows-auto-minmax {
+      grid-auto-rows: minmax(150px, auto);
+    }
+
+    .demo-grid-lines {
+      display: grid;
+      grid-template-columns: 75px 1fr 75px 1fr 75px 1fr 75px;
+      grid-auto-rows: 250px;
+
+      & > * {
+        align-content: center;
+      }
+      .no {
+        background-color: #99f;
+        span {
+          padding: 0.5rem;
+        }
+      }
+    }
+
+    .col-start-end {
+      .box-0 {
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+    }
+
+    .col-row-start-end {
+      .box-0 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+
+      .box-1 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+    }
+
+    .col-row-start-end-shorter {
+      .box-0 {
+        grid-column: 1 / 3;
+      }
+
+      .box-1 {
+        grid-column: 3 / 4;
+        grid-row: 1 / 3;
+      }
+    }
+
+    .template-area-1 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(100px, auto);
+      grid-template-areas:
+        "header header header"
+        "menu content content"
+        "menu content content"
+        "footer footer footer";
+
+      .box-0 {
+        grid-area: header;
+      }
+      .box-1 {
+        grid-area: menu;
+      }
+      .box-2 {
+        grid-area: content;
+      }
+      .box-3 {
+        grid-area: footer;
+      }
+    }
+
+    .template-area-2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(100px, auto);
+      grid-template-areas:
+        "header header header"
+        "menu content content"
+        ". content content"
+        "footer footer footer";
+
+      .box-0 {
+        grid-area: header;
+      }
+      .box-1 {
+        grid-area: menu;
+      }
+      .box-2 {
+        grid-area: content;
+      }
+      .box-3 {
+        grid-area: footer;
+      }
+    }
+  }
+
+}
+</style>

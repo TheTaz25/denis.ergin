@@ -1,0 +1,583 @@
+---
+import FlexDemo from './flex-demo.astro';
+---
+
+<section>
+  <section>
+    <h2>Display - Flex</h2>
+    <p>Inneres Layout mittels Flexboxen</p>
+  </section>
+
+  <section>
+    <p>
+      <code>inline</code> und <code>block</code> haben bisher für die Interaktion mit Benachbarten Inhalten (Siblings) geregelt.
+      <br>
+      Nun wollen wir uns mit dem "inneren" display befassen. Die inneren Display-Regeln sorgen für eine Strukturierung der Kind-Elemente innerhalb eines Layout-Containers.
+    </p>
+    <p>Dabei kann der Layout-Container nach außen hin ein inline oder block Element sein</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Explizites Inline-Verhalten
+      .inline-flex {
+        display: inline flex;
+      }
+
+      // Explizites Block-Verhalten
+      .block-flex {
+        display: block flex;
+      }
+
+      // Implizites Verhalten ist BLOCK
+      .flex {
+        display: flex; 
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Flexbox-Container lassen die direkten Kinder in ein Flexbox-Layout</p>
+    <p>Mithilfe weiterer Regeln lässt sich das Verhalten der Kind-Elemente beeinflussen</p>
+    <p>Zusätzlich können die Kinder mit ein paar CSS-Regeln positioniert und strukturiert werden.</p>
+  </section>
+
+  <section>
+    <h3>Flex-Container CSS-Regeln</h3>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;div class="parent"&gt;
+        &lt;div class="child"&gt;Erstes Kind&lt;/div&gt;
+        &lt;div class="child"&gt;Zweites Kind&lt;/div&gt;
+        &lt;div class="child"&gt;Drittes Kind&lt;/div&gt;
+      &lt;/div&gt;
+    </code></pre>
+  </section>
+
+  <section class="apply-styles flexbox">
+    <p>Ungestyltes Verhalten</p>
+    <div>
+      <div class="child">Erstes Kind</div>
+      <div class="child">Zweites Kind</div>
+      <div class="child">Drittes Kind</div>
+    </div>
+    <br>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .child {
+        background-color: aquamarine;
+        border: 2px solid black;
+        padding: 0.5rem;
+      }
+
+      .parent {
+        display: flex;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles flexbox">
+    <p>Gestyles Verhalten</p>
+    <div class="flex">
+      <div class="child">Erstes Kind</div>
+      <div class="child">Zweites Kind</div>
+      <div class="child">Drittes Kind</div>
+    </div>
+  </section>
+
+  <section>
+    <p>"Zu viele" Kinder</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex" children="child" count={9} />
+  </section>
+
+  <section>
+    <p>Ohne weiteres Styling, zwingt CSS alle Kind-Container in eine Zeile</p>
+    <p>Manchmal ist dass nicht das, was wir "wollen". Aber dagegen lässt sich etwas unternehmen:</p>
+
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Wir fügen diese Klasse dem Parent-Element hinzu
+      .wrap {
+        flex-wrap: wrap;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Viele Kinder - Mit Wrap</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex wrap" children="child" count={9} />
+  </section>
+
+  <section>
+    <p>Und wenn wir jetzt den Kinden noch ein wenig Style mitgeben:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Wir fügen die "uniform" Klasse jedem Kind hinzu
+      // Jedes Kind nimmt ein drittel der Parent-Breite ein.
+      .child.uniform {
+        width: calc(1/3 * 100%);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Viele Kinder - Mit Wrap</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex wrap"
+      children="child uniform"
+      count={9}
+    />
+  </section>
+
+  <section>
+    <p>Warte... Jedes Element sollte 33% Breit sein, also sollten eigentlich in jeder Zeile 3 Kinder sein?</p>
+    <p>Stimmt auch, aber CSS berechnet die Breite anhand eines bestimmten Models.</p>
+  </section>
+
+  <section>
+    <h3><code>box-sizing</code></h3>
+  </section>
+
+  <section>
+    <p>Wie bereits erwähnt kennt CSS 2 "Wege" um die Größe eines Elementes festzulegen.</p>
+    <p>Das Standard (Box-Model) rechnet die Border und das Padding nicht in die Element-Größe mit ein.</p>
+    <p>Das Alternative Model macht dies.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Wird jedem Kind zugewiesen
+      .alternative-box {
+        box-sizing: border-box;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>3x3 Layout</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex wrap"
+      children="child uniform alternative-box"
+      count={9}
+    />
+  </section>
+
+  <section>
+    <h3>Abstände mit <code>gap</code></h3>
+  </section>
+
+  <section>
+    <p>Mittels <code>gap</code> lässt sich ein Abstand zwischen die Kind-Elemente im Layout anwenden:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Klasse für das Parent-Elemente
+      .gapped {
+        gap: 0.5rem;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Gap! But ... broken?</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex wrap gapped"
+      children="child uniform alternative-box"
+      count={9}
+    />
+  </section>
+
+  <section>
+    <p>Der Flex-Container fügt nun 0.5rem zwischen den Kindern hinzu, was die Kinder selber nicht wissen oder mit in die Berechnung im Box-Model einfließen lassen können.</p>
+    <p>Man erkennt also, dass wir gegebenenfalls auf Probleme stoßen, wenn das Parent-Element was modifizert.</p>
+  </section>
+
+  <section>
+    <p><strong>Lösungsmöglichkeiten</strong></p>
+    <ul>
+      <li>Das Gap mit in die Breiten-Berechnung einfließen lassen</li>
+      <li>Andere Layout-Systeme verwenden (Sneak-Peek: Grid)</li>
+    </ul>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Gap in Breite Berücksichtigen (anzuwenden für Kind-Elemente)
+      .child {
+        width: calc(1/3 * 100% - 0.5rem)
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Gap! But ... Fixed!</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex wrap gapped"
+      children="child unfirom alternative-box child-width-gapped"
+      count={9}
+    />
+  </section>
+
+  <section>
+    <h3>Richtung ändern mit <code>flex-direction</code></h3>
+  </section>
+
+  <section>
+    <p>Wir können das Layout-ing, in der Richtung anpassen. Dafür haben wir folgende Optionen</p>
+    <ul style="font-family: monospace;">
+      <li>row (default)</li>
+      <li>row-reverse</li>
+      <li>column</li>
+      <li>column-reverse</li>
+    </ul>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      // Die Klasse muss dem Parent-Container übergeben werden
+      .direction {
+        flex-direction: row
+          | row-reverse
+          | column
+          | column-reverse;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3><code>wrap</code> und <code>direction</code> mit <code>flex-flow</code></h3>
+  </section>
+
+  <section>
+    <p>Es gibt eine Shorthand-Property um Richtung und Wrapping zusammenzufassen:</p>
+    <p><code>flex-flow</code></p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .col-wrap {
+        flex-flow: column wrap;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Kinder innerhalb der Flex-Box positionieren</h3>
+  </section>
+
+  <section>
+    <p>Flexbox erlaubt es, die Kinder innerhalb der Flexbox mittels 3 Regeln zu positionieren und zu modifizieren</p>
+    <ul>
+      <li>justify-content</li>
+      <li>align-items</li>
+      <li>align-content</li>
+    </ul>
+  </section>
+
+  <section>
+    <h4>Positionierung entlang der Haupt-Achse mittels <code>justify-content</code></h4>
+  </section>
+
+  <section>
+    <p>Zum kurzen Verständnis muss folgendes geklärt werden:</p>
+    <ul>
+      <li>In einer Flexbox gibt es eine Main-Axis und eine Cross-Axis, die jeweils von links-nach-rechts und von oben-nach-unten verlaufen.</li>
+      <li>Die Main-Axis verläuft im Normalzustand von links nach rechts</li>
+      <li>Die Cross-Axis verläuft im Normalzustand von oben nach unten</li>
+      <li>Wird mittels flex-direction eine andere "Richtung" eingestellt, so müssen sich die Achsen auch umgedacht werden.</li>
+      <li><code>column</code>: Main verläuft nun von oben nach unten</li>
+      <li><code>column-reverse</code>: Main verläuft von unten nach oben</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Nun zurück zu justify-content</p>
+    <p>Nehmen wir folgende Ausgangslange an:</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered"
+      children="child"
+      count={3}
+      />
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .justify-center {
+        justify-content: center;
+      }
+      // Zur Visualisierung des Containers:
+      .bordered {
+        background-color: burlywood;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>justify-content: center</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex jc-c bordered" children="child" count={3} />
+  </section>
+
+  <section>
+    <p>Mögliche Werte:</p>
+    <ul style="font-family: monospace;">
+      <li>flex-start (default)</li>
+      <li>flex-end</li>
+      <li>center</li>
+      <li>space-around</li>
+      <li>space-between</li>
+      <li>space-evenly</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>flex-start</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex jc-fs bordered" children="child" count={3} />
+    <br>
+    <p>flex-end</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex jc-fe bordered" children="child" count={3} />
+  </section>
+  
+  <section>
+    <p>space-between</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex jc-sb bordered" children="child" count={3} />
+    <p>space-around</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex jc-sa bordered" children="child" count={3} />
+    <p>space-evenly</p>
+    <FlexDemo wrapper="apply-styles flexbox" container="flex jc-se bordered" children="child" count={3} />
+  </section>
+
+  <section>
+    <h4>Modifizierung der Items entlang der Cross-Achse mittels <code>align-items</code></h4>
+  </section>
+
+  <section>
+    <p>Werte:</p>
+    <ul style="font-family: monospace;">
+      <li>flex-start (default)</li>
+      <li>flex-end</li>
+      <li>center</li>
+      <li>stretch</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Setup (Default: Flex-Start)</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher jc-c gapped ai-fs"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+
+  <section>
+    <p>Flex-End</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher jc-c gapped ai-fe"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+
+  <section>
+    <p>Center</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher jc-c gapped ai-c"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+
+  <section>
+    <p>Stretch</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher jc-c gapped ai-s"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+
+  <section>
+    <h4>Positionieren der Elemente an der Cross-Axis mit <code>align-content</code></h4>
+  </section>
+
+  <section>
+    <p>Ähnlich zu <code>justify-content</code>, positioniert <code>align-content</code> Flex-Inhalte entlang der Cross-Axis</p>
+    <p>Es gelten die gleiche Keywords wie bei <code>justify-content</code></p>
+  </section>
+
+  <section>
+    <p>Flex-Start (default)</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher gapped jc-c ac-fs"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+  <section>
+    <p>Flex-End</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher gapped jc-c ac-fe"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+  <section>
+    <p>space-around</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher gapped jc-c ac-sa"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+  <section>
+    <p>space-between</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher gapped jc-c ac-sb"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+  <section>
+    <p>space-evenly</p>
+    <FlexDemo
+      wrapper="apply-styles flexbox"
+      container="flex bordered wrap higher gapped jc-c ac-se"
+      children="child fourtyfive-percent"
+      count={5}
+    />
+  </section>
+
+  <section>
+    <h3>Einzelne Kinder innerhalb einer Flexbox modifizieren</h3>
+  </section>
+
+  <section>
+    <p>Zusätzlich zu den CSS-Regeln die man auf das Parent-Element anwenden kann, gibt es auch ein paar Möglichkeiten die Kind-Elemente einer Flexbox zu modifizieren.</p>
+  </section>
+
+  <section>
+    <h4>Grow &amp; Shrink</h4>
+  </section>
+
+  <section>
+    <p>Mit <code>grow &amp; shrink</code> kann einzelnen Kind-Elementen mitgeteilt werden, sich mehr beziehungsweise weniger Platz innerhalb einer Flexbox einzunehmen.</p>
+    <p>Mithilfe von <code>grow</code>, kann Platz zwischen Elementen innerhalb einer Flexbox proportional verteilt werden.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .flex {
+        display: flex;
+        background-color: darkgoldenrod;
+        gap: 1rem;
+      }
+
+      .flex > div {
+        padding: 1rem;
+        background-color: #99f;
+      }
+
+      .child-1 {
+        flex-grow: 1;
+      }
+
+      .child-2 {
+        flex-grow: 2;
+      }
+
+      .child-3 {
+        flex-grow: 3;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles flex-grow-1">
+    <div class="flex">
+      <div class="child-1">Kind 1 <br>(Grow 1)</div>
+      <div class="child-2">Kind 2 <br>(Grow 2)</div>
+      <div class="child-3">Kind 3 <br>(Grow 3)</div>
+    </div>
+  </section>
+
+  <section>
+    <h4>Flex-Basis</h4>
+  </section>
+
+  <section>
+    <p>Mit <code>flex-basis</code> können wir angeben welche Größe / Breite ein Flex-Kind Standardmäßig erhalten soll, bevor die restliche Verfügbare Breite zwischen den Elementen verteilt wird.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .child-1 {
+        flex-grow: 1;
+      }
+
+      .child-2 {
+        flex-grow: 1;
+        flex-basis: 50%;
+      }
+
+      .child-3 {
+        flex-grow: 1;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles flex-basis">
+    <div class="flex">
+      <div class="child-1">Kind 1 <br>(Grow 1)</div>
+      <div class="child-2">Kind 2 <br>(Grow 1, Basis von 50%)</div>
+      <div class="child-3">Kind 3 <br>(Grow 1)</div>
+    </div>
+  </section>
+
+  <section>
+    <p><code>grow, shrink</code> und <code>basis</code> können auch mit einem Style-Befehl gleichzeitig gesetzt werden:</p>
+    <p><code>flex: &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;;</code></p>
+  </section>
+
+  <section>
+    <h4>Order</h4>
+  </section>
+
+  <section>
+    <p>Mit <code>order</code> gibt uns Flexbox eine leichte Möglichkeit Elemente innerhalb einer Flexbox neu zu positionieren.</p>
+    <p>Alle Elemente in einem Flexbox Container haben per Default eine <code>order</code> von 0.</p>
+    <p>Elemente mit einer gleichen Order, erscheinen in Reihenfolge, wie sie auch im HTML-Dokument vorkommen.</p>
+  </section>
+
+  <section>
+    <p>Elemente die eine höhere <code>order</code> haben, werden nach den kleineren Werten angezeigt. Negative Werte sind auch möglich.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .child-2 { order: -1; }
+      .child-3 { order: 5; }
+      .child-4 { order: 2; }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles order">
+    <div class="flex">
+      <div class="child-1">Kind 1 <br>Keine Order</div>
+      <div class="child-2">Kind 2 <br>Order = -1</div>
+      <div class="child-3">Kind 3 <br>Order = 5</div>
+      <div class="child-4">Kind 4 <br>Order = 2</div>
+    </div>
+  </section>
+</section>

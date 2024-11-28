@@ -1,0 +1,63 @@
+<section>
+  <section>
+    <h2>Das Box-Model</h2>
+  </section>
+
+  <section>
+    <p>
+      Aus CSS-Perspektive ist jedes (HTML)-Element eine Box. Es gibt verschiedene Box-Modelle die sich am Ende jeweils in 2 Kategorien eingliedern lassen:
+      <br>
+      Die <code>block-box</code> und die <code>inline-box</code>.
+    </p>
+  </section>
+
+  <section>
+    <p>Eine Block-Box ist dadurch gekennzeichnet, dass sie die volle Verfügbare Breite auf dem Viewport einnimmt. Beispiele hierfür sind:</p>
+    <ul>
+      <li>div</li>
+      <li>p</li>
+      <li>h1-h6</li>
+      <li>und weitere...</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Inline-Boxen verhalten sich "gegensätzlich". Inline-Boxen nehmen nur den Platz ein, den der Inhalt braucht. Beispiele sind:</p>
+    <ul>
+      <li>span</li>
+      <li>strong / b</li>
+      <li>em / i</li>
+      <li>und weitere...</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Mittels CSS kann man das (Standard)-Verhalten ändern. Mehr dazu in kürze.</p>
+  </section>
+
+  <section>
+    <p>Eine Box in CSS besteht aus mehreren Teilen, die ineinander verschachtelt sind.</p>
+    <p>Wir haben auch bereits alle Teile kennen gelernt:</p>
+  </section>
+  
+  <section class="apply-styles four">
+    <div class="margin flex-center">
+      <span class="label">Margin</span>
+      <div class="border flex-center">
+        <span class="label">Border</span>
+        <div class="padding flex-center">
+          <span class="label">Padding</span>
+          <div class="content">
+            Inhalt!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Im Standard-Box-Model, nimmt eine Box die Summe aus margin + border + padding + content-size ein.</p>
+    <p>content-size ist die Breite und Höhe, die der eigentliche Inhalt einnimmt.</p>
+    <p>Es gibt ein alternatives Model, dieses rechnet padding und border zu einer Angegebenen Breite / Höhe mit ein.</p>
+  </section>
+</section>
