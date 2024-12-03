@@ -1,0 +1,58 @@
+<section>
+  <section>
+    <h2>Overflow</h2>
+  </section>
+
+  <section>
+    <p>Ohne weitere Einstellungen haben wir gelernt, dass ein Element immer so groß ist, wie der innere Inhalt Platz benötigt.</p>
+    <p>Wir können das Verhalten überschreiben in dem wir dem Element eine feste Höhe geben. Das Verhalten für "overflowing" Inhalt kann dann mit der CSS-Regel <code>overflow</code> beeinflusst werden.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .overflow {
+        overflow:
+          | visible
+          | hidden
+          | scroll
+          | auto;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles overflow">
+    <h3>visible</h3>
+    <p>Inhalt ist außerhalb des restriktierten Elementes sichtbar</p>
+    <p class="element" style="overflow: visible;">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos corrupti nesciunt delectus totam assumenda, in omnis. Impedit quos quasi, porro reiciendis fugit quibusdam beatae non pariatur deleniti quis in!
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, fugit qui harum ratione cumque, labore odit dolores maxime consequuntur quos aliquid est cum tempore vero? Doloribus facilis molestias ducimus voluptatem?
+    </p>
+  </section>
+
+  <section class="apply-styles overflow">
+    <h3>hidden</h3>
+    <p>Inhalt außerhalb der Element-Box ist nicht mehr sichtbar. Box ist nicht scrollbar.</p>
+    <p class="element" style="overflow: hidden;">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos corrupti nesciunt delectus totam assumenda, in omnis. Impedit quos quasi, porro reiciendis fugit quibusdam beatae non pariatur deleniti quis in!
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, fugit qui harum ratione cumque, labore odit dolores maxime consequuntur quos aliquid est cum tempore vero? Doloribus facilis molestias ducimus voluptatem?
+    </p>
+  </section>
+
+  <section class="apply-styles overflow">
+    <h3>scroll</h3>
+    <p>Inhalt außerhalb der Element-Box ist nicht mehr sichtbar. Box hat immer eine Scrollbar und kann ggf. gescrolled werden.</p>
+    <p class="element" style="overflow: scroll;">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos corrupti nesciunt delectus totam assumenda, in omnis. Impedit quos quasi, porro reiciendis fugit quibusdam beatae non pariatur deleniti quis in!
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, fugit qui harum ratione cumque, labore odit dolores maxime consequuntur quos aliquid est cum tempore vero? Doloribus facilis molestias ducimus voluptatem?
+    </p>
+  </section>
+
+  <section class="apply-styles overflow">
+    <h3>auto</h3>
+    <p>Intelligente Automatik. Im Gegensatz zu scroll ist nur dann eine Scrollbar sichtbar, wenn der Inhalt außerhalb der Box des Elementes ist. Inhalt außerhalb ist nicht sichtbar und die Box ist scrollbar</p>
+    <p class="element" style="overflow: auto;">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos corrupti nesciunt delectus totam assumenda, in omnis. Impedit quos quasi, porro reiciendis fugit quibusdam beatae non pariatur deleniti quis in!
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, fugit qui harum ratione cumque, labore odit dolores maxime consequuntur quos aliquid est cum tempore vero? Doloribus facilis molestias ducimus voluptatem?
+    </p>
+  </section>
+</section>

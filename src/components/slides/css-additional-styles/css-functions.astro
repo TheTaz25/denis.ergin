@@ -1,0 +1,68 @@
+<section>
+  <section>
+    <h2>CSS-Functions</h2>
+  </section>
+
+  <section>
+    <p>CSS bietet CSS-Funktionen, um uns den Alltag in bestimmten Situationen zu erleichtern.</p>
+  </section>
+
+  <section>
+    <h3>calc</h3>
+  </section>
+
+  <section>
+    <p>Die <code>calc</code>-Funktion hilft uns mit numerischen Einheiten (Längen, Zeit, Winkel, Prozente, etc) zu arbeiten.</p>
+    <p>Mithilfe dieser können wir auch zwischen Einheiten eines gleichen "Typs" rechnen</p>
+
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      width: calc(10px + 100px);
+      width: calc(50% - 30px);
+      width: calc(5rem * 3);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>min &amp; max</h3>
+  </section>
+
+  <section>
+    <p>Mit diesen beiden Funktionen kann jeweils der niedrigste oder höchste Wert aus einer Liste von Werten verwendet werden.</p>
+    <p>Dies ist zu großen Teilen für Fluid Layouts (Layouts die auf allen Arten von Display-Größen funktionieren) hilfreich.</p>
+  </section>
+
+  <section>
+    <p>Sorgt dafür, dass das Element mit der entsprechenden Klasse mindestens 200px breit ist, aber größer werden kann, wenn das Display größer als 666px ist (30% von 666px entsprechen 200px)</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .min-200-or-30% {
+        width: min(200px, 30%);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>clamp</h3>
+  </section>
+
+  <section>
+    <p><code>clamp</code> bildet einen Weg um minimale, maximale und gewünschte Werte zu erreichen.</p>
+  </section>
+
+  <section>
+    <code>clamp(&lt;min&gt; &lt;preferred&gt; &lt;max&gt;)</code>
+  </section>
+
+  <section>
+    <p>Solange es möglich ist, versucht der Browser den <code>preferred</code> Wert zu verwenden.</p>
+    <p>Fällt der präferierte Wert unter das minimum, so wird sichergestellt, dass das minimum verwendet wird.</p>
+    <p>Andersherum gilt dies auch für das maximum.</p>
+  </section>
+
+  <section>
+    <p>Versuche den Wert auf 40% der möglichen Breite zu halten, bleib aber mindestens 200px und maximal 400px breit.</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      width: clamp(200px, 50%, 400px);
+    </code></pre>
+  </section>
+
+</section>

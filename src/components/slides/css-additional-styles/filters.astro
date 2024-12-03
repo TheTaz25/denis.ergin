@@ -1,0 +1,106 @@
+<section>
+  <section>
+    <h2>Filter</h2>
+  </section>
+
+  <section>
+    <p>Mithilfe von Filtern können wir grafische Effekt auf Elemente anwenden.</p>
+    <p>Die Filter können miteinander kombiniert werden. Wir verwenden auch hierfür CSS-Funktionen</p>
+  </section>
+
+  <section class="apply-styles filter">
+    <p>Wir werden folgendes SVG-Bild: verwenden</p>
+    <img src="/favicon-blue.svg" alt="">
+  </section>
+  
+  <section>
+    <h3>blur</h3>
+  </section>
+  
+  <section class="apply-styles filter">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .blur {
+        filter: blur(10px);
+      }
+    </code></pre>
+    <img src="/favicon-blue.svg" alt="" class="blur">
+  </section>
+
+  <section>
+    <h3>contrast</h3>
+  </section>
+
+  <section class="apply-styles filter">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .contrast {
+        filter: contrast(0.5);
+      }
+    </code></pre>
+    <img src="/favicon-blue.svg" alt="" class="contrast">
+  </section>
+
+  <section>
+    <h3>grayscale</h3>
+  </section>
+
+  <section class="apply-styles filter">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .gray {
+        filter: grayscale(0.7);
+      }
+    </code></pre>
+    <img src="/favicon-blue.svg" alt="" class="gray">
+  </section>
+
+  <section>
+    <h3>drop-shadow</h3>
+  </section>
+
+  <section class="apply-styles filter">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .drop-shadow {
+        filter: drop-shadow(5px 5px 10px red);
+      }
+    </code></pre>
+    <img src="/favicon-blue.svg" alt="" class="drop-shadow">
+  </section>
+
+  <section>
+    <h3>hue-rotate</h3>
+  </section>
+
+  <section class="apply-styles filter">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .hue-rotate {
+        filter: hue-rotate(90deg);
+      }
+    </code></pre>
+    <img src="/favicon-blue.svg" alt="" class="hue-rotate">
+  </section>
+
+  <section>
+    <h3>opacity</h3>
+  </section>
+
+  <section class="apply-styles filter">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .opaque {
+        filter: opacity(0.3);
+      }
+    </code></pre>
+    <img src="/favicon-blue.svg" alt="" class="opaque">
+  </section>
+
+  <section>
+    <h3>Weitere Filter-Funktionen</h3>
+  </section>
+
+  <section>
+    <ul>
+      <li>brightness</li>
+      <li>invert</li>
+      <li>saturate</li>
+      <li>sepia</li>
+    </ul>
+  </section>
+</section>

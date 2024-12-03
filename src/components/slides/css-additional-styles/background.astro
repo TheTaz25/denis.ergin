@@ -1,0 +1,274 @@
+<section>
+  <section>
+    <h2>Background</h2>
+  </section>
+
+  <section>
+    <p>Bisher haben wir zur Gestaltung von Hintergründen das Style-Attribut <code>background-color</code> kennen gelernt.</p>
+    <p>Es gibt aber noch ein Umfangreicheres Angebot um einen Hintergrund zu gestallten: <code>background</code></p>
+  </section>
+
+  <section class="apply-styles">
+    <p>Beginnen wir erstmal einfach, wir können wie gewohnt Farben vergeben:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-color {
+        background: darkkhaki;
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container bg-color"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Wir können aber auch direkt Bilder von CSS aus laden und anzeigen:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-image {
+        background: url('cat.png');
+      }
+    </code></pre>
+
+    <div class="bg">
+      <div class="container bg-img"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Nun sehen wir, das Bild ist größer als der Container der das Bild anzeigen soll.</p>
+    <p>Das kann man aber beheben mit dem Attribut <code>background-size</code></p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-cover {
+        background-size: cover;
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container bg-img bg-cover"></div>
+    </div>
+  </section>
+
+  <section>
+    <p>Weitere Optionen für <code>background-size</code>:</p>
+    <ul>
+      <li>contain</li>
+      <li>&lt;width&gt; (height: auto)</li>
+      <li>&lt;width&gt; &lt;height&gt;</li>
+    </ul>
+  </section>
+
+  <section class="apply-styles">
+    <p><code>background-size: contain</code></p>
+    <div class="bg">
+      <div class="container bg-img bg-contain"></div>
+    </div>
+  </section>
+
+  <section>
+    <p>Mit contain sehen wir, dass das Bild sich zu wiederholen scheint.</p>
+    <p>Das ist ein "Feature" von <code>background</code>, eines das wir steuern können.</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-no-repeat {
+        background-repeat: no-repeat;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles">
+    <p>Hat es Funktioniert?</p>
+    <div class="bg">
+      <div class="container bg-img bg-contain bg-no-repeat"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Testen wir es mit einem weiteren Feature aus: Mehrere Backgrounds:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-multi {
+        background: url("/images/cat.png"), orange;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 600px;
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container bg-multi"></div>
+    </div>
+  </section>
+
+  <section>
+    <p><code>background-repeat</code> kann alternativ 3 andere Werte annehmen:</p>
+    <ul>
+      <li>repeat (in beide Richtungen)</li>
+      <li>repeat-x (entlang der X-Achse)</li>
+      <li>repeat-y (entlang der Y-Achse)</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Positionierung des Hintergrundes mit <code>background-position</code></p>
+    <p>Das Bild kann im Container frei bewegt werden, ein Überhang wird "abgeschnitten", wie man es auch bisher gesehen hat.</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-center {
+        background-position: center;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles">
+    <div class="bg">
+      <div class="container bg-center"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-top-right {
+        background-position: top right;
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container bg-top-right"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-20-80 {
+        background-position: 20% 80%;
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container bg-20-80"></div>
+    </div>
+  </section>
+
+  <section>
+    <p>CSS wäre nicht CSS, wenn wir das nicht alles in einer Regel vereinen können:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .bg-easy {
+        background:
+          repeat-y 20% 80%/200px 200px url("/images/cat.png"),
+          orange;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles">
+    <div class="bg">
+      <div class="container bg-easy"></div>
+    </div>
+  </section>
+
+  <section>
+    <p>Hintergründe in Bunt</p>
+    <p>Mithilfe von CSS-Funktionen</p>
+  </section>
+
+  <section>
+    <p>CSS bietet einige Funktionen um Gradienten-Hintergründe zu erstellen:</p>
+    <ul style="font-family: monospace;">
+      <li>(repeating)-linear-gradient</li>
+      <li>(repeating)-radial-gradient</li>
+      <li>(repeating)-conic-gradient</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Diese können in beliebiger Art und Weise kombiniert werden, um Eindrucksvolle Muster zu erstellen.</p>
+  </section>
+
+  <section class="apply-styles">
+    <p>Fangen wir einfach an, mit der Funktion <code>linear-gradient</code>, geben wir an in welche Richtung der Gradient wandern soll, welche Farbe beginnt und welche Endet:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .linear-rbp {
+        background: linear-gradient(to right, blue, pink);
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container gradients linear-rbp"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Wir können anstatt einer genauen Richtungsangabe auch eine Grad-Angabe machen</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .linear-72bp {
+        background: linear-gradient(72deg, blue, pink);
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container gradients linear-72bp"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Es können auch beliebig viele Farben angegeben werden</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .linear-rainbow {
+        background: linear-gradient(
+          45deg, red, orange, yellow, green, blue, violet, pink
+        );
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container gradients linear-rainbow"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Zu guter letzt, können wir auch die Breite der einzelnen Farb-Gradiente festlegen</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .linear-stops {
+        background: linear-gradient(
+          to bottom, darkgoldenrod -500px, black 350px, darkgoldenrod
+        );
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container gradients linear-stops"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Schauen wir uns kurz die anderen beiden Gradienten-Varianten an:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .radial {
+        background: radial-gradient(red 10px, yellow 30%, royalblue 50%);
+        border-radius: 50%;
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container gradients radial"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Und <code>conic-gradient</code>'s</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .conic {
+        background: conic-gradient(
+          from -45deg, red, blue, yellow, green
+        ); 
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container gradients conic"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles">
+    <p>Die zuvor "Repeating" Varianten, lassen es wie vielleicht schon denkbar zu, die Gradienten über einen größeren Bildschirmbereich wiederholend "zu malen"</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .conic-repeating {
+        background: repeating-radial-gradient(
+          black,
+          black 20px,
+          white 20px,
+          white 40px,
+        );
+      }
+    </code></pre>
+    <div class="bg">
+      <div class="container gradients conic-repeating"></div>
+    </div>
+  </section>
+</section>

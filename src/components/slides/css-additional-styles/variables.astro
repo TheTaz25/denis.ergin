@@ -1,0 +1,81 @@
+<section>
+  <section>
+    <h2>CSS-Variablen</h2>
+  </section>
+
+  <section>
+    <p>Variablen in CSS sind ein "relativ neues Feature" (ist eigentlich seit 2017 von allen großen Browsern supported)</p>
+    <p>Es taucht unter Umständen auch unter dem Namen "Custom Properties" auf</p>
+    <p>Hilft uns, eine "Single Source of Truth" zu haben.</p>
+  </section>
+
+  <section>
+    <p>Variablen sind auch teil der Vererbungskette von CSS und können somit überschrieben werden.</p>
+    <p>Als Inhalt kann vieles verwendet werden: Farben, Einheiten und mehr.</p>
+  </section>
+
+  <section>
+    <p>Nicht als Variable deklariert werden können:</p>
+    <ul>
+      <li>Bedingungen für <code>media-queries</code></li>
+      <li>Keyframes</li>
+      <li>Strings für <code>url(...)</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Definition von Variablen</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      :root {
+        --main-bg-color: #f99;
+      }
+    </code></pre>
+    <p><code>:root</code> ist eine spezielle Pseudo-Klasse die als Selektor für das HTML-Tag fungiert aber eine höhere Spezifität hat.</p>
+    <p>Dies erlaubt es uns, die Variable z.B. mittels HTMl-Klassen zu überschreiben (nützlich für z.B. Themes)</p>
+  </section>
+
+  <section>
+    <p>Variablen sind mit zwei Minus-Zeichen am Anfang gekennzeichnet</p>
+  </section>
+
+  <section>
+    <p>Verwendung von Variablen</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .element {
+        background-color: var(--main-bg-color);
+      }
+    </code></pre>
+    <p>Um den Wert in der Variable zu verwenden, müssen wir die spezielle CSS-Funktion <code>var(...)</code> benutzen.</p>
+  </section>
+
+  <section>
+    <p>Aber was, falls eine Variable nicht definiert sein sollte?</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .element {
+        background-color: var(
+          --gibts-nicht, --main-bg-color, white
+        );
+      }
+    </code></pre>
+
+    <p>In diesem Beispiel würde der Background auf #f99 gestellt werden, dies ist der erste existierende Wert.</p>
+    <p>Sollte auch --main-bg-color nicht definiert sein, würde der Hintergrund auf "white" gestellt werden.</p>
+  </section>
+
+  <section>
+    <p>Überschreiben von Variablen</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      :root {
+        --bg: black;
+      }
+      .make-it-white {
+        --bg: white;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Inhalte die <code>var(--bg);</code> innerhalb von Elementen mit der Klasse "make-it-white" verwenden, würden einen weißen Hintergrund erhalten.</p>
+    <p>Außerhalb würden die Werte als Schwarz in der Variable enthalten sein.</p>
+  </section>
+</section>

@@ -1,0 +1,130 @@
+<section>
+  <section>
+    <h2>Schatten</h2>
+  </section>
+
+  <section>
+    <p>Im User Interface Design werden Schattierungen von Elementen dazu verwendet um eine visuelle Tiefe zu erzeugen (abgegrenzt zu Flat-Design)</p>
+  </section>
+
+  <section>
+    <h3>Box-Shadow</h3>
+  </section>
+
+  <section>
+    <p>Wie der Name erahnen lässt, erzeugt der Box-Shadow eine Schattierung um die Box des Selektierten HTML-Elementes.</p>
+    <p>Die "einzige" Beeinflussung kann höchstens durch <code>border0-radius</code> hervorgerufen werden.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .shadow {
+        box-shadow:
+          &lt;offset-x&gt;
+          &lt;offset-y&gt; 
+          &lt;blur-radius&gt; /* optional */
+          &lt;spread-radius&gt; /* optional */
+          &lt;color&gt;
+          inset; /* optional */ 
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles shadow">
+    <p><code>offset-x</code> bestimmt, in welche Richtung der X-Achse die Schattierung erzeugt werden soll</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .only-x {
+        box-shadow: 10px 0 0 black;
+      }
+    </code></pre>
+    <div class="helper">
+      <div class="box x-only">
+      </div>
+    </div>
+  </section>
+
+  <section class="apply-styles shadow">
+    <p><code>offset-y</code> bestimmt die Schattierung entlang der Y-Achse</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .x-and-y {
+        box-shadow: 10px 10px 0 black;
+      }
+    </code></pre>
+    <div class="helper">
+      <div class="box x-and-y"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles shadow">
+    <p><code>blur</code> erzeugt ein weich-machen der Schattierung</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .blurred {
+        box-shadow: 10px 10px 10px black;
+      }
+    </code></pre>
+
+    <div class="helper">
+      <div class="box blurred"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles shadow">
+    <p>Je höher der <code>blur</code>-Wert ist, umso "größer" und weicher wird auch die Schattierung:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .very-blurred {
+        box-shadow: 10px 10px 100px black;
+      }
+    </code></pre>
+    <div class="helper">
+      <div class="box very-blurred"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles shadow">
+    <p>Diesen <code>spread</code> erreichen wir aber auch durch den 4 Nummerischen Wert den man angeben kann:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .spread {
+        box-shadow: 10px 10px 100px 50px black;
+      }
+    </code></pre>
+    <div class="helper">
+      <div class="box spread"></div>
+    </div>
+  </section>
+
+  <section>
+    <p>In den meisten Fällen ist der Spread-Wert weniger genutzt</p>
+  </section>
+
+  <section class="apply-styles shadow">
+    <p>Zu guter letzt: Wir können die Schattierung auch nach innen kehren, indem wir das keyword <code>inset</code> verwenden</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .inset {
+        box-shadow: 5px 5px 20px black inset;
+      }
+    </code></pre>
+    <div class="helper">
+      <div class="box inset"></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Text-Shadow</h3>
+  </section>
+
+  <section class="apply-styles shadow">
+    <p>Parallel zum BOX-Shadow, können wir auch eine Text-Schattierung erzeugen, die Syntax ist gleich, kennt aber keinen spread oder inset</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .text {
+        text-shadow: 1px 2px 3px red;
+      }
+    </code></pre>
+    <div class="text">
+      Hallo Welt!
+    </div>
+  </section>
+
+  <section>
+    <p>Bitte verwendet den text-shadow mit Vorsicht. Falsch Verwendet leidet die Lesbarkeit.</p>
+  </section>
+</section>

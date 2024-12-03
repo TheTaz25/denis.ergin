@@ -1,0 +1,84 @@
+<section>
+  <section>
+    <h2>Transitions</h2>
+  </section>
+
+  <section>
+    <p>transitions bieten uns die Möglichkeit, einen Zustandsübergang in CSS im Rahmen einer flüssigen Überleitung zu definieren.</p>
+    <p>Ein Zustandsübergang beschreibt hierbei eine beliebige Änderung der HTML-Attribute an einem Element (z.B. hinzufügen oder entfernen einer Klasse, Meta-Attribute wie <code>:hover</code> und andere).</p>
+  </section>
+
+  <section>
+    <p>In einer transition wird definiert welches Style-Attribut eine Überleitung erhält, eine <code>timing-funktion</code> und über welche Zeitraum die transition verläuft</p>
+    <p>Es können verschiedene transitions für verschiedene Style-Attribute vergeben werden, oder alle Änderungen mit dem keyword <code>all</code> "getracked" werden.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .color {
+        background-color: white;
+        color: black;
+        /** Zustandsänderung über 250ms für bg & fg */
+        transition:
+          background-color 250ms linear,
+          color 250ms linear
+        ;
+      }
+
+      /** Invertiere Farben, wenn der Mauszeiger überm Element */
+      .color:hover {
+        background-color: black;
+        color: white;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles transition">
+    <div class="container">
+      <div class="box color">
+        Hallo Welt!
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Während <code>linear</code> den Übergang "linear" (also ohne "smoothing") animiert, können wir auch keywords wie <code>ease-in, ease-out, ease-in-out</code> verwenden.</p>
+    <p>Easing sorgt dafür, dass der Anfang und/oder das Ende der transition einen "Ramp-Up" hat (die Animation verläuft dann langsam und baut sich auf).</p>
+    <p>Es kann aber auch eine eigene Übergangsfunktion mit CSS-Funktionen <code>(cubic-bezier, steps)</code> definiert werden.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .linear {
+        transition: all 1s linear;
+      }
+      .ease-in {
+        transition: all 1s ease-in;
+      }
+      .ease-out {
+        transition: all 1s ease-out;
+      }
+      .ease-in-out {
+        transition: all 1s ease-in-out;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles transition">
+    <div class="container grid">
+      <div class="box color-alone linear">
+        Linear
+      </div>
+      <div class="box color-alone ease-in">
+        Ease-In
+      </div>
+      <div class="box color-alone ease-out">
+        Ease-Out
+      </div>
+      <div class="box color-alone ease-in-out">
+        Ease-In-Out
+      </div>
+    </div>
+  </section>
+
+</section>

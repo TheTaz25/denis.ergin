@@ -1,0 +1,190 @@
+<section>
+  <section>
+    <h2>Spezielle Sachen</h2>
+  </section>
+
+  <section>
+    <p>Hier nun noch ein paar letzte Interessante CSS-Styles, sowie ein Ausblick, was nach CSS kommt</p>
+  </section>
+
+  <section>
+    <h3>Clip</h3>
+  </section>
+
+  <section>
+    <p>Clipping bedeutet für uns in diesem Kontext, dass wir den Inhalt eines Elementes mithilfe von Formen so modifizieren, dass nur ein Teil des visuellen Inhalts sichtbar ist.</p>
+    <p>Damit haben wir die Möglichkeit Interessante visuelle Effekte zu erzielen.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .clipped-text {
+        background: linear-gradient(45deg, #00ff8c, #1b5cff);
+        background-clip: text;
+        color: transparent;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles special">
+    <div class="clip box">
+      DHBW
+    </div>
+  </section>
+
+  <section>
+    <p>Nun, das war ein etwas speziellerer Anwendungsfall</p>
+    <p>Eigentlich gibt es eine bestimmte Style-Eigenschaft, genannt "clip"</p>
+  </section>
+
+  <section class="apply-styles special">
+    <div class="center">
+      <div class="box square"></div>
+    </div>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .circle {
+        clip-path: circle(50%);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles special">
+    <div class="center">
+      <div class="box circle square"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles special">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .quarter-circle {
+        clip-path: ellipse(100% 100% at 0 100%);
+      }
+    </code></pre>
+    <div class="center">
+      <div class="box square quarter-circle"></div>
+    </div>
+  </section>
+
+  <section class="apply-styles special">
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .dome {
+        clip-path: path('M0 250 L0,125 C0,-30 250,-30 250,125 L250 250 z');
+      }
+    </code></pre>
+    <div class="center">
+      <div class="box square dome"></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Was kommt "nach" CSS?</h3>
+  </section>
+
+  <section>
+    <p>CSS selber ist sehr vielseitig und mächtig.</p>
+    <p>Durch den W3C entwickelen sich die Features weiter und neue kommen regelmäßig hinzu.</p>
+    <p>Die "Ideen" zu den Weiterentwicklungen kommen dabei manchmal von anderen Sprachen / Frameworks.</p>
+  </section>
+
+  <section>
+    <p>Eine dieser Sprachen ist SASS/SCSS</p>
+    <p>SASS = "Syntactically Awesome Style Sheet"</p>
+    <p>SCSS = "Syntactically Correct Style Sheet"</p>
+  </section>
+
+  <section>
+    <p>SASS hat einige Ideen produziert, von der die Entwickler-Community nicht begeistert war und diese nochmals "weiterentwickelt" hat</p>
+    <p>Daraus entstand SCSS (mit dessen wir uns kurz hier befassen)</p>
+  </section>
+
+  <section>
+    <p>SASS/SCSS wurde (unter anderem) erschaffen um das schreiben von CSS-Selektoren zu vereinfachen.</p>
+    <p>Eine der Features war <code>nesting</code> (mittlerweile auch zu bestimmten Teilen in CSS-Feature-Set enthalten)</p>
+  </section>
+
+  <section>
+    <p>Neben nesting gibt es weitere Konzepte:</p>
+    <ul>
+      <li>Variablen</li>
+      <li>Konditionen und Loops</li>
+      <li>Funktionen</li>
+      <li>mehr...</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Allerdings gibt es ein Problem:</p>
+    <p>Moderne Browser verstehen nicht alle Sachen die in SCSS geschehen.</p>
+    <p>Das bedeutet SCSS muss in "normales" CSS übersetzt werden damit es funktioniert.</p>
+  </section>
+
+  <section>
+    <p>BEM</p>
+    <p>BEM ist ein Konzept HTML-Klassen so zu strukturieren, damit (immer) ersichtlich ist, was die Klasse "bezwecken" will.</p>
+    <p>BEM steht für "Block Element Modifier" und beschreibt so seine CSS-Klassen.</p>
+  </section>
+
+  <section>
+    <p><code>block</code> beschreibt das "root"-Element das gestyled werden soll (z.B. button, header, container, menu)</p>
+    <hr>
+    <p><code>element</code> beschreibt einen Teil des Blocks, also ein inneres Element (z.B. header-subtitle, menu-item, button-label)</p>
+    <hr>
+    <p><code>modifier</code> beschreibt eine Modifikation zu einem Block oder Element (z.B. disabled, fixed, danger, big)</p>
+  </section>
+
+  <section>
+    <p>Der Aufbau einer BEM-Klasse sieht folgendermaßen aus</p>
+    <p><code>.&lt;block&gt;__&lt;element&gt;--&lt;modifier&gt;</code></p>
+    <p>Ziel ist es außerdem, Klassen zu erstellen, die nicht miteinander "kollidieren"</p>
+  </section>
+  
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .button__label--error {}
+      .button--error {}
+      .heading--h3 {}
+      .heading__main--h3 {}
+      .input--required {}
+      .card__image {}
+    </code></pre>
+  </section>
+
+  <section>
+    <p>SCSS hilft beim Aufbau von BEM-Klassen in sehr großem Umfang</p>
+    <pre class="scss"><code data-trim data-line-numbers is:raw>
+      .button {
+        &__label {
+          &--error {
+            color: red;
+          }
+        }
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Tailwind</p>
+    <p>Tailwind ist eine Bibliothek. Sie unterstützt die Entwicklung indem es eine Reihe an vordefinierten CSS-Klassen gibt, die die HTML-Elemente modifizieren.</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers is:raw>
+      <div class="flex rounded-xl p-8 md:p-0">
+        Hier könnte Ihre Werbung stehen!
+      </div>
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Nachteile</p>
+    <ul>
+      <li>"Überladen" von HTML-Elementen mit Klassen-Namen</li>
+      <li>Hoher Lernaufwand für die ganzen Klassennamen</li>
+      <li>Kann bei vielen Klassen sehr verwirrend sein</li>
+      <li>Man braucht nur einen Bruchteil des CSS (aber dafür gibt es wiederum Lösungen)</li>
+    </ul>
+  </section>
+</section>

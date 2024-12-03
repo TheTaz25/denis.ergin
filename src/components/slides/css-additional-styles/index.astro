@@ -1,0 +1,542 @@
+---
+import Title from "./title.astro";
+import Animations from "./animations.astro";
+import Background from "./background.astro";
+import CssFunctions from "./css-functions.astro";
+import Filters from "./filters.astro";
+import ListStyles from "./list-styles.astro";
+import Overflow from "./overflow.astro";
+import Positioning from './positioning.astro';
+// import ScrollSnap from "./scroll-snap.astro";
+import Shadows from "./shadows.astro";
+import Specials from "./specials.astro";
+import Transform from "./transform.astro";
+import Transitions from "./transitions.astro";
+import Variables from "./variables.astro";
+import ZIndex from "./z-index.astro";
+---
+
+<div class="slides">
+  <Title />
+  <Background />
+  <ListStyles />
+  <Positioning />
+  <ZIndex />
+  <Overflow />
+  <Shadows />
+  <Transform />
+  <Transitions />
+  <Animations />
+  <!-- <ScrollSnap /> -->
+  <CssFunctions />
+  <Filters />
+  <Variables />
+  <Specials />
+</div>
+
+<style lang="scss" is:global>
+.apply-styles {
+  &.special {
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .square {
+      width: 250px;
+      height: 250px;
+    }
+    .box {
+      background: linear-gradient(45deg, #00ff8c, #1b5cff);
+    }
+
+    .circle {
+      clip-path: circle(50%);
+    }
+  
+    .clip {
+      font-size: 12rem;
+      font-weight: bold;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .quarter-circle {
+      clip-path: ellipse(100% 100% at 0 100%);
+    }
+
+    .dome {
+      clip-path: path('M0 250 L0,125 C0,-30 250,-30 250,125 L250 250 z');
+    }
+  }
+
+  &.filter {
+    img {
+      height: 40vh;
+    }
+
+    .blur {
+      filter: blur(10px);
+    }
+
+    .contrast {
+      filter: contrast(0.5);
+    }
+
+    .gray {
+      filter: grayscale(0.7);
+    }
+
+    .drop-shadow {
+      filter: drop-shadow(5px 5px 10px red);
+    }
+
+    .hue-rotate {
+      filter: hue-rotate(90deg);
+    }
+
+    .opaque {
+      filter: opacity(0.3);
+    }
+  }
+
+  &.animation {
+    .center {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes alternating {
+        0% {
+          width: 20%;
+          left: 0;
+        }
+        50% {
+          width: 38%;
+        }
+        100% {
+          width: 20%;
+          left: 80%;
+        }
+      }
+
+    .alternating-bar {
+      position: absolute;
+      border-radius: 50px;
+      height: 100px;
+      
+      left: 0;
+      width: 20%;
+      background: navy;
+
+      animation: alternating 3s ease-in-out infinite alternate;
+    }
+
+    .loading {
+      width: 250px;
+      height: 250px;
+      border-top: 16px solid black;
+      border-left: 16px solid black;
+      border-radius: 50%;
+    }
+
+    .animate-rotate {
+      animation-name: rotate;
+      animation-duration: 666ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &.transition {
+    .container {
+      display: flex;
+      justify-content: center;
+
+      &.grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+    .box {
+      height: 200px;
+      border: 4px solid black;
+      border-radius: 2rem;
+      padding: 2rem;
+    }
+
+    .color {
+      background-color: white;
+      color: black;
+      transition:
+        background-color 250ms linear,
+        color 250ms linear
+      ;
+      
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+
+    .color-alone {
+      background-color: white;
+      color: black;
+      
+    }
+    .container:hover .color-alone {
+      background-color: black;
+      color: white;
+    }
+
+    .linear {
+      transition: all 1s linear;
+    }
+    .ease-in {
+      transition: all 1s ease-in;
+    }
+    .ease-out {
+      transition: all 1s ease-out;
+    }
+    .ease-in-out {
+      transition: all 1s ease-in-out;
+    }
+  }
+
+  &.transform {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(200px, auto);
+      :nth-child(even) {
+        background-color: #f99;
+      }
+      :nth-child(odd) {
+        background-color: #99f;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .translate {
+      transform: translate(300px, 300px);
+    }
+
+    .scale-up {
+      transform: scale(1.5);
+    }
+
+    .scale-down {
+      transform: scale(0.7);
+    }
+
+    .rotate {
+      transform: rotate(90deg);
+    }
+
+    .skew {
+      transform: skew(30deg, 15deg);
+    }
+
+    .rotate-and-translate {
+      transform: rotate(45deg) translateX(400px);
+      border: red 8px solid;
+    }
+    .translate-and-rotate {
+      transform: translateX(400px) rotate(45deg);
+      border: blue 8px solid;
+    }
+
+    .absolute {
+      position: relative;
+      height: 250px;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+
+  &.shadow {
+    .helper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .box {
+      border: 3px dashed navy;
+      height: 100px;
+      width: 100px;
+    }
+
+    .x-only {
+      box-shadow: 10px 0 0 black;
+    }
+
+    .x-and-y {
+      box-shadow: 10px 10px 0 black;
+    }
+
+    .blurred {
+      box-shadow: 10px 10px 10px black;
+    }
+
+    .very-blurred {
+      box-shadow: 10px 10px 100px black;
+    }
+
+    .spread {
+      box-shadow: 10px 10px 100px 50px black;
+    }
+
+    .inset {
+      box-shadow: 5px 5px 20px black inset;
+    }
+
+    .text {
+      text-shadow: 1px 2px 3px red;
+    }
+  }
+
+  .bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+      width: 450px;
+      height: 450px;
+    }
+
+    .bg-color {
+      background: darkkhaki;
+    }
+
+    .bg-img {
+      background: url("/images/cat.png");
+    }
+
+    .bg-cover {
+      background-size: cover;
+    }
+
+    .bg-contain {
+      background-size: contain;
+      height: 600px;
+    }
+
+    .bg-no-repeat {
+      background-repeat: no-repeat;
+    }
+
+    .bg-multi {
+      background: url("/images/cat.png"), orange;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 600px;
+    }
+
+    .bg-easy {
+      background:
+        repeat-y 20% 80%/200px 200px url("/images/cat.png"),
+        orange;
+    }
+
+    .bg-center {
+      background: url("/images/cat.png"), orange;
+      background-position: center;
+      background-size: 200px 200px;
+      background-repeat: no-repeat;
+    }
+
+    .bg-top-right {
+      background: url("/images/cat.png"), orange;
+      background-position: top right;
+      background-size: 200px 200px;
+      background-repeat: no-repeat;
+    }
+
+    .bg-20-80 {
+      background: url("/images/cat.png"), orange;
+      background-position: 20% 80%;
+      background-size: 200px 200px;
+      background-repeat: no-repeat;
+    }
+
+    .gradients {
+      &.linear-rbp {
+        background: linear-gradient(to right, blue, pink);
+      }
+
+      &.linear-72bp {
+        background: linear-gradient(72deg, blue, pink);
+      }
+
+      &.linear-rainbow {
+        background: linear-gradient(45deg, red, orange, yellow, green, blue, violet, pink);
+      }
+
+      &.linear-stops {
+        background: linear-gradient(
+          to bottom, darkgoldenrod -500px, black 350px, darkgoldenrod
+        );
+      }
+
+      &.radial {
+        background: radial-gradient(red 10px, yellow 30%, royalblue 50%);
+        border-radius: 50%;
+      }
+
+      &.conic {
+        background: conic-gradient(from -45deg, red, blue, yellow, green);
+      }
+
+      &.conic-repeating {
+        background: repeating-radial-gradient(
+          black,
+          black 20px,
+          white 20px,
+          white 40px,
+        );
+      }
+    }
+  }
+
+  .list-styles {
+    .disc {
+      list-style-type: disc;
+    }
+    .circle {
+      list-style-type: circle;
+    }
+    .square {
+      list-style-type: square;
+    }
+    .kannada {
+      list-style-type: kannada;
+    }
+    &.hashtag {
+      list-style: "#";
+    }
+    &.custom {
+      list-style: url("/favicon-dark.svg");
+    }
+  }
+
+  .position {
+    &.relative {
+      position: relative;
+    }
+
+    &.box {
+      background-color: #99f8;
+      height: 500px;
+      border: 2px solid black;
+    }
+
+    .absolute {
+      position: absolute;
+      background-color: #5005;
+    }
+
+    .one, .two, .three {
+      width: 70%;
+      height: 70%;
+      background-color: white;
+    }
+
+    .one {
+      z-index: 1;
+    }
+
+    .two {
+      right: 0;
+    }
+
+    .three {
+      bottom: 0;
+    }
+
+    .top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .wide {
+      width: 100%;
+    }
+
+    &.sticky-container {
+      height: 550px;
+      overflow-y: scroll;
+
+      .ad {
+        background: #f99;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: sticky;
+        top: 0;
+      }
+
+      .negative-top {
+        top: -100px;
+      }
+
+      .two-way {
+        top: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  &.pos-tooltip {
+    .element {
+      position: relative;
+      display: inline;
+      border-bottom: 4px dashed black;
+
+      .tooltip {
+        background-color: lightblue;
+        border-radius: 20px;
+
+        width: 200px;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        top: -300px;
+        // Halbe Breite + padding;
+        left: calc(50% - 132px);
+      }
+    }
+  }
+
+  &.overflow {
+    .element {
+      height: 250px;
+      background-color: #f336;
+    }
+  }
+}
+</style>

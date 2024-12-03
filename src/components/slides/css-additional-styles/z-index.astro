@@ -1,0 +1,29 @@
+<section>
+  <section>
+    <h2>Z-Index</h2>
+  </section>
+
+  <section>
+    <p>Mit der Einführung des CSS-Grid und den Positionierungs-Mechanismen "absolute" und "fixed" haben wir auch ein "neues" Problem kreiert: Elemente die sich gegenseitig überlappen können und ggf. Inhalte blockieren.</p>
+    <p>So gesehen müssen wir nun mit einer dritten Dimension arbeiten um Inhalte "vor" anderen Inhalten zu platzieren falls nötig.</p>
+  </section>
+
+  <section>
+    <p>In CSS wird das mithilfe des Style-Attributes <code>z-index</code> gelöst.</p>
+    <p>Wenn 2 Elemente mit einem z-index übereinander liegen, "gewinnt" das Element mit dem höheren z-index.</p>
+  </section>
+
+  <section>
+    <pre class=""><code data-trim data-line-numbers>
+    
+    </code></pre>
+  </section>
+
+  <section class="apply-styles">
+    <div class="position relative box">
+      <div class="absolute one">Erstes Element: Index 1</div>
+      <div class="absolute two">Zweites Element: Kein Index</div>
+      <div class="absolute three">Drittes Kind: Kein Index</div>
+    </div>
+  </section>
+</section>

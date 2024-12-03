@@ -1,0 +1,132 @@
+<section>
+  <section>
+    <h2>Animations</h2>
+  </section>
+
+  <section>
+    <p>Animationen stellen eine Erweiterung zu transitions dar</p>
+    <p>Bei einer Animation kann man mehrere Schritte angeben um die Animation auszuführen</p>
+    <p>Sie lassen komplexere Szenarien zu und müssen nicht auf einen Zustandsübergang von HTML-Attributen warten</p>
+    <p>Sie können "einmalig" oder wiederholend programmiert werden</p>
+  </section>
+
+  <section>
+    <h3>keyframes</h3>
+  </section>
+
+  <section>
+    <p>Eine Animation besteht im Grund aus <code>keyframes</code></p>
+    <p>Sie geben an, zu welchem "Zeitpunkt" in der Animation ein bestimmter CSS-Style "erreicht" wird</p>
+    <p>Wir können keyframes mit den keywords "to" und "from" verwenden um 2 Fixpunkte (Start &amp; Ende) zu erhalten</p>
+    <p>Alternativ können wir auch 0% bis 100% verwenden um die Animation feiner zu steuern</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .animate-rotate {
+        animation-name: rotate;
+        animation-duration: 666ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles animation">
+    <div class="center">
+      <div class="loading animate-rotate"></div>
+    </div>
+  </section>
+
+  <section>
+    <p><code>animation-name</code></p>
+    <p>Dies ist der Name der über die Keyframes vergeben wurde</p>
+  </section>
+
+  <section>
+    <p><code>animation-duration</code></p>
+    <p>Gibt an, wie lange ein Animationsdurchlauf (from -> to, beziehungsweise von 0% zu 100%) dauern soll.</p>
+    <p>Kann in einer Zeiteinheit wie 500ms oder 0.5s angegeben werden.</p>
+  </section>
+
+  <section>
+    <p><code>animation-iteration-count</code></p>
+    <p>Gibt an, wie oft die Animation abgespielt werden soll, bis der Endzustand dauerhaft angezeigt wird.</p>
+    <p>Verwenden sie <code>infinite</code>, damit die Animation nie endet</p>
+  </section>
+
+  <section>
+    <p><code>animation-timing-duration</code></p>
+    <p>Ähnlich zur Timing-Funktion bei transitions. Hier kann auch wieder aus vorhandenen keywords oder aus speziellen Funktionen wie <code>cubic-bezier</code> eine eigene Timing-Funktion angegeben werden.</p>
+  </section>
+
+  <section>
+    <p><code>animation-delay</code></p>
+    <p>Zur Angabe wie lange das Abspielen einer Animation herausgezögert werden soll</p>
+  </section>
+
+  <section>
+    <p><code>animation-direction</code></p>
+    <p>Nutzen Sie <code>reverse</code> um die Animation rückwärts abzuspielen (Effektiv werden from und to vertauscht)</p>
+  </section>
+  
+  <section>
+    <p><code>alternate</code></p>
+    <p>Kann dazu verwendet werden um eine Animation zwischen 0% und 100% und dann wieder zu 0% abzuspielen.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      @keyframes alternating {
+        0% {
+          width: 20%;
+          left: 0;
+        }
+        50% {
+          width: 38%;
+        }
+        100% {
+          width: 20%;
+          left: 80%;
+        }
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .alternating-bar {
+        position: absolute;
+        border-radius: 50px;
+        height: 100px;
+        
+        left: 0;
+        width: 20%;
+        background: navy;
+  
+        animation: alternating 3s ease-in-out infinite alternate;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles animation">
+    <div class="center">
+      <div class="alternating-bar">
+
+      </div>
+    </div>
+  </section>
+</section>

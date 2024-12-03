@@ -1,0 +1,251 @@
+<section>
+  <section>
+    <h2>Positionierung</h2>
+  </section>
+
+  <section>
+    <p>Neben den Layout-Mechaniken des CSS-Grids und der Flexbox haben wir manchmal die notwendigkeit, Elemente präzise innerhalb eines Containers oder des Viewports zu platzieren.</p>
+    <p>Beispiele dafür sind Tooltips, Notifications (oder auch Toast-Messages), Modale und weitere...</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      position:
+        | static
+        | relative
+        | absolute
+        | fixed
+        | sticky;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Static</h3>
+  </section>
+
+  <section>
+    <p>Standardmäßig sind alle Elemente in einem Web-Dokument <code>static</code> positioniert.</p>
+    <p>Die Positionierung im gerenderten Dokument verhält sich so, wie wir es bisher kennen gelernt haben.</p>
+  </section>
+
+  <section>
+    <h3>Relative &amp; Absolute</h3>
+  </section>
+
+  <section>
+    <p>Beginnen wir mit dem "wichtigeren" Wert: <code>absolute</code></p>
+    <p>Sobald ein Element als <code>absolute</code> definiert ist, befindet es sich nicht mehr im Normalen Flow des Dokumentes.</p>
+    <p>Die absolute Positionierung lässt sich nun mittels CSS <code>left, right, top, bottom</code> (und <code>z-index</code>) beeinflussen.</p>
+  </section>
+
+  <section>
+    <p>Ein Absolut positioniertes Elementes orientiert sich dabei in einem Relativ platzierten Element. Existiert keins, wird es frei innerhalb des Dokumentes positioniert (document-root).</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .relative {
+        position: relative;
+      }
+  
+      .box {
+        background-color: #99f8;
+        height: 500px;
+        border: 2px solid black;
+      }
+  
+      .absolute {
+        position: absolute;
+        background-color: #5005;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles">
+    <div class="position relative box">
+      Ich befinde mich in einem relativen Container!
+      <div class="absolute">
+        Ich bin absolute positioniert!
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Innerhalb des relativen Containers versucht der Browser den Inhalt immernoch lesbar anzuzeigen. Wir können das Verhalten (die Positionierung) nun "überschreiben"</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .top-left {
+        top: 0;
+        left: 0;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles">
+    <div class="position relative box">
+      Ich befinde mich in einem relativen Container!
+      <div class="absolute top-left">
+        Ich bin absolute positioniert!
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Wir sehen auch, dass sich das absolute Element wie ein Inline-Element verhält: es nimmt nur den Platz ein der den Content benötigt.</p>
+    <p>Wir können aber auch diese Werte weiterhin modifizieren.</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .wide {
+        width: 100%;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles">
+    <div class="position relative box">
+      Ich befinde mich in einem relativen Container!
+      <div class="absolute wide">
+        Ich bin absolute positioniert! (und 100% breit!)
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Ein klassischer Fall: Das Tooltip</p>
+  </section>
+
+  <section>
+    <p>Das HTML:</p>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;div class="element"&gt;
+        DHBW
+        &lt;div class="tooltip"&gt;
+          Duale Hochschule Baden Württemberg
+        &lt;/div&gt;
+      &lt;/div&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das CSS</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .element {
+        position: relative;
+        display: inline;
+        border-bottom: 4px dashed black;
+      }
+
+      .tooltip {
+        background-color: lightblue;
+        border-radius: 20px;
+
+        width: 200px;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        top: -300px;
+        /* Halbe Breite + padding */
+        left: calc(50% - 132px);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles pos-tooltip">
+    <div class="element">
+      DHBW
+      <div class="tooltip">
+        Duale Hochschule Baden Württemberg
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p>Wir sehen auch relativ schnell bei absoluten Elementen, dass deutlich mehr CSS notwendig wird und wir mehr Kalkulationen miteinbeziehen müssen um ein Absolutes Element zentriert darzustellen.</p>
+    <p>Besonders die korrekte Platzierung ist ein Feature in der Web-Entwicklung das durch den Browser stark vereinfacht wird.</p>
+  </section>
+
+  <section>
+    <h3>Fixed</h3>
+  </section>
+
+  <section>
+    <p>Elemente die mit <code>fixed</code> positioniert werden, werden Innerhalb des Viewports "fixiert" platziert.</p>
+    <p>Das Element befindet sich dann dauerhaft an der festgelegten Position. Scrollen durch den User beeinflusst die Position nicht, der Inhalt wird immer an der gleichen Stelle stehen bleiben</p>
+    <p>Aufgrund der "persistenz" kann aber hier in den Folien kein Beispiel gezeigt werden.</p>
+  </section>
+
+  <section>
+    <p><code>fixed</code> Elemente werden wie auch schon bei absolut positioniert Elementen durch <code>top, bottom, left, right</code> beeinflusst.</p>
+  </section>
+
+  <section>
+    <h3>Sticky</h3>
+  </section>
+
+  <section>
+    <p>Sticky Elemente sind ein tolles "Convenience Feature" dass es in CSS gibt.</p>
+    <p>Die Positionierung sorgt dafür, dass Elemente in einem scrollbaren Container an einer spezifizierten Stelle "kleben" bleiben.</p>
+  </section>
+
+  <section class="apply-styles">
+    <div class="position sticky-container">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quod, quas aperiam ea nihil quam a, repellendus sunt ratione aut molestiae expedita repudiandae temporibus labore, beatae dolorem deserunt voluptas! Optio.</p>
+      <div class="ad">Hier könnte Ihre Werbung stehen!</div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia laborum qui amet reprehenderit magni natus vel sapiente tempora ab aliquam iure fugiat commodi consequuntur iusto, est soluta iste! Sed, dolor?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, vitae enim earum nam similique beatae mollitia illum incidunt quibusdam officia sunt quaerat quos at sequi, porro voluptatibus corrupti omnis provident!</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt voluptatibus nulla beatae, quaerat excepturi nesciunt perspiciatis optio sit, et eos exercitationem possimus porro expedita. Vitae, et? Soluta dolor incidunt iusto.</p>
+    </div>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .container {
+        height: 550px;
+        overflow-y: scroll;
+  
+        .sticky-ad {
+          background: #f99;
+          height: 200px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+  
+          position: sticky;
+          top: 0;
+        }
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Zwingend zur Definition von "sticky", muss auch angegeben "wann" der Container "gesticked" werden soll. In diesem Beispiel wurde das durch <code>top: 0;</code> definiert.</p>
+    <p>Damit wurde dem Browser mitgeteilt, dass das Element am oberen Rand des Scrollbaren Containers "gesticked" werden soll.</p>
+  </section>
+  
+  <section>
+    <p>Negative Sorgen dafür das der Container ein Stück weit mit-scrollt bis er sticky wird</p>
+    <p><code>top: -100px;</code></p>
+  </section>
+
+  <section class="apply-styles">
+    <div class="position sticky-container">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quod, quas aperiam ea nihil quam a, repellendus sunt ratione aut molestiae expedita repudiandae temporibus labore, beatae dolorem deserunt voluptas! Optio.</p>
+      <div class="ad negative-top">Hier könnte Ihre Werbung stehen!</div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia laborum qui amet reprehenderit magni natus vel sapiente tempora ab aliquam iure fugiat commodi consequuntur iusto, est soluta iste! Sed, dolor?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, vitae enim earum nam similique beatae mollitia illum incidunt quibusdam officia sunt quaerat quos at sequi, porro voluptatibus corrupti omnis provident!</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt voluptatibus nulla beatae, quaerat excepturi nesciunt perspiciatis optio sit, et eos exercitationem possimus porro expedita. Vitae, et? Soluta dolor incidunt iusto.</p>
+    </div>
+  </section>
+
+  <section>
+    <p>Wir können auch sowohl <code>top</code> als auch <code>bottom</code> auf <code>0</code> setzten, um den Container in beide Richtungen sticky zu machen.</p>
+  </section>
+
+  <section class="apply-styles">
+    <div class="position sticky-container">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quod, quas aperiam ea nihil quam a, repellendus sunt ratione aut molestiae expedita repudiandae temporibus labore, beatae dolorem deserunt voluptas! Optio.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia laborum qui amet reprehenderit magni natus vel sapiente tempora ab aliquam iure fugiat commodi consequuntur iusto, est soluta iste! Sed, dolor?</p>
+      <div class="ad two-way">Hier könnte Ihre Werbung stehen!</div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, vitae enim earum nam similique beatae mollitia illum incidunt quibusdam officia sunt quaerat quos at sequi, porro voluptatibus corrupti omnis provident!</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt voluptatibus nulla beatae, quaerat excepturi nesciunt perspiciatis optio sit, et eos exercitationem possimus porro expedita. Vitae, et? Soluta dolor incidunt iusto.</p>
+    </div>
+  </section>
+</section>

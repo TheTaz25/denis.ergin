@@ -1,0 +1,59 @@
+<section>
+  <section>
+    <h2>Ein Kurzausflug zurück zu Listen</h2>
+  </section>
+
+  <section>
+    <p>Beim Kennenlernen von HTML haben wir die Elemente <code>ul &amp; li</code> gesehen um Listen darzustellen.</p>
+    <p>Natürlich ist es mit CSS möglich, die "Aufzählungspunkte" die durch den Browser gerendert werden, nach den eigenen Wünschen anzupassen.</p>
+  </section>
+
+  <section>
+    <p>Dafür haben wir eine Liste an vordefinierten "Assets".</p>
+    <p>Für mehr Kreative Freiheit können wir aber ein beliebiges UTF-8 Zeichen verwenden.</p>
+    <p>Und wenn uns das auch nicht reicht, können wir eine eigene Liste an Zeichen erstellen, die die Zeichen "durchgeht"</p>
+  </section>
+
+  <section class="apply-styles">
+    <p>Vordefinierte Symboliken</p>
+    <ul class="list-styles">
+      <li class="disc">disc</li>
+      <li class="circle">circle</li>
+      <li class="square">square</li>
+      <li class="kannada">kannada</li>
+    </ul>
+  </section>
+
+  <section class="apply-styles">
+    <p>Wir können eigene UTF-8 Zeichen verwenden:</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .hashtag {
+        list-style: "#";
+      }
+    </code></pre>
+
+    <ul class="list-styles hashtag">
+      <li>Eins</li>
+      <li>Zwei</li>
+      <li>Drei</li>
+      <li>Vier</li>
+      <li>Fünf</li>
+    </ul>
+  </section>
+
+  <section class="apply-styles">
+    <p>Und zu guter letzt: Wir können auch eigene Bilder verwenden</p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .custom {
+        list-style: url("/favicon-dark.svg");
+      }
+    </code></pre>
+    <ul class="list-styles custom">
+      <li>Eins</li>
+      <li>Zwei</li>
+      <li>Drei</li>
+      <li>Vier</li>
+      <li>Fünf</li>
+    </ul>
+  </section>
+</section>

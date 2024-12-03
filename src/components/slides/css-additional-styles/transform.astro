@@ -1,0 +1,223 @@
+<section>
+  <section>
+    <h2>Transform</h2>
+  </section>
+  
+  <section>
+    <p>In CSS sind transforms eine Reihe von Modifikationen an ein HTML-Element.</p>
+    <p>Diese Modifikationen beinhalten hauptsächlich Skalierung, "Translation", Rotation und Skewing</p>
+    <p>Die einzelnen Anwendungen werden durch CSS-Funktionen auf dem <code>transform</code>-CSS-Style beschrieben</p>
+    <p>Es können mehrere transforms auf ein Element angewandt werden.</p>
+  </section>
+
+  <section>
+    <h3>translate</h3>
+  </section>
+
+  <section>
+    <p>Mit <code>translate</code> kann das Element im Viewport verschoben werden ohne die Bounding-Box des Parents zu modifizieren.</p>
+    <p>Das heißt wir haben die Möglichkeit ein Element außerhalb des Parents zu "verschieben" ohne das "umliegende" Elemente beeinflusst werden.</p>
+  </section>
+
+  <section class="apply-styles transform">
+    <p>Wir testen heute mit einem 3x3 Grid. In der Mitte ein Bild</p>
+    <div class="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div>
+        <img src="/images/cat-w250.png" alt="a cat"/>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+
+  <section>
+    <p>Nun verschieben wir das Bild mittels <code>transform: translate()</code></p>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .translate {
+        transform: translate(300px, 300px);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles transform">
+    <div class="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div>
+        <img class="translate" src="/images/cat-w250.png" alt="a cat"/>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+
+  <section>
+    <p>Es gibt zudem Funktionen für einzelne Richtung: <code>translateX, translateY, translateZ</code>.</p>
+    <p>Moment. <code>translateZ</code>? Ja, mit CSS kann man mittlerweile auch in einem 3-Dimensionalem Space rendern. Aber wir werden uns dieses Themengebiet nicht näher ansehen.</p>
+  </section>
+
+  <section>
+    <h3>scale</h3>
+  </section>
+
+  <section>
+    <p>Mithilfe von <code>scale</code>, können wir angezeigte Inhalte skalieren. Effektiv können wir hiermit also Inhalte vergrößern oder verkleinern.</p>
+    <p>Wenn der CSS-Funktion <code>scale</code> nur ein Wert übergeben wird, so wird das Element entsprechend seines Seitenverhältnisses skaliert.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .scale-up {
+        transform: scale(1.5);
+      }
+      .scale-down {
+        transform: scale(0.7);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wenn wir skalieren, dann ist der Wert "1" der Ausgangszustand.</p>
+    <p>Werte zwischen 0 und 1 verkleinern das Bild.</p>
+    <p>Werte über 1 vergrößern das Bild.</p>
+  </section>
+
+  <section class="apply-styles transform">
+    .scale-up
+    <div class="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div>
+        <img class="scale-up" src="/images/cat-w250.png" alt="a cat"/>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+
+  <section class="apply-styles transform">
+    .scale-down
+    <div class="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div>
+        <img class="scale-down" src="/images/cat-w250.png" alt="a cat"/>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>rotate</h3>
+  </section>
+
+  <section>
+    <p>Wir der Name vielleicht schon erahnen lässt, dient <code>rotate</code> dazu, ein Element zu drehen.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .rotate {
+        transform: rotate(90deg);
+        /* Man kann auch die Einheit "turn" verwenden 
+          (halbe Umdrehung im Uhrzeigersinn) */
+        /* transform: rotate(0.5turn) */ 
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles transform">
+    .rotate
+    <div class="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div>
+        <img class="rotate" src="/images/cat-w250.png" alt="a cat"/>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>skew</h3>
+  </section>
+
+  <section>
+    <p>Mit <code>skew</code> verzerren wir Inhalt indem auf die X oder Y-Achse eine rotation erzeugt wird.</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .skew {
+        transform: skew(30deg, 15deg);
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles transform">
+    .skew
+    <div class="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div>
+        <img class="skew" src="/images/cat-w250.png" alt="a cat"/>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+
+  <section>
+    <p>Ein letztes Wort zu <code>transform</code>: Die Reihenfolge ist wichtig!</p>
+  </section>
+
+  <section>
+    <pre class="css"><code data-trim data-line-numbers is:raw>
+      .rotate-and-translate {
+        transform: rotate(45deg) translateX(400px);
+        border: red 8px solid;
+      }
+      .translate-and-rotate {
+        transform: translateX(400px) rotate(45deg);
+        border: blue 8px solid;
+      }
+    </code></pre>
+  </section>
+
+  <section class="apply-styles transform">
+    <div class="absolute">
+      <img src="/images/cat-w250.png" alt="a cat">
+      <img class="rotate-and-translate" src="/images/cat-w250.png" alt="a cat">
+      <img class="translate-and-rotate" src="/images/cat-w250.png" alt="a cat">
+    </div>
+  </section>
+
+</section>
