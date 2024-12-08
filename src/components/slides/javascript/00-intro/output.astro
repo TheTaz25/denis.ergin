@@ -1,0 +1,54 @@
+<section>
+  <section>
+    <h2>Daten ausgeben</h2>
+  </section>
+
+  <section>
+    <p>Um später unsere Berechnungen zu testen, müssen wir natürlich erstmal wissen, welche Möglichkeiten wir haben um Daten aus JS heraus anzuzeigen.</p>
+  </section>
+
+  <section>
+    <h3>console.log()</h3>
+  </section>
+
+  <section>
+    <p>Diese Art der Ausgabe wird der (reguläre) Nutzer nicht sehen. Sie ist in den Entwickler-Tools des Browsers zu sehen.</p>
+    <p>Neben <code>console.log()</code> gibt es noch weitere Ausgabemöglichkeiten wie <code>.warn()</code>, <code>.info()</code> oder <code>error()</code>.</p>
+    <p>Diese Art der Ausgabe hilft uns als Entwickler potenzielle Fehler zu identifizieren, während wir unsere Website entwickeln.</p>
+  </section>
+
+  <section>
+    <p>Schreiben wir nun unser erstes JavaScript!</p>
+    <pre class="js"><code data-trim data-line-numbers>
+      console.log("Hier könnte Ihre Werbung stehen!");
+    </code></pre>
+  </section>
+
+  <section>
+    <p>In den Entwickler-Tools unter dem Reiter "Console" (Sprachenabhängig), sollte nun der ausgegebene Text zu sehen sein.</p>
+  </section>
+
+  <section>
+    <h3>document.writeln()</h3>
+  </section>
+
+  <section>
+    <p>Innerhalb des Web-Browsers haben wir ein Objekt zur Verfügung mit dem wir auf das HTML-Dokument zugreifen können.</p>
+    <p>Wir werden später mehr darüber erfahren, aber fürs erste nutzen wir die erste von vielen Funktionen: <code>document.writeln()</code>.</p>
+    <p>Dieses Kommando schreibt den Inhalt den wir der Funktion Übergeben in das Dokument.</p>
+  </section>
+
+  <section>
+    <p>Lasst uns etwas ins Dokument schreiben!</p>
+    <pre class="js"><code data-trim data-line-numbers>
+      document.writeln("Hallo Welt!");
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Natürlich kann der Text auch in HTML geschrieben sein:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      document.writeln("&lt;p&gt;&lt;code&gt;Monospace it is!&lt;/code&gt;&lt;/p&gt;");
+    </code></pre>
+  </section>
+</section>

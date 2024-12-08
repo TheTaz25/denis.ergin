@@ -1,0 +1,38 @@
+---
+import Title from "./title.astro";
+import Meta from './meta.astro';
+import ProjectSetup from './project-setup.astro';
+import Output from './output.astro';
+import Variables from "./variables.astro";
+import PrimitiveDatatypes from "./primitive-datatypes.astro";
+---
+
+<div class="slides">
+  <Title />
+  <Meta />
+  <ProjectSetup />
+  <Output />
+  <Variables />
+  <PrimitiveDatatypes />
+</div>
+
+<style is:global>
+  .red {
+    color: red;
+  }
+  .blue {
+    color: blue;
+  }
+  .green {
+    color: green;
+  }
+  .orange {
+    color: orange;
+  }
+  .gray {
+    color: lightgray;
+  }
+  .indigo {
+    color: indigo;
+  }
+</style>

@@ -1,0 +1,239 @@
+<section>
+  <section>
+    <h2>Primitive Datentypen</h2>
+  </section>
+
+  <section>
+    <p>Schauen wir uns mal näher an, was wir da genau in den Variablen bisher gespeichert haben.</p>
+    <p>Hierfür haben wir ein kleines Keyword in JS, dass uns hilft den Datentypen zu identifizieren.</p>
+  </section>
+
+  <section>
+    <p>Wir nutzen das keyword <code>typeof</code> um den Datentypen einer Variable auszugeben.</p>
+    <pre class="js"><code data-trim data-line-numbers>
+      const message = "Hallo Welt!";
+      
+      // Gibt "string" aus 
+      document.writeln(typeof message);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Strings</h3>
+  </section>
+
+  <section>
+    <p>Nun, wir wussten bereits vorher, dasss wir einen String verwendet haben. Der Text war in doppelten Anführungszeichen.</p>
+    <p>Strings beinhalten Texte. Die Länge des Textes muss nicht angegeben werden wie in alten Programmiersprachen (z.B. C).</p>
+  </section>
+
+  <section>
+    <p>Das Konzept des Grundlegenden Datentypes "char" gibt es in JS nicht. Alles ist ein String.</p>
+    <p>Entsprechend ist es egal, ob man doppelte oder einfache Anführungszeichen verwendet.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers>
+      let message = 'Geht auch einfach!';
+
+      document.writeln(message);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Es gibt eine dritte Art, Strings zu definieren, und zwar in sogenannten "Backticks" (``).</p>
+    <p>Wenn wir diese Backticks verwenden, erzeugen wir in JavaScript ein sogenanntes "Template Literal", mit dem wir ganz einfach Variablen innerhalb des Strings verwenden können.</p>
+    <p>Um Variablen im String zu referenzieren, müssen diese nur in geschweiften Klammer mit einem anführenden Dollar-Zeichen geschrieben sein</p>
+  </section>
+
+  <section>
+    <pre class=""><code data-trim data-line-numbers is:raw>
+      const world = "Welt";
+      const message = `Hello, ${world}!`;
+
+      // Gibt "Hallo, Welt!" aus
+      document.writeln(message);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Strings besitzen eine Reihe an eingebauten Funktionen, um diese zu modifizeren, Tests auszuführen oder aufzuteilen.</p>
+  </section>
+
+  <section>
+    <h4>Zugriff auf einzelne Character</h4>
+  </section>
+
+  <section>
+    <p>Wir können Strings in JS wie ein Array "behandeln" und mit eckigen Klammern auf einen bestimmten Index innerhalb des Strings zugreifen.</p>
+
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      let hello = "Hallo";
+
+      // Gibt 'a' aus
+      document.writeln(hello[1]);
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Strings zusammenführen</h4>
+  </section>
+
+  <section>
+    <p>Mittels <code>concat</code>, können wir einen String, mit einem oder mehreren anderen zusammenführen.</p>
+    <pre class="js"><code data-trim data-line-numbers>
+      const hello = "Hallo";
+      const world = "Welt!";
+      const message = hello.concat(', ', world);
+
+      // Gibt "Hallo, Welt!" aus
+      document.writeln(message);
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Prüfen ob ein "Wort enthalten ist"</h4>
+  </section>
+
+  <section>
+    <p>Mit <code>includes</code> können wir abfragen, ob in einem String ein bestimmtes Wort / Wörter enthalten sind.</p>
+    <pre class="js"><code data-trim data-line-numbers>
+      const message = "Hallo Welt!";
+
+      document.writeln(message.includes("Welt!"));
+      document.writeln(message.includes("Welt?"));
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Teile eines Strings austauschen</h4>
+  </section>
+
+  <section>
+    <p>Wollen wir den Inhalt eines Strings mit etwas neuem austauschen, so nutzen wir <code>replace</code> oder <code>replaceAll</code></p>
+    <p>Die Operation modifiziert den existierenden String nicht. Sie gibt einen neuen String aus der modifiziert wurde</p>
+
+    <pre class="js"><code data-trim data-line-numbers>
+      const message = "Hallo, Welt!";
+
+      // Gibt "Hallo, Stundenten!" aus;
+      document.writeln(message.replace("Welt", "Studenten"));
+      // Gibt "HaLLo, WeLt!" aus
+      document.writeln(message.replaceAll('l', 'L'));
+    </code></pre>
+  </section>
+
+  <section>
+    <p><code>replace</code> tauscht nur das erste "Vorkommen" in einem String aus.</p>
+    <p>Während <code>replaceAll</code> alle Vorkommen austauscht. Interessanterweise gibt es replaceAll erst seit kurzer Zeit.</p>
+  </section>
+
+  <section>
+    <h4>Aufteilen eines Strings anhand eines Patterns</h4>
+  </section>
+
+  <section>
+    <p>Wir können einen String in ein Array aufsplitten indem wir ein bestimmtes Zeichen, beziehungsweise eine Zeichenfolge als "trenner" bestimmen</p>
+    <pre class="js"><code data-trim data-line-numbers>
+      const message = "Hallo, Welt!";
+      // Gibt "Ha,,o, We,t!" aus
+      document.writeln(message.split('l'));
+    </code></pre>
+    <p>Wichtig hierbei ist zu wissen, das <code>document.writeln</code>, ein Array aus Strings annimmt und die Werte Komma-separiert ausgibt.</p>
+    <p>Anstatt es ins Dokument zu schreiben, geben Sie <code>message.split('l')</code> nun einmal in der Konsole aus.</p>
+  </section>
+
+  <section>
+    <h4>Groß/ und Klein-Setzung</h4>
+  </section>
+
+  <section>
+    <p>Mit den Funktionen <code>toLowerCase</code> und <code>toUpperCase</code> können wir alle Buchstaben in GROßE und kleine Umwandeln.</p>
+    <pre class="js"><code data-trim data-line-numbers>
+      const message = "Hallo, Welt!";
+
+      console.log(message.toUpperCase());
+    </code></pre>
+    <p>Auch hier wird der originale String nicht modifiziert, sondern eine modifizierte Version zurück gegeben.</p>
+  </section>
+
+  <section>
+    <h3>Zahlen</h3>
+  </section>
+
+  <section>
+    <p>In JS können natürlich Zahlen in Variablen stecken.</p>
+    <p>Aufgrund der fehlenden Unterscheidung der Datentypen, beinhaltet der Datentyp "number" sowohl ganze Zahlen aus auch Long Floating Point Zahlen (Double Precision)</p>
+  </section>
+
+  <section>
+    <p>Rechenoperationen sind genauso möglich wie in allen anderen Sprachen</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const theAnswer = 40 + (2*2) - (20/10);
+
+      document.writeln(`Die Antwort auf alles lautet ${theAnswer}`);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Mittels den Funktionen <code>parseInt</code> und <code>parseFloat</code> kann eine Zahl aus einem String konvertiert werden.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const parsedInt = parseInt("314");
+      document.writeln(`{parsedInt}`);
+    </code></pre>
+    <p>Die Funktion scannt eine Zahl so lange, bis sie ein "invalides" Zeichen findet und liefert dann das gefundene Resultat (oder "NaN")</p>
+  </section>
+
+  <section>
+    <p>Not a Number</p>
+    <p>Falls JS den String nicht konvertieren kann, ist der Zahlenwert "Not a Number".</p>
+    <p>Mit der Funktion "isNaN" kann geprüft werden ob eine Konversion erfolgreich war.</p>
+  </section>
+
+  <section>
+    <p>Wenn wir eine lange Kommazahl verkürzt darstellen wollen, gibt es noch die Funktion <code>toFixed</code></p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const longFloat = 3.14159265358979323;
+      document.writeln(`Die ersten 5 Nachkommestellen von PI sind: longFloat.toFixed(2)`)
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Boolean</h3>
+  </section>
+
+  <section>
+    <p>Wie in anderen Sprachen kann ein Bool in JS 2 Werte annehmen: <code>true</code> und <code>false</code></p>
+    <pre class="js"><code data-trim data-line-numbers>
+      const wahr = true;
+      const falsch = false;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir werden in den nächsten Folien über Control-Flows reden, bis dahin reicht uns zu wissen das wir einfache wahr/falsch Zustände haben können.</p>
+  </section>
+
+  <section>
+    <h3>undefined &amp; null</h3>
+  </section>
+
+  <section>
+    <p>JavaScript kennt 2 Arten um "nichts" darzustellen: <code>undefined</code> und <code>null</code>.</p>
+    <p>Wenn eine Variable deklariert aber nicht initialisiert wird, ist sie zu Beginn <code>undefined</code>.</p>
+    <p>Wir können uns also undefined als einen impliziten Zustand vorstellen, wenn etwas (noch) nicht definiert ist.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      let message;
+
+      document.writeln(`Ich bin ${undefined}`);
+    </code></pre>
+  </section>
+
+  <section>
+    <p><code>null</code> stellt eine intentionelle Zuweisung eines nicht existierenden Wertes dar.</p>
+    <p>Nichtsdestotrotz ist es möglich, eine Variable mit dem Wert <code>undefined</code> explizit zu initialisieren.</p>
+  </section>
+</section>

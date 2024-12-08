@@ -1,0 +1,93 @@
+<section>
+  <section>
+    <h2>Variablen</h2>
+  </section>
+
+  <section>
+    <p>Schauen wir uns nun an, wie wir in JS Variablen anlegen können.</p>
+    <p>Grundlegend gibt es 2 "Arten" von Variablen: Konstanten und änderbare Variablen</p>
+  </section>
+
+  <section>
+    <p>In JS müssen wir nicht angeben, was für ein Typ eine Variable hat. Anhand des aktuellen Wertes weiß JS womit wir arbeiten und kennt somit auch die Möglichkeiten, was wir mit der Variable "anstellen" können.</p>
+  </section>
+
+  <section>
+    <h3>const</h3>
+  </section>
+
+  <section>
+    <p>Mit <code>const</code> lassen sich Konstante Variablen definieren.</p>
+    <p>Die Variable nach dem Anlegen nicht mehr ändern, so wie man es auch aus anderen Programmiersprachen kennt.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers>
+      const message = "Ziemlich konstant hier";
+      document.writeln(message);
+
+      message = "Oder vielleicht doch nicht?";
+      document.writeln(message);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir sollten nun mehrere Sachen beobachten können:</p>
+    <p>Es sollte eine Nachricht in der Konsolenausgabe der Entwickler-Tools erscheinen. In dieser steht wir können nichts mehr zur Variable "message" zuweisen.</p>
+    <p>Aber es gibt noch eine wichtige Sache: Wir haben die Nachricht "Ziemlich konstant hier" einmal im Dokument stehen. Die 2. Ausgabe erscheint hier nicht mehr.</p>
+  </section>
+
+  <section>
+    <p>JavaScript beendet die Abarbeitung von Code, sobald ein Fehler auftritt.</p>
+    <p>Dies bedeutet nicht, dass man gar kein JS mehr ausführen kann. Nur die Ausführung im aktuellen Call-Stack wurde beendet.</p>
+  </section>
+
+  <section>
+    <p>Hier haben Skript-Sprachen einen gravierenden Unterschied gegenüber kompilierten Sprachen:</p>
+    <p>Eine Skript-Sprache führt den Code, der "eingescannt" wurde, (in der Regel) sofort aus. Dem Gegenüber stehen kompilierte Sprachen, die einen Haupteinstiegspunkt haben (Java: <code>public static void main(...)</code>)</p>
+  </section>
+
+  <section>
+    <p>In dem Moment, in dem der gesamte Code aus der JS-Datei vom Browser eingescannt wurde, hat der Browser auch angefangen den Code auszuführen.</p>
+  </section>
+
+  <section>
+    <p>Der Code in Zeile 5 wird niemals ausgeführt</p>
+    <pre class="js"><code data-trim data-line-numbers="1|2|4">
+      const message = "Ziemlich konstant hier";
+      document.writeln(message);
+
+      message = "Oder vielleicht doch nicht?";
+      document.writeln(message);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>let</h3>
+  </section>
+
+  <section>
+    <p>Das Gegenteil zum Konstanten bildet hier <code>let</code> ab.</p>
+    <p>Eine Variable mit <code>let</code> initialisiert kann jederzeit neu beschrieben werden (zum Verlust der alten Daten natürlich).</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers>
+      let message = "Das ist nur der Anfang!";
+      document.writeln(message);
+
+      message = "Aber wann kommt das Ende?";
+      document.writeln(message);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>let's älterer Bruder "var"</h3>
+  </section>
+
+  <section>
+    <p>Bevor es <code>let</code> gab, existierte <code>var</code>.</p>
+    <p>Beide haben "leicht" andere Verhaltensweisen, die wir sehen werden, sobald wir uns das Thema "Scoping" näher betrachten.</p>
+    <p>Insgesamt ist aber meine Empfehlung, <code>let</code> zu verwenden. Das Verhalten ist kontrollierter gegenüber <code>var</code></p>
+  </section>
+</section>

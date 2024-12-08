@@ -1,0 +1,100 @@
+<section>
+  <section>
+    <h2>Projekt-Setup</h2>
+  </section>
+
+  <section>
+    <p>Wir können noch bei einfachen Anwendungen weiterhin unser "altbewährtes" Setup weiter verwenden.</p>
+    <p>Trotzdem möchte ich an diesem Punkt "erweiterte" Setups abdecken die uns später eindeutig mehr helfen werden.</p>
+  </section>
+
+  <section>
+    <h3>Quick &amp; Easy</h3>
+  </section>
+
+  <section>
+    <p>Wenn wir das alte Setup noch weiter verwenden wollen, müssen wir nur eine JavaScript-Datei anlegen (Dateiendung .js).</p>
+    <p>Im HTML kann das Script dann mittels dem Script-Tag eingebunden werden:</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers is:raw>
+      // Das Script-Tag kann nicht mit einem &lt;script/>
+      // abgekürzt werden.
+      // Es braucht zwingend ein Start und End-Tag
+      <script src="/mein-script.js"></script>
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Man könnte nun auch JS innerhalb des script-tags schreiben, bei wachsenden Projekten leidet hier aber die Übersichtlichkeit</p>
+    <p>Nun können wir in der Datei "mein-script.js" Anfangen JS zu schreiben.</p>
+  </section>
+
+  <section>
+    <h3>Erweiteres Setup</h3>
+  </section>
+
+  <section>
+    <p>Für diesen Teil muss NodeJS als Programm auf dem Laptop installiert sein.</p>
+    <p>Mit NodeJS mitenthalten ist der Package-Manager "npm" (node package manager). Mit diesem werden wir das Build-Tool "Vite" verwenden.</p>
+    <p>Vite bietet uns ein Boilerplate-Projekt an von dem wir schnell starten können</p>
+  </section>
+
+  <section>
+    <pre class="sh"><code data-trim data-line-numbers>
+      npm create vite@latest js-intro -- --template vanilla
+      cd js-intro
+      npm install
+      npm run dev
+    </code></pre>
+  </section>
+
+  <section>
+    <code><span class="red">npm</span> <span class="blue">create</span> <span class="green">vite@latest</span> <span class="orange">js-intro</span> <span class="gray">--</span> <span class="indigo">--template vanilla</span></code>
+    <p>Wir nutzen <span class="red">npm</span> um damit ein Projekt mit <span class="green">vite (in der aktuellesten Version)</span> zu <span class="blue">erstellen</span>.</p>
+    <p>Das Projekt soll in den Ordner "<span class="orange">js-intro</span>" platziert werden.</p>
+    <p>Das <span class="gray">Doppel-Minus</span> dient als Trenner um Parameter an das Kommando "vite@latest" zu senden.</p>
+    <p>Hier teilen wir Vite mit, dass es das <span class="indigo">Vanilla-Template</span> verwenden soll.</p>
+  </section>
+
+  <section>
+    <p>In der JS Welt gibt es mittlerweile sehr viele Möglichkeiten sein Frontend zu bauen. Diese Frameworks und Bibliotheken nehmen einem in großen Projekten sehr viel Arbeit ab und helfen dem Entwickler sich auf die eigentliche Implementierung der Website zu konzentrieren.</p>
+    <p>Projekte die diese Möglichkeiten nicht nutzen werden in der Entwickler-Community als Vanilla-Projekte bezeichnet.</p>
+  </section>
+
+  <section>
+    <p>Innerhalb des neu erstellen Projektes kann man die Datei "counter.js" löschen, und den Inhalt innerhalb von "main.js" entfernen.</p>
+    <p>Die CSS-Datei können wir optional so behalten oder auch leeren (wenn wir wirklich von 0 an Anfangen wollen).</p>
+  </section>
+
+  <section>
+    <p>Wenn wir Vite verwenden haben wir ein tolles Feature, dass uns bei der Entwicklung "etwas" unter die Hände greift: Hot-Module-Replacement (oder auch kurz HMR).</p>
+    <p>Sobald wir eine Datei ändern und speichern, werden die Änderungen auf der Website sofort ersichtlich.</p>
+  </section>
+
+  <section>
+    <p>Mit diesem Setup werden wir für längere Zeit weiter arbeiten.</p>
+  </section>
+
+  <section>
+    <pre><code data-trim data-line-numbers>
+      dhbw/
+      ├── 00-introduction/
+      │   └── index.html
+      └── index.html
+      node_modules/
+      └── ...
+      public/
+      └── ...
+      src/
+      └── ...
+      .gitignore
+      index.html
+      package-lock.json
+      package.json
+    </code></pre>
+  </section>
+
+  <!-- Erste Aufgabe: Projekt Strukturieren -->
+</section>
