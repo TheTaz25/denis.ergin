@@ -1,0 +1,110 @@
+<section>
+  <section>
+    <h2>If - Else Statements</h2>
+  </section>
+
+  <section>
+    <p>In JS ist das if-else Konstrukt das gleiche wie in vielen anderen Sprachen</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      if (/* Condition */) {
+
+      } else if (/* Condition */) {
+        // Es können weitere else-if cases hinzugefügt werden
+      } else {
+        // "Everything else"
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Die <code>Conditionals</code> müssen natürlich einem wahren oder falschen Wert (Boolean) entsprechen.</p>
+    <p>Hier kommt nun zum ersten mal einer der Features von JS zu tragen, die manchmal zu skurillen Ergebnissen führt: <strong>Implicit Type Conversion</strong></p>
+  </section>
+
+  <section>
+    <p>In bestimmten Fällen erwartet JavaScript einen bestimmten Datentyp. Wird ein anderer Datentyp angefunden, so versucht JavaScript den Wert in den benötigten Datentyp zu konvertieren ohne dass der Entwickler explizit eine Konversion durchführen muss.</p>
+    <p>Die Konversion geschieht nahtlos zwischen verschiedenen Typen</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers="*|1,3|5,9" is:raw>
+      let num = 5;
+      if (num) {
+        console.log('Num ist true!');
+      }
+      num = 0;
+      if (num) {
+        console.log('Num ist immernoch true?');
+      } else {
+        console.log('Num ist false!');
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Im Fall einer Boolean-Conversion sprechen wir darüber, ob ein Wert/Datentyp einen <strong>truthy</strong> oder <strong>falsy</strong> Wert hat.</p>
+  </section>
+
+  <section>
+    <p><strong>Falsy Werte</strong></p>
+    <ul style="font-family: monospace;">
+      <li>null</li>
+      <li>undefined</li>
+      <li>false</li>
+      <li>NaN</li>
+      <li>Die Zahl "0"</li>
+      <li>Leerer String</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Wir können eine Variable "explizit" zu einem Boolean konvertieren, indem wir ein doppeltes Ausrufezeichen ( <code>!!</code> ) vor die Variable stellen</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      let num = 5;
+      const isTruthyNum = !!num;
+    </code></pre>
+    <p>Ein einfaches Ausrufezeichen konvertiert den Wert auch in ein Boolean, führt aber eine Not-Operation aus. (Im Grunde wenden wir ein Not-Not mit dem doppelten Ausrufezeichen an)</p>
+  </section>
+
+  <section>
+    <p><strong>Werte miteinander Vergleichen</strong></p>
+    <p>Eine weitere Besonderheit in JS: Es gibt 2 "Arten" um eine Gleicheit festzustellen.</p>
+    <p>Hierfür gibt es den "einfach" Vergleichsoperator <code>==</code> und einen sicheren Vergleichsoperator <code>===</code></p>
+    <p>Der Unterschied zwischen <code>== &amp; ===</code> liegt darin, dass beim einfachen Vergleich, JavaScript unter Umständen den Datentypen konvertiert um Gleichheit zu testen.</p>
+  </section>
+
+  <section>
+    <p>Ein Beispiel</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const theAnswer = 42;
+      if ("42" == theAnswer) {
+        console.log('Yay');
+      }
+      if ("42" === theAnswer) {
+        // Wird nicht gelogged
+        console.log('No Yay');
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Der Richtige Ansatz hierbei ist: Verwenden sie den Typ-Sicheren Vergleichsoperator <code>"==="</code></p>
+  </section>
+
+  <section>
+    <p>Weitere Vergleichsoperationen</p>
+    <ul>
+      <li>> &amp; >= [greater than (or equal)]</li>
+      <li>&lt; &amp; &lt;= [less than (or equal)]</li>
+      <li>!== [Strict Inequality]</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Es können mehrere Vergleiche durchgeführt werden und mit UND / ODER verknüpft werden:</p>
+    <ul>
+      <li>|| (ODER)</li>
+      <li>&& (UND)</li>
+    </ul>
+  </section>
+</section>
