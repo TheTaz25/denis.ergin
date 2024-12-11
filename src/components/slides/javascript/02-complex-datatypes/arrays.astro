@@ -1,0 +1,173 @@
+<section>
+  <section>
+    <h2>Arrays</h2>
+  </section>
+
+  <section>
+    <p>Arrays sind ähnlich zu Objekten komplexe Objekte die im Heap allokiert werden.</p>
+    <p>Arrays können beliebig viele Daten beinhalten und haben keine feste Größe. (Es können aber Arrays mit einer bestimmten Länge initialisiert werden.)</p>
+    <p>Die Inhalte eines Arrays können beliebig sein.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [5, '42', false, {}, [], undefined, null];
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Die Länge eines Arrays steht in der Property "length"</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [1,2,3,4,5];
+
+      // 5
+      console.log(arr.length);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Aus persönlicher Sicht sind Arrays der alltäglichste Datentyp mit dem man Arbeiten wird.</p>
+    <ul>
+      <li>Liste an Blogeinträgen zum Anzeigen</li>
+      <li>Inhalte eines Blogeintrages</li>
+      <li>Produktlisten</li>
+      <li>Menüeintrage</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Array-Funktionen</h3>
+  </section>
+
+  <!-- Bool Checks -->
+  <section>
+    <p>.every()</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [15, 25, 765, 11];
+
+      // true
+      console.log(arr.every((value) =&gt; value &gt; 10));
+    </code></pre>
+    <p>Prüft, ob jedes Element im Array einer gegebenen Prüfung standhält. Nur <code>true</code> wenn alle Elemente dem Test bestehen.</p>
+  </section>
+
+  <section>
+    <p>.filter()</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [5, 24, 1, 9, 22];
+
+      // [24, 22]
+      console.log(arr.filter((value) =&gt; value &gt; 10));
+    </code></pre>
+    <p>Prüft alle Elemente eines Arrays. Die Elemente die die Prüfung bestehen, werden in einem neuen Array zurück gegeben. Das originalle Array wird nicht modifiziert.</p>
+  </section>
+
+  <section>
+    <p>.find()</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [5, 24, 1, 9, 22];
+
+      // 24
+      console.log(arr.find((value) =&gt; value &gt; 10));
+    </code></pre>
+    <p>Prüft die Elemente eines Arrays. Das erste Element, dass die Prüfung besteht wird zurück gegeben.</p>
+    <p>Es existiert eine alternative Methode .findIndex(), die Funktion liefert den Index des Elementes anstatt das Elementes selbst das gefunden wurde.</p>
+  </section>
+
+  <section>
+    <p>.includes()</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [5, 24, 1, 9, 22];
+
+      // true
+      console.log(arr.includes(22));
+    </code></pre>
+    <p>Prüft ob im Array ein gesuchtes Element vorhanden ist. Aufgrund der Art wie Elemente gespeichert werden, sollte darauf geachtet werden das es zu ungewollten Problemen mit komplexen Datentypen kommen kann.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = {};
+      const arr = [obj];
+
+      // true
+      console.log(arr.includes(obj));
+      
+      // false
+      console.log(arr.includes({}));
+    </code></pre>
+  </section>
+
+  <section>
+    <p>.map()</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [1, 2, 3, 4, 5];
+
+      // [1, 4, 9, 16, 25]
+      console.log(arr.map((value) =&gt; value * value));
+    </code></pre>
+    <p>Erzeugt ein neues Array. Jedes Element wird in einer Funktion modifiziert und in ein neues Array gepackt. Das alte Array bleibt unberührt.</p>
+  </section>
+
+  <section>
+    <p>push &amp; pop</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [1, 2, 3];
+      arr.push(4);
+
+      // [1, 2, 3, 4]
+      console.log(arr);
+
+      // 4
+      console.log(arr.pop());
+
+      // [1, 2, 3]
+      console.log(arr);
+    </code></pre>
+    <p>Modifiziert das Array in dem es Elemente am Ende mit <code>push</code> hinzufügt, und mit <code>pop</code> aus dem Ende heraus nimmt.</p>
+    <p>Bei der <code>pop</code>-Funktion wird das entfernte Element zurück gegeben.</p>
+  </section>
+
+  <section>
+    <p>.reduce()</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [1,2,3,4];
+
+      // 10
+      console.log(arr.reduce((acc, val) =&gt; {
+        acc += val;
+      }, 0));
+    </code></pre>
+    <p>Kalkuliert einen Wert basierend aus den Elementen des Array. Das Array erwartet 2 Werte: eine Funktion in der ein Accumulator und der aktuelle Wert als Parameter übergeben wird und den nächsten Wert zurück geben soll. Und den initialen Wert das Accumulators.</p>
+  </section>
+
+  <section>
+    <p>some</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [1, 5, 10, 25];
+
+      // true
+      console.log(arr.some((value) =&gt; value &gt; 10));
+    </code></pre>
+    <p>Prüft ob mindestens ein Element des Arrays die Prüfung besteht. Wenn das nicht der Fall ist wird ein <code>false</code> zurück gegeben.</p>
+  </section>
+
+  <section>
+    <p>.sort()</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [1, 10, 5];
+
+      a.sort((a, b) => a - b);
+
+      // [1, 5, 10]
+      console.log(a);
+    </code></pre>
+    <p>Sortiert das Array "In Place" (Ursprüngliches Array wird modifiziert).</p>
+    <p>Hierzu führt <code>sort</code> eine Funktion aus, die mitgegeben wird. Anhand des Ergebnisses werden Elemente im Array umsortiert</p>
+    <ul>
+      <li>Ergebnis -1: Wert "a" ist kleiner als Wert "b"</li>
+      <li>Ergebnis  1: Wert "a" ist größer als Wert "b"</li>
+      <li>Ergebnis  0: Wert "a" und "b" sind gleich, Positionen behalten</li>
+    </ul>
+  </section>
+</section>

@@ -1,0 +1,248 @@
+<section>
+  <section>
+    <h2>Objekte in JavaScript</h2>
+  </section>
+
+  <section>
+    <p>Objekte in JS sind eine der wichtigstens Grundpfeiler, die die Sprache so mächtig machen.</p>
+    <p>In JavaScript ist das Objekt das alles Abbildet (in Fakt, alles in JavaScript ist ein Objekt, auch die anderen Datentypen).</p>
+  </section>
+
+  <section>
+    <h3>Definition eines Objektes</h3>
+  </section>
+
+  <section>
+    <p>Anders als bei Sprachen mit strikten Datentypen (und Klassen die eine fest Vorgegebene Struktur aufweisen), kann ein Objekt in JavaScript dynamisch erstellt und modifiziert werden.</p>
+    <p>Objekte kommen am einem Key-Value-Speicher an nahesten. Ein Key kann dabei ein beliebiger string sein, der Wert kann alles annehmen.</p>
+    <p>Ein Objekt wird einfach mit Geschweiften (Curly) Klammern definiert.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const meinObjekt = {
+        key: "value",
+        numeric: 5,
+        boolean: false,
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Objekte können auch ineinander geschachtelt werden (in beliebiger Tiefe)</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const geschachtelt = {
+        level1: {
+          level2: {
+            level3: {
+              level4: "Und so weiter...",
+            },
+          },
+        },
+      };
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Auch wenn JS diese Flexibilität bietet, sollte die Datenstruktur möglichst flach gehalten werden.</p>
+    <p>Spätestens im Backend muss dieselbe Datenstruktur aufgebaut werden. Falls nicht eine dynamische Sprache wie JS verwendet ist, haben tief geschachtelte Objekte einen großen Mehraufwand im Backend.</p>
+  </section>
+
+  <section>
+    <p>Zugriffe auf Inhalte in einem Objekt können über 2 Wege erreicht werden</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = {
+        value: 5,
+        nested: {
+          value: 42,
+        },
+      };
+
+      // Dot-Notation
+      console.log(obj.nested.value);
+
+      // Array-Like-Access
+      console.log(obj['nested']['value']);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Gängig ist die Verwendung der dot-notation, hier ist aber das Wissen der keys zur Entwicklungszeit notwendig.</p>
+    <p>Wenn programmatisch auf die Inhalte Zugegriffen werden soll, kann dies nur über die Array-Notation geschehen.</p>
+    <p>Zusätzlich ist die Array-Notation notwendig, wenn Zeichen verwendet werden, die bereits eine andere Verwendung haben (Beispiel "-", " ")</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = {
+        value: 42;
+        "with-minus": "",
+      };
+    
+      console.log(obj['with-minus']);
+      
+      // error: console.log(obj.with-minus);
+
+      const key = 'with-minus';
+      console.log(obj[key]);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Inhalte in Objekten können auch beliebig geändert werden</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = {
+        value: 5,
+      };
+
+      obj.value = 42;
+
+      console.log(obj.value);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Unstimmigkeit gefunden?</p>
+    <p><code>obj</code> wurde mit const initialisiert, dessen Inhalt kann aber manipuliert werden.</p>
+    <p>Mein Fehler? Nein. Das ist JavaScript und seine Komplexen Datentypen funktionieren so.</p>
+  </section>
+
+  <section>
+    <p>Wir müssen nun erstmal verstehen was der Unterschied zwischen simplen und komplexen Datentypen ist, und was das für Folgen hat.</p>
+    <p>JavaScript speichert simple Datentypen wie Zahlen oder Strings in Stack ähnlichen Speicher.</p>
+    <p>Komplexe Objekte werden im Heap allokiert.</p>
+    <p>Das alles ist eine vereinfachte Darstellung. Die internen Vorgänge sind viel komplexer und für den Alltag eines Web-Developers auch nicht notwendig.</p>
+  </section>
+
+  <section>
+    <p>Kurzer Recap: Heap vs Stack</p>
+    <p>Inhalte im Stack sind direkt erreichbar und bilden einen LIFO-Speicher (Last-In-First-Out). Die Daten müssen eine Feste Größe haben, zum Vorteil eines schnellen Zugriffs.</p>
+    <p>Der Heap stellt einen größeren Speicherbereich da, in dem Inhalte dynamisch abgelegt werden können.</p>
+    <p>Im Heap können dynamische / komplexe Datenstrukturen mittels einer Speicherreferenz verwendet werden.</p>
+  </section>
+
+  <section>
+    <p>Was steht "im Hintergrund" nun in der Variable, wenn ein Objekt initialisiert wird?</p>
+    <p>Antwort: Ein "Flag" sowie eine Speicherreferenz zum Objekt. Das Flag gibt hierbei an, ob der Wert direkt in der Variable "steckt" oder im Heap mittels der Speicheradresse gefunden werden kann.</p>
+    <p>Als Entwickler hat man in JS keine Handhabe darüber, wo die Werte gespeichert werden. Diese Komplexität wird über die darunter liegende JavaScript-Engine abstrahiert.</p>
+  </section>
+
+  <section>
+    <p>Fassen wir zusammen: Komplexe Objekte werden im Heap allokiert, die Variable die den Wert hält ist eigentlich nur ein Pointer zur Speicheradresse im Heap.</p>
+    <p>Ändern wir nun eine Eigenschaft im Objekt (Property), ändern wir den Wert im <strong>Heap</strong>. Die Adresse im Stack bleibt gleich.</p>
+    <p>Und hier liegt der Punkt: Der Wert im Stack wird nicht modifiziert, entsprechend bleibt der Wert "konstant" und stellt keine Verletzung der <code>const</code> Bedingung aus.</p>
+  </section>
+
+  <section>
+    <p>Weitere Besonderheiten mit der Speicherbelegung von Objekten</p>
+  </section>
+
+  <section>
+    <p>Wenn ein Objekt aus einem anderen Objekt generiert wird, erfolgt <strong>kein</strong> Deep-Copy.</p>
+    <p>In der Realität geschieht ein <strong>copy-by-reference</strong>.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = {};
+      const otherObj = obj;
+
+      // true
+      console.log(obj === otherObj);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Nun ist wichtig zu beobachten, was passiert wenn wir das Objekt an einer beliegen Variable ändern:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = {};
+      const otherObj = obj;
+
+      obj.value = 42;
+      
+      // 42
+      console.log(otherObj.value);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Durch diese beiden Beispiele wird nochmals eindeutig, dass wir bei der Handhabung von Objekten genau darauf achten müssen, was wir machen.</p>
+    <p>Moderne Frameworks verwenden diese Konzepte für die eigene Datenhaltung. Hier kann es bei nichtbeachtung der "Regeln" zu ungewollten Problemen kommen.</p>
+  </section>
+
+  <section>
+    <h3>Object-Spezifische Funktionen</h3>
+  </section>
+
+  <section>
+    <p>Sollte es notwendig sein ein Objekt "read-only" zu machen, nutzen Sie <code>Object.freeze(objectToFreeze)</code></p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myObject = { value: 5 };
+      Object.freeze(myObject);
+
+      // Erzeugt einen Error
+      myObject.value = 42;
+    </code></pre>
+    <p>Obwohl es Sinnvoll sein kann, wird <code>Object.freeze()</code> recht selten eingesetzt.</p>
+  </section>
+
+  <section>
+    <p>Objekte können auch ohne Probleme erweitert werden:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = {
+        value: 5,
+      };
+
+      // Neue Property mit Namen "type"
+      obj.type = "number";
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Sobald eine Property definiert ist, existiert sie im Objekt, auch wenn diese auf <code>undefined</code> gesetzt wird.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = { value: 5, type: "number" };
+      obj.type = undefined;
+
+      console.log(obj);
+      // Object { value: 5, type: undefined };
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Soll eine Property wirklich entfernt werden, kann man dies mit dem <code>delete</code> keyword bewerkstelligen.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = { value: 5, type: "number" };
+      delete obj.type
+
+      console.log(obj);
+      // Object { value: 5 };
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir haben die Möglichkeit, die keys, die values oder beide in ein Array zu konvertieren um darüber zu iterieren und Operationen auszuführen.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = { value: 5 };
+
+      // ['value']
+      console.log(Object.keys(obj));
+      
+      // [5]
+      console.log(Object.values(obj));
+
+      // [['value', 5]];
+      console.log(Object.entries(obj));
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Um zu prüfen, ob ein Objekt ein Property hat, nutzt man die Funktion <code>Object.hasOwn</code></p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = { value: 5 };
+
+      // true
+      console.log(Object.hasOwn(obj, 'value'));
+      // false
+      console.log(Object.hasOwn(obj, 'other'));
+    </code></pre>
+  </section>
+
+</section>
