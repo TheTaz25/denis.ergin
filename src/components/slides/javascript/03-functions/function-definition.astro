@@ -1,0 +1,83 @@
+<section>
+  <section>
+    <h2>Funktionen Deklarieren</h2>
+  </section>
+
+  <section>
+    <p>Wie in anderen Sprachen helfen uns Funktionen einzelne Aufgaben in einer abgekapselten Umgebung auszuführen.</p>
+    <p>Wie bereits in der Einführung zu JavaScript erklärt, sind Funktionen "First-Class". Funktionen werden wir andere Objekte / Variablen behandelt.</p>
+  </section>
+
+  <section>
+    <p>Eine Funktion wird in JS mit dem keyword <code>function</code> und dem zu vergebenen Namen deklariert.</p>
+    <p>Parameter werden danach in Runden Klammern mit Kommas getrennt verfasst.</p>
+    <p>Zuletzt folgt in geschweiften Klammern der eigentliche Code der in der Funktion ausgeführt werden soll.</p>
+  </section>
+
+  <section>
+    <p>Fangen wir doch mit etwas an, um Inhalte "formattierter" ins document zu schreiben.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function writeParagraph(contents) {
+        document.writeln(`&lt;p&gt;${contents}&lt;/p&gt;`);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wenn etwas berechnet und zurück gegeben werden soll, kann man das keyword <code>return</code> verwenden.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function square(toSquare) {
+        return toSquare * toSquare;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Arrow Functions</h3>
+  </section>
+
+  <section>
+    <p>Neben der Deklaration mit dem keyword, kann man auch eine sogenannte <code>Arrow-Function</code> definieren und einer Variable zuweisen:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const square = (toSquare) =&gt; {
+        return toSquare * toSquare;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wenn wir einen Wert direkt zurückgeben können, benötigen wir keine geschweiften Klammern und das <code>return</code> keyword.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const square = (toSquare) =&gt; toSquare * toSquare;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Function Overloading</h3>
+  </section>
+
+  <section>
+    <p>Es ist in JavaScript <strong>nicht</strong> möglich, Funktionen zu überladen.</p>
+    <p>Wenn wir eine Variable Anzahl an Parametern zulassen wollen, müssen wir manche davon ignorieren / miteinbeziehen.</p>
+    <p>Generell eignet es sich aus Sicht eines Entwicklers aber dedizierte Funktionen für solche Sonderfälle zu implementieren.</p>
+  </section>
+
+  <section>
+    <h3>Default Parameter</h3>
+  </section>
+
+  <section>
+    <p>Wenn wir einen Default-Parameter angeben wollen, der optional mitgegeben werden kann, können wir in der Parameterliste einen mit einem Gleichheitszeichen definieren</p>
+    <pre><code data-trim data-line-numbers is:raw>
+      function wrapIntoElement(content, tag = 'div') {
+        return `&lt;${tag}&gt;${content}&lt;/${tag}&gt;`;
+      }
+
+      // "&lt;div&gt;hello&lt;/div&gt;"
+      console.log(wrapIntoElement('hello'));
+
+      // "&lt;p&gt;hello&lt;/p&gt;"
+      console.log(wrapIntoElement('hello', 'p'));
+    </code></pre>
+  </section>
+</section>

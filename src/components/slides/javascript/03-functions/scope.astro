@@ -1,0 +1,144 @@
+<section>
+  <section>
+    <h2>Scope</h2>
+  </section>
+
+  <section>
+    <p>Wenn wir bisher Funktionen und Variablen definiert haben, haben wir das in einem "globalen" Bereich getan. Funktionen und andere Mechanismen konnte "frei" auf diese Inhalte zugreifen und ggf modifizieren.</p>
+    <p>Sie waren im "Scope" der Nutzenden Funktion.</p>
+  </section>
+
+  <section>
+    <p>Eine Funktion kann generell auf alle Variablen des äußeren Scopes zugreifen.</p>
+    <p>Umgekehrt kann man nicht "von außen" auf Variablen innerhalb einer Funktion zugreifen oder diese ändern.</p>
+  </section>
+
+  <section>
+    <p>Wie sieht das nun in der Praxis aus?</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      let multiplikator = 2;
+
+      function multiply (value) {
+        return multiplikator++ * value;
+      }
+
+      function add (value) {
+        return multiplikator + value;
+      }
+
+      // 10
+      console.log(multiply(5));
+      // 11
+      console.log(add(8));
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Die Funktion <code>multiply</code> greift auf die Variable außerhalb zu und kann diese auch modifizieren (Nach den Regeln der JavaScript Variablen).</p>
+    <p>Andere Funktionen sind von dieser Änderung betroffen.</p>
+    <p>In diesem Fall ist die Variable <code>multiplikator</code> im globalen Scope und die Funktionen <code>multiply &amp; add</code> können darauf zugreifen.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function multiplyBy5 (value) {
+        const mySecret = 5;
+        return value * mySecret;
+      }
+
+      // Add kann nun nicht auf die Konstante "mySecret"
+      // in multiplyBy5 zugreifen
+      function add (value) {
+        console.log(mySecret);
+        return 42 + value;
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Nested Functions <br>&amp; Closures</h3>
+  </section>
+
+  <section>
+    <p>Wir können Funktionen innerhalb anderer Funktionen definieren. Die innere Funktion ist dann nur in der äußeren Funktion aufrufbar.</p>
+    <p>Somit generieren wir auch eine "Closure": Eine Funktion mit Variablen zusammen mit einer Umgebung die dieses Variablen "bindet".</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function summierer() {
+        let summe = 0;
+        function summieren(value) {
+          summe += value;
+          return summe;
+        }
+        return summieren;
+      }
+
+      const alleSummen = summierer();
+      console.log(alleSummen(5)); // 5
+      console.log(alleSummen(5)); // 10
+      console.log(alleSummen(5)); // 15
+      console.log(alleSummen(5)); // 20
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wusstet Ihr das...</p>
+    <p>Wir auf die Implementierung der Definierten Funktionen mit <code>toString()</code> zugreifen können?</p>
+    <p>Das bedeutet wir können somit auf Variablen innerhalb einer Funktion zugreifen (und damit auslesen)...</p>
+    <p>Was wenn wir das nicht wollen?</p>
+  </section>
+
+  <section>
+    <h3>Immediately Invoked Function Expressions (IIFE)</h3>
+  </section>
+
+  <section>
+    <p>Wir können eine unbenamte Funktion erstellen und sofort aufrufen. Die Definition innerhalb dieser Funktion kann nicht mehr erreicht werden, sobald wir im außerhalb liegenden "Scope" liegen.</p>
+    <p>Aber wir können innerhalb dieser Funktion weitere Funktionen definieren und diese zurückgeben.</p>
+  </section>
+
+  <section>
+    <p>Probiert es hiermit mal aus:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      // Die "()()"-Syntax ruft die Funktion in der ersten Klammer sofort auf.
+      const petCreator = (function() {
+        let name = '';
+
+        function setName(newName) {
+          name = newName;
+        }
+
+        return { setName };
+      })();
+    </code></pre>
+  </section>
+
+  <section>
+    <p>In modernen Bibliotheken und Frameworks wird diese Art zu schreiben weniger benötigt, aber in "Vanilla-JS" ist das eine gute Möglichkeit Funktionalitäten nach Domänen zu kapseln.</p>
+    <p>Es benötigt etwas Erfahrung um Einschätzen zu können, ob &amp; wann man IIFE's nutzen soll.</p>
+  </section>
+
+  <section>
+    <h3>Function Currying</h3>
+  </section>
+
+  <section>
+    <p>Wenn wir innerhalb einer Funktion eine Funktion zurück geben und das gegebenenfalls öfters machen, so nennt man dieses Verfahren "Currying".</p>
+    <p>Typisch für Currying ist, dass die inneren Funktionen irgendwann Parameter aus den äußeren Funktionen verwenden.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const add = (a) =&gt; (b) =&gt; a + b;
+
+      // 10
+      console.log(add(5)(5));
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir können das Verfahren zum Beispiel dann verwenden, wenn wir an mehreren Stellen im Code Parameter in eine Funktion packen wollen um am Ende ein Ergebnis zu erhalten.</p>
+  </section>
+</section>
