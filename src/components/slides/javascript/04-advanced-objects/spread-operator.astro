@@ -1,0 +1,83 @@
+<section>
+  <section>
+    <h2>Der Spread-Operator</h2>
+  </section>
+
+  <section>
+    <p>Mithilfe des Spread-Operators können wir Iterierbare Variablen (Strings, Arrays, Objekte) "expandieren" (Ich nenne es gerne "auspacken").</p>
+    <p>Der Spread-Operator besteht aus drei Punkten ( <code>...</code> ) die vor der zu iterierenden Variable angeführt werden.</p>
+  </section>
+
+  <section>
+    <p>Use-Cases</p>
+    <ul>
+      <li>String in ein Char-Array überführen</li>
+      <li>Iterierbare Elemente zusammenführen (concat)</li>
+      <li>Shallow-Cloning</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Beispiel Strings</h3>
+  </section>
+
+  <section>
+    <p>Seltener Use-Case, zeigt aber dafür umso einfacher was hier genau passiert</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const text = "Hallo Welt!";
+
+      // H a l l o  W e l t !
+      console.log(...text);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Concat-ähnliches Verhalten</h3>
+  </section>
+
+  <section>
+    <p>Indem wir 2 oder mehrere Arrays in ein neues "Spreaden", erhalten wir alle Elemente innerhalb eines Arrays.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr1 = ['H', 'a', 'l', 'l', 'o'];
+      const arr2 = ['W', 'e', 'l', 't', '!'];
+
+      // Wir können auch zusätzliche Inhalte dazu setzten
+      // (in diesem Fall ein Space zwischen den beiden Wörtern)
+      const joined = [...arr1, ' ', ...arr2];
+
+      console.log(joined);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Shallow Cloning</h3>
+  </section>
+
+  <section>
+    <p>Der Spread Operator sorgt Effektiv dafür, dass die Inhalte eines Arrays kopiert werden.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [1,2,3];
+      const copyByReference = arr;
+
+      // true
+      console.log(arr === copyByReference);
+
+      // false
+      console.log(arr === [...arr]);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wichtig hierbei ist zu beachten, dass es sich hierbei um einen <strong>shallow-clone</strong> handelt.</p>
+    <p>Die Inhalte selber werden "as is" kopiert, Objekte werden also nicht neu generiert sondern hier werden wieder nur Speicheradressen kopiert:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = { value: 5 };
+      const arr = [obj];
+
+      const shallowClone = [...arr];
+
+      // true
+      console.log(shallowClone[0] === obj);
+    </code></pre>
+  </section>
+</section>

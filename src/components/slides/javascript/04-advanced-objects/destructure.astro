@@ -1,0 +1,56 @@
+<section>
+  <section>
+    <p>Soweit haben wir Objekte und deren Möglichkeiten "zum arbeiten" kennen gelernt.</p>
+    <p>JavaScript selbst bietet aber darüber hinaus ein paar Syntaktische Möglichkeiten um mit diesen zu arbeiten.</p>
+  </section>
+
+  <section>
+    <h2>Object &amp; Array Destructure</h2>
+  </section>
+
+  <section>
+    <p>Wir können Inhalte aus Arrays oder Objekten "extrahieren", indem wir die entsprechende Syntax "Rückwärts" schreiben:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      // Objekt deklarieren und "destructuren"
+      const myObj = { value: 5, type: 'number' };
+      // Werte sind nicht ans Objekt gebunden
+      const { value, type } = myObj;
+
+      // 5, 'number';
+      console.log(value, type);
+    </code></pre>
+
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      // Array deklarieren und "destructuren"
+      const arr = [5, 6, 7, 8];
+      // Wir "überspringen" Werte durch leerlassen 
+      const [five, six,, eight] = arr;
+
+      // 5, 6, 8
+      console.log(five, six, eight);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Ein Objekt-Destructure wird oft in Funktionsparametern verwendet</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const obj = { name: 'Kevin', age: 23 };
+
+      function greet({ name }) {
+        console.log(`Hallo ${name}!`);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Die Bibliothek React verwendet ein Array-Destructure um State-Variablen mit einem Nutzer-gewählten Namen zu generieren.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const arr = [5, 6, 7, 8];
+
+      const [nennMichWieDuWillst] = arr;
+
+      // 5
+      console.log(nennMichWieDuWillst);
+    </code></pre>
+  </section>
+</section>

@@ -1,0 +1,58 @@
+<section>
+  <section>
+    <h2>Rest-Parameter</h2>
+  </section>
+
+  <section>
+    <p>Ähnlich zum Spread-Operator besteht der Rest-Parameter aus drei Punkten vor einem Variablen-Namen.</p>
+    <p>Diese sind aber in den Parametern einer Funktion zu finden.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function doSomething(paramA, paramB, ...paramRest) {
+        //
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Mit dieser Syntax sind wir in der Lage, "so viele Parameter wie wir wollen" in einer Funktion entgegen zu nehmen.</p>
+    <p>Wir verwenden diese Syntax aber mit Vorsicht. Wir können schnell den Überblick verlieren, was wir hier entgegen nehmen wollen.</p>
+  </section>
+
+  <section>
+    <p>Ein positives Beispiel ist <code>console.log()</code></p>
+    <p>Wir können beliebig viele Parameter mitgeben und alle werden nacheinander ausgeloggt</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      console.log('a', 5, true, {}, [], false, null, undefined);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Unsere eigene Logging Funktion könnte so aussehen:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const log = (...toLog) =&gt; {
+        toLog.forEach((item) =&gt; console.log(item));
+      };
+
+      log('a', 5, true, {}, [], false, null, undefined);
+    </code></pre>
+
+    <p>Wir erkennen: Ein als Rest-Parameter übergebener Wert wird ein Array sein, die Parameter werden in korrekter Reihenfolge in dieses Array gegeben.</p>
+  </section>
+
+  <section>
+    <p>Es sind auch folgende Möglichkeiten gegeben:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const log = (level, ...toLog, options) => {
+        // ...
+      };
+
+      // level = 'WARN',
+      // toLog = ['Hallo', 'Welt']
+      // options = { colors: true }
+      console.log('WARN', 'Hallo', 'Welt', { colors: true });
+    </code></pre>
+    <p>Wir können davor oder danach weitere Variablen definieren, JS packt die Werte korrekt zusammen, im obigen Beispiel landet der letzte Parameter in der Variable "options".</p>
+    <p>Es kann aber nur ein Rest-Parameter je Funktion Angegeben werden.</p>
+  </section>
+
+</section>
