@@ -1,0 +1,327 @@
+<section>
+  <section>
+    <h2>Events</h2>
+  </section>
+
+  <section>
+    <p>Events sind ein Zentraler Bestandteil aller Webapplikationen.</p>
+    <p>Mittels Events können wir auf Nutzerbasierte Aktionen (zum Beispiel Klicks auf Elemente oder Texteingaben) reagieren.</p>
+    <p>Es gibt eine Vielzahl an Events auf die man reagieren kann, die wichtigsten werden hier vorgestellt.</p>
+  </section>
+
+  <section>
+    <h3>onclick &amp; onmouseover</h3>
+  </section>
+
+  <section>
+    <p>Die wohl einfachsten Events: Sie werden dann aufgerufen, wenn ein User auf ein Element klickt (nicht nur auf buttons beschränkt) beziehungsweise mit der Maus über ein bestimmtes Element fährt.</p>
+  </section>
+
+  <section>
+    <p>Variante 1: Funktion überschreiben</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      document.body.onmouseover = function() {
+        console.log('hover!');
+      }
+    </code></pre>
+    <p>Jedes Element hat verschiedene Properties die mit dem Namen "on" beginnen. Diese Werte sind zunächst undefined, aber wenn wir diese mit einer eigenen Funktion belegen, wird diese Funktion zum jeweiligen Trigger ausgeführt.</p>
+  </section>
+
+  <section>
+    <p>Variante 2: <code>addEventListener</code></p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function onBodyClick () {
+        // ToDo: Do Something on click!
+      }
+
+      // Wir sagen dem Element bei welchem Element eine Funktion ausgeführt wird (bei click, führe onBodyClick aus).
+      document.body.addEventListener('click', onBodyClick);
+    </code></pre>
+    <p>Mit <code>element.addEventListener</code> können wir einen (oder mehrere) Funktionen bei bestimmten Events ausführen.</p>
+  </section>
+
+  <section>
+    <p>Meine Persönliche Tendenz ist es, Variante 2 zu verwenden. Es gibt hierfür ein paar Vorteile, ob diese aber im Alltag oft Anwendung finden ist nicht sehr wahrscheinlich.</p>
+  </section>
+
+  <section>
+    <p>Wenn wir einen Trigger nicht mehr ausführen wollen, muss bei Variante 1 einfach die Property auf undefined gesetzt werden.</p>
+    <p>Für Variante 2 müssen wir die Funktion <code>removeEventListener</code> mit der Funktion aufrufen, mit der der Event-Listener initial zugewiesen wurde.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function onBodyClick () {
+        console.log('Ich werde nur einmal aufgerufen!');
+
+        // Es muss die gleiche Funktion entfernt werden!
+        document.body.removeEventListener('click', onBodyClick);
+      }
+
+      // Wir sagen dem Element bei welchem Element eine Funktion ausgeführt wird (bei click, führe onBodyClick aus).
+      document.body.addEventListener('click', onBodyClick);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Event-Informationen</h3>
+  </section>
+
+  <section>
+    <p>Wir haben nun Events erfolgreich mit Funktionen ausgestattet die bei ihrem entsprechenden Trigger ausgeführt werden.</p>
+    <p>Aber was wenn uns das nicht reicht?</p>
+    <p>Beispiel: Eine Klick-Funktion wird von mehreren Elementen aus aufgerufen... Woher wissen wir welches Element angeklickt wurde?</p>
+  </section>
+
+  <section>
+    <p>Wenn eine Funktion durch ein Event ausgeführt wird, erhält die Funktion ein Objekt als Parameter:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      function onClick (params) {
+        console.log(params);
+      }
+
+      document.addEventListener('click', onClick);
+    </code></pre>
+    <p>Sehen wir uns die Event-Parameter genauer an</p>
+  </section>
+
+  <section>
+    <p>Event-Informationen</p>
+    <pre class="json"><code data-trim data-line-numbers is:raw>
+      {
+        "bubbles": true, // Event-Bubbling
+        "cancelable": true, // Event-Bubbling
+        "defaultPrevented": false, // Event-Bubbling
+        "currentTarget": null,
+        "eventPhase": 0, // Event-Bubbling
+        "isTrusted": true,
+        // "Tiefstes" Element das getroffen wurde
+        "target": HTMLElement, 
+        "type": "click",
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Event-Paremeter kann man sich wie Klassen vorstellen. Das <code>Event</code> ist eine Superklasse aus der neue Klassen gebildet werden.</p>
+  </section>
+
+  <section>
+    <p>Möglich Abstrahierungen (es gibt noch eine Menge mehr)</p>
+    <ul>
+      <li>ClipboardEvent</li>
+      <li>DragEvent</li>
+      <li>GamepadEvent</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>In unserem Fall interagieren wir mit dem User-Interface. Dieses Event wird um Informationen aus einem sogenannten <code>UIEvent</code> erweitert:</p>
+  </section>
+
+  <section>
+    <p><code>UIEvent</code> Informationen</p>
+    <pre class="json"><code data-trim data-line-numbers is:raw>
+      {
+        // Bei Klick-Events die Anzahl der Klicks
+        "detail": 1,
+        "view": Window,
+        "which": 1, // Welcher Knopf
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p><code>UIEvent</code> wird aber nochmals erweitert. Da wir auf einen Klick reagieren, haben wir nochmals Informationen über das sogenannte <code>MouseEvent</code></p>
+    <p>Weitere Mögliche Event-Typen sind</p>
+    <ul>
+      <li>TouchEvent</li>
+      <li>FocusEvent</li>
+      <li>KeyboardEvent</li>
+      <li>InputEvent</li>
+    </ul>
+  </section>
+
+  <section>
+    <p><code>MouseEvent</code> Informationen (Seite 1)</p>
+    <pre class="json"><code data-trim data-line-numbers is:raw>
+    {
+      "altKey": true,
+      "button": 0, // Welcher Knopf
+      "buttons": 0, // Welche Knöpfe
+      // Position im Viewport
+      "clientX": 286,
+      "clientY": 702,
+      "ctrlKey": false,
+      "metaKey": false,
+      // Für mousemove Events:
+      // Bewegungsrichtung seit letztem Event
+      "movementX": 0,
+      "movementY": 0,
+    }
+  </code></pre>
+</section>
+
+
+<section>
+  <p><code>MouseEvent</code> Informationen (Seite 2)</p>
+  <pre class="json"><code data-trim data-line-numbers is:raw>
+    {
+      "offsetX": 0,
+      "offsetY": 0,
+      // Position im gesamten Dokument
+      "pageX": 286,
+      "pageY": 702,
+      "relatedTarget": null,
+      // Position im gesamten Screen
+      "screenX": 286,
+      "screenY": 849,
+      "shiftKey": false,
+      // ClientX/Y Alias
+      "x": 286,
+      "y": 702,
+    }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das war aber noch nicht alles. Das ganze wird nochmal Spezialisiert: <code>PointerEvent</code></p>
+    <p>Weitere Event-Typen</p>
+    <ul>
+      <li>WheelEvent</li>
+      <li>DragEvent</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Pointer-Event Informationen</p>
+    <pre class="json"><code data-trim data-line-numbers is:raw style="max-height: 500px;">
+      {
+        "altitudeAngle": 1.57,
+        "azimuthAngle": 0,
+        "height": 1,
+        "isPrimary": true,
+        "pointerId": 0,
+        "pointerType": "mouse",
+        "pressure": 0,
+        "rangeOffset": 0,
+        "rangeParent": null,
+        "returnValue": true,
+        "tangentialPressure": 0,
+        "tiltX": 0,
+        "tiltY": 0,
+        "twist": 0,
+        "width": 1,
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>DOM-Events</h3>
+  </section>
+
+  <section>
+    <p>Es gibt 2 Events die das Dokument auslöst.</p>
+    <p>Sie signalisieren, dass das Dokument "vollständig" geladen wurde (und somit alle Statischen HTML-Elemente bereit sind) und wenn der User das aktuelle Fenster "verlässt" (Tab schließen, Fenster schließen)</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('Browser hat alle Daten geladen und geparsed!');
+      });
+
+      // Beachte: Das Event wird dem Fenster angehängt
+      window.addEventListener('beforeunload', (event) => {
+        // Bevor der Browser "aufräumt"...
+        event.preventDefault();
+
+        // Legacy-Support
+        event.returnValue = true;
+      })
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Event-Bubbling</h3>
+  </section>
+
+  <section>
+    <p>Was passiert wenn wir geschachtelte Elemente haben, auf denen jeweils click-listener lauschen?</p>
+    <p>Wenn wir auf ein Element im DOM klicken, arbeitet sich der Browser vom <code>html</code> Element aus, tiefer in das Dokument bis zum tiefsten Element das angeklickt wurde.</p>
+    <p>Wenn das tiefste Element erreicht wurde, löst der Browser das <code>click</code> Event in diesem Element aus.</p>
+  </section>
+
+  <section>
+    <p>Von dort aus ruft der Browser die <code>click</code> Funktionen der parent-Element nacheinander auf.</p>
+    <p>Wir können uns das so vorstellen, als würden wir in einem See herunter tauchen, dort austmen, und die Luftblase steigt wieder nach oben auf.</p>
+    <p>Entsprechend hat dieses System auch den Namen "Event-Bubbling" erhalten.</p>
+  </section>
+
+  <section>
+    <p>Wir können das Event-Bubbling aber stoppen.</p>
+    <p>Das <code>event</code> Objekt das wir in jeder Funktion erhalten hat eine Methode <code>stopPrpagation</code> mit der wir (weiteres) Event-Bubbling aufhalten können.</p>
+  </section>
+
+  <section>
+    <h3>Capture-Phase</h3>
+  </section>
+
+  <section>
+    <p>Wir haben darüber gesprochen, dass ein Click vom HTML-Element aus nach "unten" propagiert bevor das Event wieder durch alle Elemente "nach oben bubbled".</p>
+    <p>Dieses "nach-unten-propagieren" ist eine Event-Phase (diese haben wir vorher bereits im Event-Objekt gesehen), die wir allgemein als <strong>Capturing</strong> benennen können.</p>
+    <p>Und wir können auf diese Capture-Phase reagieren (anstatt in der Bubbling-Phase aufgerufen zu werden.)</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      element.addEventListener('click', () => {
+        console.log('Aufgerufen während der Bubbling-Phase');
+      });
+
+      element.addEventListener('click', () => {
+        console.log('Aufgerufen in der Capture-Phase');
+      },
+      // Achten Sie auf das zusätzliche true...
+      true);
+    </code></pre>
+
+    <button id="demo-button">
+      Clicke mich!
+    </button>
+
+    <script>
+      const b = document.getElementById('demo-button');
+
+      b?.addEventListener('click', () => console.log('Aufgerufen während der Bubbling-Phase'));
+      b?.addEventListener('click', () => console.log('Aufgerufen während der Capture-Phase'), true);
+    </script>
+  </section>
+
+  <section>
+    <h3>Custom Events</h3>
+  </section>
+
+  <section>
+    <p>Abseits von Events die durch HTML-Elemente ausgelöst werden, können wir auch "eigene" Events formulieren, darauf "hören" und auslösen.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      // Auf das neue Event hören
+      document.addEventListener('mein-event', () => {
+        console.log('"mein-event" wurde ausgelöst!');
+      });
+
+      // Der Name ist selbstgewählt
+      const myEvent = new CustomEvent('mein-event');
+
+      // Das Event "abfeuern"
+      document.dispatchEvent(myEvent);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Für Custom-Events gibt es noch viele weitere Features die man Entdecken kann. Lesen Sie sich die Dokumentation im Mozilla Developer Network durch!</p>
+  </section>
+</section>

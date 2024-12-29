@@ -1,0 +1,55 @@
+<section>
+  <section>
+    <h2>Elemente aus dem DOM Abfragen</h2>
+  </section>
+
+  <section>
+    <p>Wir kennen nun alle wichtigen JavaScript Features um die erste wichtige API innerhalb des Browsers kennen zu lernen: Die DOM-API.</p>
+    <p>Mithilfe dieser können wir mit dem HTML-Dokuments selbst interagieren: Elemente suchen, modifizieren, neue Elemente hinzufügen und Elemente auch wieder löschen.</p>
+    <p>Alle Relevanten Funktionen sind in dem globalen Objekt <code>document</code> beinhaltet.</p>
+  </section>
+
+  <section>
+    <strong><code>document.getElementById(id)</code></strong>
+    <p>Sucht im Dokument nach einem HTML-Element mit der Angegebenen <strong>ID</strong>.</p>
+    <p>Wenn kein Element gefunden wird, liefert die Funktion <strong><code>null</code></strong>.</p>
+    <p>Gibt es mehrere Elemente mit der gleichen ID, wird das erste gefundene geliefert.</p>
+  </section>
+
+  <section>
+    <strong><code>document.querySelector(selector)</code></strong>
+    <p>Sucht im Dokument nach einem HTML-Element mit der Angegebenen <strong>CSS-Query</strong>.</p>
+    <p>Wenn kein Element gefunden wird, liefert die Funktion <strong><code>null</code></strong>.</p>
+    <p>Gibt es mehrere Dokumente die dem Selektor matchen, wird das zuerst gefundene Element zurück geliefert.</p>
+  </section>
+  
+  <section>
+    <strong><code>document.querySelectorAll(selector)</code></strong>
+    <p>Ähnlich zu <code>querySelector</code>, liefert aber alle gefundenen Elemente in einem Array-Ähnlichen Konstrukt zurück (Static NodeList).</p>
+    <p>Gibt es keine Elemente, ist dieses Array leer.</p>
+    <p>Die Elemente im Array werden <strong>nicht</strong> dynamisch aktualisiert.</p>
+    <p>Mit <code>Array.from(NodeList)</code> kann die NodeList in ein normales Array überführt werden.</p>
+  </section>
+
+  <section>
+    <h3>"Tree-Walking"</h3>
+  </section>
+
+  <section>
+    <p>Das Objekt <code>document</code> beinhaltet auch direkten Zugriff auf das HTML-Dokument.</p>
+    <p>In <code>document.body</code> ist die Referenz zum <code>body</code>-Tag des HTML-Dokumentes zu finden.</p>
+    <p>Von hier aus (oder von jedem anderen HTML-Element) kann man nun den Document-Tree Auf-, Ab- und Be-Wandern.</p>
+  </section>
+
+  <section>
+    <code>element.nextSibling & element.previousSibling</code>
+    <p>Zugriff auf das nächste / vorherige Element in der gleichen Ebene (gleiches Parent)</p>
+    <hr>
+    <code>element.children[]</code>
+    <p>Zugriff auf die Kind-Elemente eines Elementes</p>
+    <hr>
+    <code>element.parentNode & element.parentElement</code>
+    <p>Zugriff auf das Parent-Element</p>
+  </section>
+
+</section>

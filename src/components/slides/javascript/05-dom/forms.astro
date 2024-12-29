@@ -1,0 +1,89 @@
+<section>
+  <section>
+    <h2>JavaScript &amp; Formulare</h2>
+  </section>
+
+  <section>
+    <p>Wir haben bereits viele DOM-FUnktionen kennen lernen dürfen.</p>
+    <p>Aber eines haben wir noch nicht genauer betrachtet:</p>
+    <p>Wie wir mit JavaScript und Formularen arbeiten können / müssen.</p>
+  </section>
+
+  <section>
+    <p>Manchmal reicht es nicht aus, das Standard-HTML-Formular direkt abzusenden.</p>
+    <p>Es kommen früher oder später Themen auf, die es erfodern per JavaScript in den Formular-Prozess einzugreifen.</p>
+    <p>Meistens sehen wir uns Daten an, weißen auf Fehlern in den Daten hin, oder versuchen auf fehlende Informationen hinzuweisen.</p>
+    <p>Zusätzlich müssen wir dafür Sorgen, dass keine Bots einfach Formulardaten absenden können.</p>
+  </section>
+
+  <section>
+    <h3>Auf Daten in Inputs zugreifen</h3>
+  </section>
+
+  <section>
+    <p>Wir können zu jederzeit die Daten aus einem Input auf 2 Arten auslesen:</p>
+    <p>1. Wir fragen die Daten aus dem HTML-Element ab</p>
+    <p>2. Wir erhalten ein "update" durch den <code>change</code> oder <code>keydown</code> Event-Listener</p>
+  </section>
+
+  <section>
+    <pre class="html"><code data-trim data-line-numbers>
+      &lt;input id="my-input" type="text" /&gt;
+    </code></pre>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const input = document.getElementById('my-input');
+
+      // Direkt auf die Daten zugreifen...
+      console.log(input.value);
+
+      // Mit einem keydown Event aufs target.value schauen
+      input.addEventListener('keydown', (event) => {
+        console.log(event.target.value);
+      })
+    </code></pre>
+
+    <input type="text" id="my-input" />
+  </section>
+
+  <section>
+    <p>Es gibt verschiedene Arten von Events für ein Input-Feld</p>
+    <ul>
+      <li>change (Browser-Abhängig wann)</li>
+      <li>keydown (Bei Tastendruck)</li>
+      <li>keyup (Beim Loslassen der Taste)</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Je nach <code>type</code>, finden wir den gesuchten Inhalt an anderer Stelle:</p>
+    <ul>
+      <li>Checkbox / Radio -&gt; .checked (boolean)</li>
+      <li>Text-basiert -&gt; .value (string)</li>
+    </ul>
+    <p>Select hat seinen aktuell ausgewählten Wert auch in <code>.value</code>. Der Wert ist aber das <code>value</code>-Attribut der Option (anstelle des Angezeigten Textes)</p>
+  </section>
+
+  <section>
+    <h3>Wert ändern</h3>
+  </section>
+
+  <section>
+    <p>Wir können den Wert eines jeden Inputs dahingehend ändern indem wir einfach das <code>.value</code> (beziehungsweise das <code>.checked</code>-Attribut bei Checkboxen oder Radios) überschreiben.</p>
+  </section>
+
+  <section>
+    <h3>Eingabedaten im Rahmen eines Formulars</h3>
+  </section>
+
+  <section>
+    <p>Daten die Innerhalb eines html <code>form</code> Elementes eingegeben worden sind, können während des <code>submit</code> Events "abgefangen" werden.</p>
+    <p>Wenn keine Action für das Formular definiert ist, wird die Action-URL als aktuelle URL gesetzt (und somit bei einem submit auch Daten an diese URL versendet, was wiederum zu einem Reload führt)</p>
+    <p>Diese Standard-Aktion des Forms (sowie viele andere Standard-Aktionen anderer Elemente) kann abgebrochen werden, indem auf dem event-Objekt <code>.preventDefault()</code> aufgerufen wird.</p>
+  </section>
+
+  <section>
+    <p>Wir können zu jederzeit auf die Inhalte eines Formulars zugreifen indem wir eine spezielle Klasse nutzen: <code>FormData</code>.</p>
+    <p>Wir können dieser Klasse beim erstellen das Formular-Element mitgeben. Der Browser wird dann alle Eingabefelder in resultierenden Objekt anhand des <code>name</code> Attributs als key hinterlegen.</p>
+    <p>Achtung: Es werden nur Daten in das FormData Objekt aufgenommen, dessen <code>input</code> nicht <code>disabled</code> ist.</p>
+  </section>
+</section>

@@ -1,0 +1,24 @@
+<section>
+  <section>
+    <h2>Neue Elemente hinzufügen</h2>
+  </section>
+
+  <section>
+    <p>Neben <code>innerHTML</code> gibt es noch eine weitere Möglichkeit Elemente zu erstellen.</p>
+    <p>Wir nutzen dafür die Funktion <code>document.createElement(tag)</code> um ein Element zu erstellen.</p>
+    <p>Das Element können wir noch "konfigurieren" (Text, Attribute, Events) und können dieses dann einem beliebigen Element anfügen (mit der Element-Funktion <code>appendChild</code>)</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      // Button erstellen
+      const newButton = document.createElement('button');
+
+      // wir können noch mehr mit dem button machen (klick-events, attribute, etc);
+      newButton.innerText = "Klick mich!";
+
+      // Wir können einem beliebigen Element nun den Button als Kind anhängen.
+      document.body.appendChild(newButton);
+    </code></pre>
+  </section>
+</section>

@@ -1,0 +1,97 @@
+<section>
+  <section>
+    <h2>Elemente mit JavaScript modifizieren</h2>
+  </section>
+
+  <section>
+    <p>Wir haben nun unser Element gefunden, was können wir nun alles damit tun?</p>
+    <p>Eigentlich <strong>alles</strong>. Wir können den Inhalt des Elementes ändern, Attribute ändern, Klassennamen hinzufügen / löschen und vieles mehr.</p>
+  </section>
+
+  <section>
+    <h3>Attribute ändern</h3>
+  </section>
+
+  <section>
+    <p>
+      <code>$0.getAttribute(attributeName)</code><br>
+      Um ein Attribut abzufragen, null wenn nicht gesetzt.
+    </p>
+    <hr>
+    <p>
+      <code>$0.setAttribute(name, value)</code><br>
+      Setzt auf dem Element ein Attribute mit gegebenen <strong>Namen</strong> und <strong>Value</strong>.
+    </p>
+    <hr>
+    <p>
+      <code>$0.removeAttribute(name)</code><br>
+      Entfernt ein Attribut von einem HTML-Element.
+    </p>
+  </section>
+
+  <section>
+    <h3>Klassen</h3>
+  </section>
+
+  <section>
+    <p>Da Klassen auf einem Element häufiger geändert werden, gibt es hierfür ein spezialisiertes Objekt am HTML-Element um die Klassen zu modifizieren.</p>
+    <p>Dieses befindet sich unter dem Namen <strong>element.classList</strong> innerhalb des Elementes.</p>
+  </section>
+
+  <section>
+    <table>
+      <tr>
+        <th>Funktion</th>
+        <th>Beschreibung</th>
+      </tr>
+      <tr>
+        <td>.add(className)</td>
+        <td>Fügt den gegebenen Klassennamen dem Element hinzu</td>
+      </tr>
+      <tr>
+        <td>.contains(className)</td>
+        <td><code>true</code>, wenn Klassenname in Liste beinhaltet ist, ansonsten <code>false</code></td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <table>
+      <tr>
+        <th>Funktion</th>
+        <th>Beschreibung</th>
+      </tr>
+      <tr>
+        <td>.remove(className)</td>
+        <td>Entfernt den gegebenen Klassennamen</td>
+      </tr>
+      <tr>
+        <td>.replace(oldClass, newClass)</td>
+        <td>Tauscht <code>oldClass</code> durch <code>newClass</code> aus</td>
+      </tr>
+      <tr>
+        <td>.toggle(className)</td>
+        <td>Entfernt Klassennamen wenn existent, ansonsten wird der Klassenname hinzugefügt.</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>innerText</h3>
+  </section>
+
+  <section>
+    <p><code>element.innerText</code> ist ein String, der den aktuellen Text des Elementes beinhaltet.</p>
+    <p>Der Text ist so strukturiert, als würde man den Text auf der Website selektieren und kopieren (enthält also keine HTML-Kind-Elemente, sondern nur dessen Text)</p>
+    <p>Der Text kann geändert indem die Variable / die Property mit einem neuen Text "assigned" wird. Newlines werden dabei durch <code>&lt;br&gt;</code> ausgetauscht.</p>
+  </section>
+
+  <section>
+    <h3>innerHTML</h3>
+  </section>
+
+  <section>
+    <p>Im Kontrast zu <code>innerText</code>, beinhaltet <code>innerHTML</code> auch alle HTML-Tags die sich innerhalb des ausgewählten Elementes befinden.</p>
+    <p>Auch hier können wir den Wert überschreiben. Befindet sich eine HTML-Syntax im neuen String, wird dies auch als HTML interpretiert.</p>
+  </section>
+</section>
