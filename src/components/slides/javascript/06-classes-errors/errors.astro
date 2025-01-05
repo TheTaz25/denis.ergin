@@ -1,0 +1,98 @@
+<section>
+  <section>
+    <h2>Errors</h2>
+  </section>
+
+  <section>
+    <p>Natürlich gibt es auch Situationen in JavaScript die zu Fehlerzuständen führen können.</p>
+    <p>Wie in vielen anderen Sprachen gibt es auch in JS das Konzept diese Fehlerzustände in Form von <code>Errors</code> abzubilden, die wiederum später "gefangen" werden können.</p>
+  </section>
+
+  <section>
+    <p>Erstellen wir zuerst einen Fehler. Hierzu gibt es die globale Klasse Error, die wir mit <code>new</code> instanziieren können:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myError = new Error("Da ist was schief gelaufen");
+    </code></pre>
+    <p>Bei der Ausführung geschieht aber erstmal nichts besonderes. Keine Fehlermeldung in der Konsole und weiterer Code würde einfach ausgeführt werden.</p>
+  </section>
+
+  <section>
+    <p>Um einen Fehler / Error zu werfen, müssen wir dies mit dem keyword <code>throw</code> machen:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myError = new Error("Da ist was schief gelaufen");
+
+      throw myError;
+    </code></pre>
+    <p>Nun sollte in der Konsole auch eine entsprechende Fehlermeldung auftauchen, mit der Nachricht die wir mitgegeben haben.</p>
+  </section>
+
+  <section>
+    <h3>Fehler abfangen</h3>
+  </section>
+
+  <section>
+    <p>Sobald ein Fehler durch <code>throw</code> geworfen wurde, wird die Abarbeitung des Codes in der aktuellen Funktion unterbrochen und der Fehler an die Aufrufende Funktion geschickt.</p>
+    <p>Solange der Fehler nicht abgefangen wird, wird der Fehler in Funktion für Funktion nach oben geliefert bis zum (Call) Stack-Anfang</p>
+  </section>
+
+  <section>
+    <p>Um Fehler abzufangen, können wir die fragliche Funktion in ein <code>try-catch</code> wrappen.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const failingFunction = function () {
+        throw new Error("Da lief was schief");
+      }
+
+      try {
+        failingFunction();
+        console.log('Alles Fertig');
+      } catch {
+        console.warn('Etwas lief schief, aber wir haben das abgefangen');
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir können auch auf die eigentliche Fehlermeldung zugreifen, indem wir nach dem catch ähnlich zu Parametern, einen Wert erwarten.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const failingFunction = function () {
+        throw new Error("Da lief was schief");
+      }
+
+      try {
+        failingFunction();
+        console.log('Alles Fertig');
+      } catch (err) {
+        console.warn('Etwas lief schief, aber wir haben das abgefangen');
+        // Der Angegebene text befindet
+        // sich in der prop "message"
+        console.log(err.message);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir können neben dem Error-Text noch eine weitere Information angeben: Was der Grund des Fehlers gewesen ist</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const failingFunction = function () {
+        throw new Error("Da lief was schief", { cause: "User Input wrong" });
+      }
+
+      try {
+        failingFunction();
+        console.log('Alles Fertig');
+      } catch (err) {
+        console.warn('Etwas lief schief, aber wir haben das abgefangen');
+
+        console.log(err.message);
+        console.log(err.cause);
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir viel / Wie sehr sollte man nun Error nutzen?</p>
+    <p>Aus eigener Erfahrung, lohnt es sich auf Fehler-Zustände direkt zu reagieren, anstatt den Fehler zu ignorieren / woanders abzuhandeln.</p>
+    <p>Wichtigster Punkt ist aber: Wenn ein Fehler aufkommt, von dem der User wissen sollte, sollte man dem User auch einen Fehler anzeigen.</p>
+    <p>Es gibt verschiedene Möglichkeiten dies zu tun. Welche Ideen habt ihr / Was habt ihr gesehen?</p>
+  </section>
+</section>

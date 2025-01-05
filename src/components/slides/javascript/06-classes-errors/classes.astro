@@ -1,0 +1,157 @@
+<section>
+  <section>
+    <h2>Klassen in JavaScript</h2>
+  </section>
+
+  <section>
+    <p>Zuallererst: Klassen sind in JavaScript "nur" Syntactic Sugar, aufgebaut auf dem Konzept der Objekte.</p>
+    <p>Syntactic Sugar bezieht sich hierbei in Programmiersprachen darauf, dass komplexe Sachverhalte durch neue Paradigmen/Syntax vereinfacht werden.</p>
+  </section>
+
+  <section>
+    <p>Klassen in JavaScript sind aber "nicht so mächtig" wie andere Klassenbasierte Sprachen. Aber fangen wir einmal leicht an und definieren eine Klasse:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      class MyClass {
+        // Hier kommt alles zur Klasse rein
+      }
+
+      // Wir initialisieren eine
+      // neue Instanz dieser Klasse mit "new"
+      const instanz = new MyClass();
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Felder / Properties einer Klasse können wir einfach in den Klassen-Body schreiben</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      class MyClass {
+        propA = "foo";
+        propB = 42;
+      }
+
+      const instanz = new MyClass();
+
+      // "foo", 42
+      console.log(instanz.propA, instanz.propB);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wenn wir Felder beim initialisieren belegen wollen indem wir Parameter übergeben, nutzen wir die <code>constructor</code> Methode der Klasse</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      class MyClass {
+        propA = undefined;
+
+        constructor (paramA) {
+          this.propA = paramA;
+        }
+      }
+
+      const instanz = new MyClass('bar');
+      // "bar"
+      console.log(instanz.propA);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Und wir können Klassen-Spezifische Funktionen definieren (und später auch aufrufen)</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      class MyClass {
+        propA = undefined;
+
+        constructor (paramA) {
+          this.propA = paramA;
+        }
+
+        setPropA (param) {
+          this.propA = param;
+        }
+
+        getPropA () {
+          return this.propA;
+        }
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Mit dem keyword <code>static</code> können wir Statische Properties definieren.</p>
+    <p>Statische Properties hängen der Klasse direkt an und können ohne Instanz abgefragt / aufgerufen werden.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      class MyClass {
+        static property = "foo";
+      }
+
+      console.log(MyClass.property);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Es können auch Methoden statisch deklariert werden. Dann muss man keine Instanz erstellen um auf diese Funktionen zuzugreifen.</p>
+    <p>Nützlich bei z.B. Helper-Utilities.</p>
+  </section>
+
+  <section>
+    <h3>Klassen und Sub-Klassen</h3>
+  </section>
+
+  <section>
+    <p>Es ist uns möglich Spezialisierte Klassen von Grundklassen zu erstellen.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      class Animal {
+        animalSound = undefined;
+
+        constructor (sound) {
+          this.animalSound = sound;
+        }
+
+        walk() {
+          console.log(`I am walking... ${this.animalSound}!`);
+        }
+
+        speak() {
+          console.log(this.animalSound);
+        }
+      }
+    </code></pre>
+
+
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw style="max-height: 560px;">
+      class Dog extends Animal {
+        breed = undefined;
+        constructor (breed) {
+          super('Woof');
+          this.breed = breed;
+        }
+
+        waggleTail () {
+          if (this.breed === 'aussie') {
+            throw new Error('I dont have a tail to wag!');
+          }
+          console.log('Wagging Tail!');
+        }
+      }
+      
+    </code></pre>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      class Cat extends Animal {
+        constructor() {
+          super('Meow');
+        }
+
+        knockOfTable(thing) {
+          console.log(`${thing} should not be on the table ...`);
+        }
+      }
+    </code></pre>
+  </section>
+</section>
