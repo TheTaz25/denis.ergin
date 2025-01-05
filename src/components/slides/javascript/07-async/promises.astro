@@ -1,0 +1,315 @@
+<section>
+  <section>
+    <h2>Promises</h2>
+  </section>
+
+  <section>
+    <p>Wie bereits zuvor erwähnt sind Promises ein <strong>Versprechen, dass etwas in er Zukunft fertig sein wird (Funktion)</strong>.</p>
+    <p>In heutzutage modernen Browsern ist jede lang-laufende Operation hinter einem solchen Promise versteckt.</p>
+    <p>Promises sorgen dafür das eine Funktion (Message) in die Queue gesteckt wird und das der Event-Loop diese später ausführt.</p>
+  </section>
+
+  <section>
+    <p>Ein Promise zu erstellen ist relativ simpel</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise();
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Dieses Promise macht nun aber nicht viel. Ein Promise benötigt eine Funktion die im Hintergrund ausgeführt wird.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise(() => {
+        console.log('Hallo Welt!');
+      });
+    </code></pre>
+    <p>Wir sollten beim ausführen dann ein "Hallo Welt!" in den Developer Tools sehen</p>
+  </section>
+
+  <section>
+    <p>Wie sieht das nun aber alles aus wenn wir schauen wollen in welcher Reihenfolge das alles ausgeführt wird?</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise(() => {
+        console.log('Hallo Welt!');
+      });
+
+      console.log('Komme ich davor oder danach?');
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Ein Promise macht auch nicht mehr als den Callback auszuführen und auf ein Resultat zu warten.</p>
+    <p>Wenn es nichts gibt auf das man warten muss, ist ein Promise auch sofort abgeschlossen.</p>
+  </section>
+
+  <section>
+    <p>Bevor wir weiter machen, gehen wir auf den Callback des Promises näher ein.</p>
+    <p>Dieser Callback erhält nämlich 2 Parameter, die wiederrum Callbacks sind</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const p = new Promise((resolve, reject) => {
+        // ???
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Oft werden diese 2 Callbacks als <code>resolve</code> und <code>reject</code> definiert.</p>
+    <p>Schauen wir mal, was die Variable als Inhalt hat, in der wir dieses Promise packt:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise(() => {
+        console.log('Hallo Welt!');
+      });
+
+      // Promise { &lt;state&gt;: "pending" }
+      console.log(myPromise);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das Promise hat einen Zustand der in "pending" hängt.</p>
+    <p>Dieser Zustand wird sich in dieser Form so auch nicht mehr ändern.</p>
+    <p>Hierfür sind die Callback-Funktionen <code>resolve &amp; reject</code> gedacht.</p>
+  </section>
+
+  <section>
+    <p>Rufen wir mal die Funktion <code>resolve</code> innerhalb des Promises auf</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((resolve) => {
+        console.log('Hallo Welt!');
+        resolve();
+      });
+
+      // Promise { &lt;state&gt;: "fulfilled", &lt;value&gt;: undefined }
+      console.log(myPromise);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Die Promise ist nun <strong>fulfilled</strong> und scheint einen <code>value</code> zu beinhalten, der in diesem Fall <code>undefined</code> ist.</p>
+  </section>
+
+  <section>
+    <p>Sehen wir uns noch kurz an, wenn der Promise <strong>rejected</strong> wird</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((_, reject) => {
+        console.log('Hallo Welt!');
+        reject();
+      });
+
+      // Promise { &lt;state&gt;: "rejected", &lt;value&gt;: undefined }
+      console.log(myPromise);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Gut, wir wissen nun dass der Promise "rejected" wurde, aber was heißt das genau?</p>
+    <p>Nun, Promises funktionieren ein wenig anders als einfach aufgerufene Funktionen.</p>
+    <p>Wenn wir die Variable <code>myPromise</code> untersuchen, sehen wir keine Möglichkeit, auf den Zustand oder den Wert zuzugreifen.</p>
+    <p>Aber es gibt ein paar Funktionen: <code>then, catch &amp; finally</code>.</p>
+  </section>
+
+  <section>
+    <p>Wir können nur auf Resultate und den Allgemeinen Ausgang eines Promise reagieren indem wir mit diesen Funktionen arbeiten.</p>
+    <p>Diese Funktionen sind <code>chainable</code>. Wir können mehrere <code>.then &amp; .catch</code> nacheinander aufrufen.</p>
+    <p>Wenn ein Promise erfolgreich ist und <code>resolve</code> aufruft, wird die Funktion in <code is:raw>.then(() => {})</code> aufgerufen</p>
+  </section>
+
+  <section>
+    <p>Sollte das Promise nicht erfolgreich gewesen sein und hat <code>reject()</code> aufgerufen, so wird <code is:raw>.catch(() => {})</code> aufgerufen.</p>
+    <p>Wir können nicht aus einem Promise "ausbrechen". Wir können aber Resultate aus einem Promise zu jederzeit in den äußeren Scope verschieben und weitere Funktionen aufrufen.</p>
+  </section>
+
+  <section>
+    <p>Sehen wir uns das ganze nun in Aktion an:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((resolve, reject) => {
+        resolve();
+      });
+
+      myPromise.then(() => {
+        console.log('Das war erfolgreich!');
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Der Fehlerfall ist auch leicht:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((resolve, reject) => {
+        reject();
+      });
+
+      myPromise.catch(() => {
+        console.log('Das war diesmal NICHT erfolgreich!');
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Führen wir beide Varianten einmal zusammen:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((resolve, reject) => {
+        reject();
+      });
+
+      myPromise
+      .then(() => {
+        console.log('Das ging mal gut!');
+      })
+      .catch(() => {
+        // Durch das reject landen wir nur hier!
+        console.log('Das war diesmal NICHT erfolgreich!');
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das <code>catch</code> muss aber nicht das Ende sein, wenn wir nach dem <code>catch</code> noch etwas ausführen wollen, können wir einfach mit <code>.then</code> weiter machen.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((resolve, reject) => {
+        reject();
+      });
+
+      myPromise
+      .then(() => {
+        console.log('Das ging mal gut!');
+      })
+      .catch(() => {
+        console.log('Das war diesmal NICHT erfolgreich!');
+      })
+      .then(() => {
+        console.log('Es gibt mehr danach!');
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das weitere <code>.then</code> und <code>.catch</code> aufgerufen werden können, hat einen entscheidenden Vorteil:</p>
+    <p>Wir können in <code>.then</code> und <code>.catch</code> einen Fehler werfen um ein anderes <code>.catch auszulösen.</code></p>
+    <p>Gleichzeitig bedeutet ein nicht vorhanden sein eines Errors, dass das nächste <code>.then</code> aufgerufen wird.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((resolve, reject) => {
+        resolve();
+      });
+
+      myPromise
+      .then(() => {
+        console.log('Das ging mal gut!');
+        throw new Error('Pech gehabt!');
+      })
+      .catch(() => {
+        console.log('Das war diesmal NICHT erfolgreich!');
+      })
+      .then(() => {
+        console.log('Es gibt mehr danach!');
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Um am Ende auf jeden Fall eine Funktion auszuführen gibt es zu guter letzt noch die Funktion <code>.finally</code>.</p>
+    <p>Der Aufruf sorgt dafür, dass in jedem Fall - egal ob ein Fehler geworfen wurde oder nicht - Code ausgeführt wird.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myPromise = new Promise((resolve, reject) => {
+        resolve();
+      });
+
+      myPromise
+      .then(() => {
+        console.log('Das ging mal gut!');
+      })
+      .catch(() => {
+        console.log('Das war diesmal NICHT erfolgreich!');
+      })
+      .finally(() => {
+        console.log('Ich geschehe immer!');
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Parameter in <code>.catch</code> und <code>.then</code></p>
+    <p>Wir erhalten in diesen beiden Funktionen Informationen.</p>
+    <p><code>.catch</code> erhält in der Regel den Error der davor geworfen wurde, oder aber was in die Funktion <code>reject</code> mitgegeben wurde.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const p = new Promise((_, reject) => {
+        reject('Zum Scheitern verdonnert');
+      });
+
+      p.catch((reason) => {
+        console.log(reason);
+        throw new Error('Für immer');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das gleiche Funktioniert auch mit <code>resolve()</code> und <code>.then()</code></p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const p = new Promise((resolve) => {
+        resolve(42);
+      });
+
+      p.then((zahl) => {
+        console.log(zahl);
+        return "Die einzig wahre Zahl";
+      })
+      .then((x) => {
+        console.log(x);
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Ein Konkretes Beispiel</p>
+    <p>Nachfolgend lesen wir den Inhalt aus dem System-Clipboard aus. Die Funktionalität, die uns der Browser dafür gibt, liefert einen Promise.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const into = document.getElementById('clipboard-result');
+      document.getElementById('clipboard-paste').onclick = function () {
+        navigator.clipboard.readText()
+        .then((clipboardText) => {
+          into.innerText = `Kopierter Text:\n${clipboardText}`;
+        })
+        .catch((err) => {
+          into.innerText = `Fehler beim lesen des Clipboards: ${err}`;
+        });
+      }
+    </code></pre>
+
+    <button id="clipboard-paste">
+      Paste
+    </button>
+
+    <div id="clipboard-result">
+      Ergebnis...
+    </div>
+
+    <script>
+      const into = document.getElementById('clipboard-result')!;
+      document.getElementById('clipboard-paste')!.onclick = function () {
+        navigator.clipboard.readText()
+        .then((clipboardText) => {
+          into.innerText = `Kopierter Text:\n${clipboardText}`;
+        })
+        .catch((err) => {
+          into.innerText = `Fehler beim lesen des Clipboards: ${err}`;
+        });
+      }
+    </script>
+  </section>
+</section>

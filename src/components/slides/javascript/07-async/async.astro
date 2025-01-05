@@ -1,0 +1,84 @@
+<section>
+  <section>
+    <h2>Async &amp; await</h2>
+  </section>
+
+  <section>
+    <p>Async und Await sind 2 Mechanismen, die auf den vorgestellten Promises aufbauen und diese so erweitern, dass die Nutzung "einfacher" und "sauberer" für den Entwickler ist.</p>
+    <p>Im Allgemeinen sind diese Dinge einfach nur <strong>syntactic sugar</strong> für Promises.</p>
+  </section>
+
+  <section>
+    <h3>async</h3>
+  </section>
+
+  <section>
+    <p>Das keyword <code>async</code> kann vor Funktionen angestellt werden.</p>
+    <p>Die Nutzung des async-keywords erzeugt in JavaScript eine <code>AsyncFunction</code>, die wiederum ein Promise beim aufruf der Funktion erzeugt.</p>
+  </section>
+
+  <section>
+    <p>Der Beweis das async-functions nur eine Art "Wrapper" für Promises sind</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      async function test () {
+        return 52;
+      }
+  
+      test().then((response) => {
+        console.log(response);
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>await</h3>
+  </section>
+
+  <section>
+    <p><code>await</code> ist das passende Gegenstück zum <code>async</code> keyword.</p>
+    <p>Wenn an einer async-function aufgerufenen Funktionen vorgestellt, wartet der Browser mit der Ausführung des restlichen Code bis der Promise <strong>ausgeführt</strong> worden ist.</p>
+    <p>Sollte die AsyncFunction einen Error werfen, so muss die Expression in einem try-catch-Block gewrapped sein um den Fehler abzufangen.</p>
+    <p>Wir können das Ergebnis des awaits einfach in einer Variable speichern (Erfolgsfall)</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const into = document.getElementById('clipboard-result');
+
+      document.getElementById('clipboard-paste')
+      .onclick = async function () {
+        try {
+          const clipboardText = await navigator
+            .clipboard.readText();
+          into.innerText = `Kopierter Text:\n${clipboardText}`;
+        }
+        catch (err) {
+          into
+            .innerText = `Fehler beim lesen des Clipboards: ${err}`;
+        }
+      }
+    </code></pre>
+
+    <button id="clipboard-paste2">Paste</button>
+
+    <div id="clipboard-result2"></div>
+
+    <script>
+      const into = document.getElementById('clipboard-result2')!;
+	    document.getElementById('clipboard-paste2')!.onclick = async function () {
+        try {
+          const clipboardText = await navigator.clipboard.readText();
+          into.innerText = `Kopierter Text:\n${clipboardText}`;
+        }
+        catch (err) {
+          into.innerText = `Fehler beim lesen des Clipboards: ${err}`;
+        }
+      }
+    </script>
+  </section>
+
+  <section>
+    <p>Wenn mit Promises gearbeitet wird, sollte man im besten Fall die Async-Await Syntax verwendet werden.</p>
+    <p>Sie ist sauberer und schneller zu schreiben und man verhindert <strong>Callback-Hells</strong>.</p>
+  </section>
+</section>

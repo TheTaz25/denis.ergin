@@ -1,0 +1,69 @@
+<section>
+  <section>
+    <h2>Callbacks</h2>
+  </section>
+
+  <section>
+    <p>Callbacks sind ein simples Konzept. Im Grunde sind es Funktionen, die weitergegeben und später aufgerufen werden um wiederum Aktionen auszuführen.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw style="max-height: 580px;">
+      const calculateAndCallback = (callback) => {
+        const result = 1 + 1;
+        callback();
+      }
+
+      const main = () => {
+        const myCallback = () => {
+          console.log('Callback wurde aufgerufen!');
+        };
+
+        console.log('main start');
+
+        calculateAndCallback(myCallback);
+
+        console.log('main end');
+      }
+
+      main();
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Meistens erwarten wir im Callback ein Ergebnis der aufgerufenen Funktion</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw style="max-height: 580px;">
+      const calculateAndCallback = (callback) => {
+        const result = 1 + 1;
+        callback(result);
+      }
+
+      const main = () => {
+        const myCallback = (result) => {
+          console.log(`Das Ergebnis ist: ${result}`);
+        };
+
+        calculateAndCallback(myCallback);
+      }
+
+      main();
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wir notieren:</p>
+    <p>Callbacks sind Funktionen die von anderen Funktionen als Parameter entgegen genommen werden und zu einem bestimmten Zeitpunkt aufrufen.</p>
+  </section>
+
+  <section>
+    <p>Viele Funktionen die lang laufende "tasks" haben, erwarten 2 Callbacks: Einen für den Erfolgsfall, einer für den Fall des Scheiterns der Berechnung.</p>
+  </section>
+
+  <section>
+    <p>Vermeiden Sie geschachtelte Callbacks die Callbacks aus Callbacks aus Callbacks aufrufen. Sie machen den Code schlechter Wartbar und nicht mehr lesbar.</p>
+    <p>Umgangssprachlich hat sich hier der Begriff "Callback-Hell" heraus entwickelt.</p>
+  </section>
+</section>

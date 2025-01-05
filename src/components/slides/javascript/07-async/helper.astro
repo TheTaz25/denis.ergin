@@ -1,0 +1,97 @@
+<section>
+  <section>
+    <h2>Promise-Hilfsfunktionen</h2>
+  </section>
+
+  <section>
+    <p>Das globale <code>Promise</code>-Objekt enthält eine Reihe an Funktionen die mit dem arbeiten mit Promises unterstützen kann.</p>
+    <p>Die Nachfolgend vorgestellten Funktionen nehmen immer ein Array aus Promises entgegen. Die Resultate aus diesen Funktionen variieren.</p>
+  </section>
+
+  <section>
+    <h3>Promise.all()</h3>
+  </section>
+
+  <section>
+    <p><code>Promise.all([ /* Promises */ ])</code> wartet auf die <strong>Erfolgreiche</strong> Abarbeitung aller im Array befindlichen Promises.</p>
+    <p>Die Ergebnisse aller Promises werden im Resultat (.then() oder await) in einem Array <strong>In der gleichen Reihenfolge</strong> wie im Übergabe-Array gepackt.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const promise1 = new Promise((resolve) => resolve(42));
+      const promise2 = new Promise((resolve) => resolve(43));
+      const promise3 = new Promise((resolve) => resolve(44));
+
+      const results = await Promise
+        .all([promise1, promise2, promise3]);
+
+      // [42, 43, 44]
+      console.log(results);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wirft einer der Promises einen Error, so wirft auch das <code>.all</code> einen Fehler</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const promise1 = new Promise((resolve) => resolve(42));
+      const promise2 = new Promise((_, reject) => reject(43));
+      const promise3 = new Promise((resolve) => resolve(44));
+
+      // Uncaught (in promise) 43
+      const results = await Promise
+        .all([promise1, promise2, promise3]);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Promise.allSettled()</h3>
+  </section>
+
+  <section>
+    <p>Ähnlich zu <code>.all</code>, bei einem Error wird die Ausführung des restlichen Codes aber normal ausgeführt:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const promise1 = new Promise((resolve) => resolve(42));
+      const promise2 = new Promise((_, reject) => reject(43));
+      const promise3 = new Promise((resolve) => resolve(44));
+
+      const results = await Promise
+        .allSettled([promise1, promise2, promise3]);
+
+      console.log(results);
+    </code></pre>
+    <img src="/images/promise-allSettled.png" width="550" alt="3 Promises werden erstellt, das zweite wird rejected. Alle Promises werden in einem Array an Promises.allSettled übergeben und awaited. Das Resultat sind 3 Werte in einem Array, das 2. Element ist rejected mit einer reason.">
+  </section>
+
+  <section>
+    <h3>Promise.any()</h3>
+  </section>
+
+  <section>
+    <p><code>.any()</code> gibt das <strong>erste, erfolgreiche</strong> Promise zurück (inklusive des Ergebnisses).</p>
+    <p>Sollten alle Promises rejected werden, so rejected die Funktion selber mit einem Array an <code>reasons</code>.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const promise1 = new Promise((_, reject) => reject(42));
+      const promise2 = new Promise((_, reject) => reject(43));
+      const promise3 = new Promise((resolve) => resolve(44));
+
+      const results = await Promise
+        .any([promise1, promise2, promise3]);
+
+      // 44
+      console.log(results);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Neben diesen Aggregatoren-Funktionen gibt es noch 2 Hilfsfunktionen:</p>
+    <p><code>Promise.resolve("Wert")</code> gibt ein sofort "fullfiltes" Promise zurück, wir können auf den Rückgabewert wie bisher auch mittels await oder .then() zugreifen.</p>
+    <p><code>Promise.reject("Grund")</code> ist ähnlich zu .resolve(), rejected aber das Promise mit einem angegebenen Grund.</p>
+  </section>
+</section>

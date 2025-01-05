@@ -1,0 +1,32 @@
+<section>
+  <section>
+    <h2>Asynchroner Code - Eine Einführung</h2>
+  </section>
+
+  <section>
+    <p>JavaScript ist eine "Single Threaded" Script-Sprache. Im Allgemeinen heißt dies:</p>
+    <p>JavaScript wird nur an einer Stelle zu jedem Zeitpunkt ausgeführt. Das macht es uns möglich JavaScript einfach zu halten da wir keine Race-Conditions "bauen" können.</p>
+    <p>Lang laufende Berechnungen sorgen dafür, dass keine anderen Aktionen in der Zwischenzeit ausgeführt werden können. User nehmen dies als "nicht-reagieren" einer Webanwendung war.</p>
+  </section>
+
+  <section>
+    <p>Als Web-Developer ist es daher besonders wichtig, so wenig <strong>lang-laufende Operationen</strong> wie möglich zu erzeugen.</p>
+    <p>Leider ist es aber so, dass wir als Entwickler nicht immer in die Dauer bestimmter Aktionen eingreifen können.</p>
+  </section>
+
+  <section>
+    <p>Im Allgemeinen sind "Input-Output" Aktivitäten jeder Art eine der am längsten dauernden Operationen.</p>
+    <p>Beispiele solcher Aktivitäten sind z.B.: Datei-Operationen (lesend, schreibend), Netzwerk-Requests, Kommunikation mit anderen Systemen (Bluetooth)</p>
+    <p>Aber: Hier haben wir einen Entscheidenden Vorteil. All diese Dinge sind über eine API in einer kompilierten Sprachen (meistens C oder C++) geschrieben.</p>
+    <p>Sie sind also soweit "weg abstrahiert", dass wir uns nicht darum Sorgen müssen dass ein Funktionsaufruf länger dauert. JavaScript führt solche Aktionen im Hintergrund aus. Wir müssen nur noch das Ergebnis interpretieren.</p>
+  </section>
+
+  <section>
+    <p>Dafür (also für unter Umständen lang laufenden Operationen) gibt es einen Abstraktions-Layer der uns das arbeiten deutlich vereinfacht: Promises.</p>
+    <p>Ein Promise ist genau das: Ein <strong>Versprechen</strong> dass eine Funktion <strong>irgendwann in der Zukunft</strong> abschließt und einen Wert liefert.</p>
+  </section>
+
+  <section>
+    <p>Bevor wir aber direkt damit loslegen, müssen wir zuvor noch ein anderes Konzept in JavaScript lernen und verstehen.</p>
+  </section>
+</section>

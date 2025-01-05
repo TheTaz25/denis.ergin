@@ -1,0 +1,74 @@
+<section>
+  <section>
+    <h2>Event-Loop</h2>
+  </section>
+
+  <section>
+    <p>Bevor wir in die Thematik von Promises eintauchen können, müssen wir verstehen, wie JavaScript im inneren Funktioniert.</p>
+    <p>Im Allgemeinen läuft alles in einer Event-Loop. Diese Loop ist eine Warteschlange die bei jedem "Durchgang" eine Funktion aus besagter Warteschlange aufruft.</p>
+    <p>Funktionen werden durch verschiedene Mechanismen in die Warteschlange der Event-Loop gesteckt. Eine solche Methode haben wir bereits kennen gelernt: Events</p>
+  </section>
+
+  <section>
+    <p>Klickt der Nutzer auf einen Button, der einen JavaScript-EventListener hat, so wird die Funktion beim klicken in die Event-Loop eingereiht, um nächstmöglich ausgeführt zu werden.</p>
+  </section>
+
+  <section>
+    <p>Die Event-Loop führt also Funktionen aus, sammelt und prozessiert Events und führt eingereihte Unter-Aufgaben aus.</p>
+    <p>Hierfür verwendet die Event-Loop - <strong>stark vereinfacht</strong> - 3 Konzepte:</p>
+    <ul>
+      <li>Stack mit Frames</li>
+      <li>Queue mit Messages</li>
+      <li>Heap mit Objekten</li>
+    </ul>
+  </section>
+
+  <section>
+    <ol>
+      <li>"Events" (Messages) werden in die Queue gelegt</li>
+      <li>"Frames" (Funktionen) liegen im Stack</li>
+      <li>Objekte mit denen gearbeitet wird, sind im Heap.</li>
+    </ol>
+  </section>
+
+  <section>
+    <p>In JavaScript ist es nicht möglich die Abarbeitung einer Funktion anzuhalten.</p>
+    <p>Im Event Loop wird darauf gewartet, dass eine Funktion komplett abschließt / abgearbeitet wird bevor die nächste Message aus der Queue geladen wird.</p>
+    <p>Halten wir in einer Funktion die weitere Abarbeitung auf, so Sorgen wir gleichzeitig dafür dass der Browser in dieser Zeit nicht weiter arbeiten kann.</p>
+    <p>Wir empfinden dass als Lag oder simples "Nicht-Antworten" der Website auf Nutzer-Interaktionen (wenn die Abarbeitung länger als ein paar Millisekunden benötigt)</p>
+  </section>
+
+  <section>
+    <p>Es gibt ein paar Möglichkeiten als Entwickler Funktionen in die Queue zu legen anstatt Funktionen direkt auszuführen.</p>
+    <p>Diese Möglichkeiten sind in den Funktionen <code>setInterval</code> und <code>setTimeout</code> "versteckt".</p>
+    <p>"Versteckt" daher, weil sie eigentlich nicht direkt für diesen Gedacht sind.</p>
+  </section>
+
+  <section>
+    <h3>setTimeout</h3>
+    <p><code>setTimeout</code> ist eine Funktion, die als Paramter einen Callback und eine Dauer in Millisekunden erwartet.</p>
+    <p>Nach der Angegebenen Zeit in Millisekunden wird der Callback in die Queue gesteckt um dort zum nächstmöglichen Zeitpunkt ausgeführt zu werden.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const toBeExecutedLater = () => {
+        console.log('Ich komme später!');
+      };
+
+      setTimeout(toBeExecutedLater, 500);
+
+      console.log('Ich komme vorher!');
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>setInterval</h3>
+    <p><code>setInterval</code> ist sehr ähnlich zu <code>setTimeout</code>, ruft aber den angegebenen Callback in Intervallen der angegebenen Zeit in Millisekunden aus.</p>
+  </section>
+
+  <section>
+    <p>Beide Funktionen haben einen Rückgabewert, der eine Art ID repräsentiert.</p>
+    <p>Mithilfe dieser ID kann ein timeout bzw interval auch wieder angehalten werden, indem die ID in <code>clearTimeout</code> beziehungsweise in <code>clearInterval</code> heineingegeben wird.</p>
+  </section>
+</section>
