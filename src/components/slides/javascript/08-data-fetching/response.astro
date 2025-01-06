@@ -1,0 +1,102 @@
+<section>
+  <section>
+    <h2>Responses</h2>
+  </section>
+
+  <section>
+    <p>Wir haben unseren Request abgeschickt und haben eine Antwort erhalten.</p>
+    <p>In den Folien vorher haben wir auch die Antwort bereits extrahiert und angezeigt.</p>
+    <p>Bisher haben wir aber nur die Funktion <code>await response.text()</code> verwendet. Sie liefert den Inhalt der Antwort als normalen String zurück.</p>
+  </section>
+
+  <section>
+    <p>Falls es euch damals aufgefallen ist, haben wir beim Empfang des Inhalts mittels <code>.text()</code> die Antwort mit <code>await</code> abwarten mussten.</p>
+    <p>Die Funktion liefert also ein Promise das mit dem Inhalt der Antwort des Requests zurück kommt.</p>
+    <p>Aber warum?</p>
+  </section>
+
+  <section>
+    <p>Das liegt daran wie die Datenübertragung funktioniert.</p>
+    <p>In dem Moment in dem der Request-Promise "erfüllt" ist, haben wir zwangsweise noch keine Daten erhalten.</p>
+    <p>Die Daten vom Body werden als Stream gespeichert. Solange die Datenübertragung noch nicht abgeschlossen ist wird der Stream weiter gefüllt.</p>
+    <p>Die Abfrage der Inhalte vom Body mittels <code>.text()</code> erwartet also, dass der Stream vollständig ist.</p>
+  </section>
+
+  <section>
+    <p>Blicken wir aber noch genauer auf den Zustand zwischen dem Request Promise und dem Aufruf um Inhalte zu erhalten.</p>
+  </section>
+
+  <section>
+    <p>Wenn wir vom Server eine Antwort erhalten, kommen die Header zuerst im Browser an.</p>
+    <p>Im Header stehen alle für den Request Relevanten Meta-Informationen.</p>
+    <p>Unter anderem ist dort auch der HTTP-Status-Code enthalten, mit dem wir den Erfolg des Requests bestimmen können.</p>
+  </section>
+
+  <section>
+    <p>HTTP-Statuscodes sind eine 3-Stellige Nummer zwischen 100 und 599.</p>
+    <p>Jede Nummer steht für eine andere Art von Antwort. Grob Kategorisiert werden diese im Hunderter-Bereich:</p>
+    <ol>
+      <li>100er > "Informative" Antworten</li>
+      <li>200er > Erfolgreiche Antworten</li>
+      <li>300er > Umleitungen / Redirects</li>
+      <li>400er > Client-Fehler</li>
+      <li>500er > Server-Fehler</li>
+    </ol>
+  </section>
+
+  <section>
+    <p>Die am gebräuchlichsten Antworten sind:</p>
+    <p>200 > OK, 201 > Created, 204 > No Content, 301 > Moved Permanently, 304 > Not Modified, 400 > Bad Request, 401 > Unauthorized, 403 > Forbidden, 404 > Not Found, 500 > Internal Server Error</p>
+    <p>Für eine komplette Liste, kann man das Internet fragen, z.B. <a href="https://http.cat" target="_blank" rel="noopener noreferrer">HTTP Cats</a></p>
+  </section>
+
+  <section>
+    <p>Zurück zur Response: Wir erhalten also in den Headern bereits den Erfolg oder Miserfolg des Requests, bevor die Daten angekommen sind.</p>
+    <p>Entsprechend wird der Request-Promise fullfiled, bevor die Daten komplett angekommen sind.</p>
+    <p>Deswegen ist <code>.text()</code> ein Promise, wir warten noch auf die Vollständigkeit der Daten.</p>
+  </section>
+
+  <section>
+    <p>Das Response Objekt hat aber noch weitere Informationen und Funktionen.</p>
+  </section>
+
+  <section>
+    <p>response.headers</p>
+    <p>In der headers-property sind alle in der Response beinhalteten Header aufgelistet. </p>
+  </section>
+
+  <section>
+    <p>response.ok</p>
+    <p><code>true</code>, wenn der HTTP-Statuscode im Bereich 200 bis 299 liegt.</p>
+  </section>
+
+  <section>
+    <p>response.status</p>
+    <p>Der HTTP-Statuscode den der Server übermittelt hat.</p>
+  </section>
+
+  <section>
+    <p>response.statusText</p>
+    <p>Eine Beschreibung des Response-Codes (z.B. OK für 200)</p>
+  </section>
+
+  <section>
+    <p>response.text() (Promise)</p>
+    <p>Extrahiert die Antwort des Servers als "Plain-Text"</p>
+  </section>
+
+  <section>
+    <p>response.json() (Promise)</p>
+    <p>Extrahiert die Antwort des Servers als JSON-Struktur und parsed die sofort in ein JavaScript-Objekt um.</p>
+  </section>
+
+  <section>
+    <p>Weitere Extraktoren:</p>
+    <ul>
+      <li>.formData() zur Extraktion der Antwort als FormData Objekt</li>
+      <li>.blob() zur Extraktion der Antwort als Blob</li>
+      <li>.arrayBuffer() zur Extraktion der Antwort als ArrayBuffer</li>
+      <li>.bytes() zur Extraktion der Antwort in ein Uint8Array</li>
+    </ul>
+  </section>
+</section>

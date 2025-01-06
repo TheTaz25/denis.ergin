@@ -1,0 +1,32 @@
+---
+interface Props {
+  url: string,
+  id: string,
+  converter: 'text',
+}
+
+const { url, id, converter } = Astro.props;
+---
+
+<div class="fetch-demo">
+  <button id={id}>
+    Request starten...
+  </button>
+
+  <div id={`${id}-result`}>
+
+  </div>
+
+  <script define:vars={{id, url, converter}} is:inline>
+    const target = document.getElementById(`${id}-result`);
+    const button = document.getElementById(id).onclick = async function() {
+      target.innerText = 'Abfrage läuft...';
+
+      const response = await fetch(url);
+      if (converter === 'text') {
+        const text = await response.text();
+        target.innerText = text;
+      }
+    }
+  </script>
+</div>

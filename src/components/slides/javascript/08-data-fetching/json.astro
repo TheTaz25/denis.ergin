@@ -1,0 +1,65 @@
+<section>
+  <section>
+    <h2>JSON</h2>
+    <p>"Jason", oder auch "JavaScript Object Notation"</p>
+  </section>
+
+  <section>
+    <p>JSON ist ein modernes Datenformat um strukturierte Daten zu übertragen.</p>
+    <p>Der Inhalt ist dabei stark den JavaScript-Objekten nachempfunden</p>
+  </section>
+
+  <section>
+    <pre class="json"><code data-trim data-line-numbers is:raw style="max-height: 600px;">
+      {
+        "days_until":38,
+        "following_production": {
+          "days_until":58,
+          "id":202555,
+          "overview":"Matt Murdock, a blind lawyer with heightened abilities, is fighting for justice through his bustling law firm, while former mob boss Wilson Fisk pursues his own political endeavors in New York. When their past identities begin to emerge, both men find themselves on an inevitable collision course.",
+          "poster_url":"https://image.tmdb.org/t/p/w500/bSsjWM91kSZqW0BagqaoIeo8Jz7.jpg",
+          "release_date":"2025-03-04",
+          "title":"Daredevil: Born Again",
+          "type":"TV Show"
+        },
+        "id":822119,
+        "overview":"After meeting with newly elected U.S. President Thaddeus Ross, Sam finds himself in the middle of an international incident. He must discover the reason behind a nefarious global plot before the true mastermind has the entire world seeing red.",
+        "poster_url":"https://image.tmdb.org/t/p/w500/z0ujnXounP4yq637zyLBiZThF7Y.jpg",
+        "release_date":"2025-02-12",
+        "title":"Captain America: Brave New World",
+        "type":"Movie"
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Es sind alle Gängigen JavaScript Datentypen erlaubt, inklusive <code>null</code> und <code>undefined</code>.</p>
+    <p>Es gibt per-se keine Feste Datenstruktur, die vorgibt welche keys erlaubt sind und welche nicht. Wir können das Datenformat entsprechend dynamisch gestalten.</p>
+  </section>
+
+  <section>
+    <p>Es gibt aber darauf aufbauend das JSON-Schema, mit dem ein Parser eine "wohlgeformte" JSON-Struktur identifizieren kann.</p>
+    <p>JSON-Schema ist aber nicht teil dieser Vorlesung.</p>
+  </section>
+
+  <section>
+    <p>"Vorgänger" von JSON ist / war SOAP. SOAP war XML-Basiert und wurde früher in großem Umfang von vielen Systemen benutzt. Aufgrund des Aufwandes ist aber JSON nun der de-facto Standard bei Datenübertragungen.</p>
+    <p>Alle modernen Programmiersprachen bieten Optionen, JSON in Strukturierte Klassen zu parsen.</p>
+    <p>Und selbst in JavaScript müssen wir "rohes" JSON in geparste Objekte übersetzten.</p>
+  </section>
+
+  <section>
+    <p>Hierfür steht uns das globale Objekt <code>JSON</code> mit den Funktionen <code>stringify &amp; parse</code> zur Verfügung</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const myObject = { value: 42 };
+
+      const asString = JSON.stringify(myObject);
+
+      console.log(asString);
+
+      const parsed = JSON.parse(asString);
+
+      console.log(parsed);
+    </code></pre>
+  </section>
+</section>

@@ -1,0 +1,54 @@
+<section>
+  <section>
+    <h2>Headers</h2>
+  </section>
+
+  <section>
+    <p>Headers sind dafür zuständig zusätzliche Informationen vom und zum Server zu übertragen.</p>
+    <p>Diese Informationen sind unter anderem: Authentifizierungs und Authentifikations-Informationen, Caching-Informationen, Content-Flags, Cookies, Cross-Origin-Resource-Sharing-Informationen, und viele weitere.</p>
+    <p>Eine Umfangreiche Liste ist zu finden auf <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank" rel="noreferrer noopener">Developer Mozilla</a></p>
+  </section>
+
+  <section>
+    <p>Header sind eine spezielle Klasse die initiiert werden kann.</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      const headers = new Headers();
+
+      // Header können folgendermaßen in
+      // einem Request verwendet werden
+      const response = await fetch('url', {
+        headers,
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Die Header-Instanz enthält folgende Funktionen um Header zu modifizieren:</p>
+  </section>
+
+  <section>
+    <p>headers.append(name, value)</p>
+    <p>Fügt einen neuen Header-Eintrag zum Objekt hinzu</p>
+  </section>
+
+  <section>
+    <p>headers.delete(name)</p>
+    <p>Entfernt einen Eintrag aus dem Header</p>
+  </section>
+
+  <section>
+    <p>headers.get(name)</p>
+    <p>Gibt einen String zurück der den Inhalt des Angegebenen Header-Eintrages abbildet. <code>null</code> wenn kein Eintrag vorhanden ist.</p>
+  </section>
+
+  <section>
+    <p>headers.has(name)</p>
+    <p>Prüft ob ein Header-Eintrag mit gegebenen Namen existiert, falls ja liefert die Funktion <code>true</code>, andernfalls <code>false</code>.</p>
+  </section>
+
+  <section>
+    <p>headers.set(name, value)</p>
+    <p>Setzt einen Eintrag im Header-Objekt mit angegebenem Wert, überschreibt existierende Werte.</p>
+    <p>Zum Anhängen an einen existierenden Wert, kann man die Funktion <code>.append()</code> nutzen</p>
+  </section>
+</section>

@@ -1,0 +1,53 @@
+---
+import FetchDemo from "./fetch-demo.astro";
+---
+
+<section>
+  <section>
+    <h2>Requests &amp; Fetch API</h2>
+  </section>
+
+  <section>
+    <p>Ein Disclaimer: Wir werden im Rahmen der Vorlesung mit der moderneren <code>fetch</code> API arbeiten. Die Fetch-API hat <code>XMLHttpRequest</code> abgelöst und bietet moderne Features.</p>
+  </section>
+
+  <!-- https://www.whenisthenextmcufilm.com/api -->
+
+  <section>
+    <p>Anatomie eines Fetch-Aufrufs</p>
+    <p>Zu Demonstrations-Zwecken nutzen wir eine offene API, die wir ansteuern können:</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      // Eine offene API zum abfragen einfacher Wetter-Daten
+      const url = 'https://wttr.in/Karlsruhe?format=4';
+
+      // Fetch gibt uns ein Promise
+      // erfolgreich wenn Request erfolgreich
+      const response = await fetch(url);
+
+      // als letzter schritt holen wir die daten mittels .text()
+      console.log(await response.text());
+    </code></pre>
+
+    <FetchDemo converter="text" url="https://wttr.in/Karlsruhe?format=4" id="wttr-demo-1" />
+  </section>
+
+  <section>
+    <p>Wenn wir nichts weiter als die URL angeben, wird ein <code>GET</code> Request ausgeführt.</p>
+    <p>Die verschiedenen Request-Formate haben wir bereits betrachtet.</p>
+    <p>Weiterhin können wir erkennen, dass ein fetch-Aufruf ein Promise zurück gibt, dass wir <code>await</code>'en müsen</p>
+  </section>
+
+  <section>
+    <h3>Fetch-Optionen</h3>
+  </section>
+
+  <section>
+    <p>Wenn wir z.B. POST Requests machen wollen, müssen wir zusätzliche Optionen als 2. Parameter mitgeben</p>
+    <pre class="js"><code data-trim data-line-numbers is:raw>
+      fetch("url", {
+        method: "POST", // "PUT", "DELETE"
+        body: "Inhalt",
+      });
+    </code></pre>
+  </section>
+</section>
