@@ -1,0 +1,170 @@
+<section>
+	<section>
+		<h2>Files API</h2>
+	</section>
+
+	<section>
+		<p>Als wir über Eingabemöglichkeiten in HTML mit dem <code>&lt;input /&gt;</code> Element betrachtet haben, haben wir auch den <code>type="file"</code> kennen gelernt.</p>
+		<p>Sobald der Nutzer eine Datei ausgewählt hat, können wir im dazugehörigen <em>change-Eventlistener</em> auf diese Datei und deren Inhalt zugreifen. Wir müssen also nicht unbedingt den Inhalt an einen Server senden.</p>		
+		<p>Es ist aber auch möglich, mit der normalen DOM-API auf die Dateien zuzugreifen.</p>
+	</section>
+
+	<section>
+		<p>Sehen wir uns einmal an, was wir beim <code>change-event</code> so erhalten.</p>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const input = document.getElementById('file-input');
+
+			input.addEventListener('change', onFile, false);
+
+			function onFile (event) {
+				// Alle selektierten Dateien befinden sich im Element in "files"
+				const selected = event.target.files;
+				console.log(selected);
+			}
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Das Objekt das wir hier erhalten stammt von der besonderen Klasse <em>FileList</em>. Das Objekt verhält sich im weitesten Sinne wie ein Array. Also ist auch der Zugriff mittels der Array-Syntax auf einzelne Elemente möglich.</p>
+		<p>Sehen wir uns mal den Inhalt genauer an. Innerhalb einer <em>FileList</em> befinden sich <em>File</em> Objekte. Dort befinden sich ein paar Informationen zur ausgewählten Datei.</p>
+	</section>
+
+	<section>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			function onFile (event) {
+				const file = event.target.files[0];
+
+				console.log(file);
+			}
+		</code></pre>
+		<p>Im Log finden wir folgendes:</p>
+		<pre><code data-trim data-line-numbers is:raw>
+			File {
+				lastModified: 1730637507228,
+				name: "datei.png",
+				size: 2583226,
+				type: "image/png"
+			}
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Neben den Allgemeinen Informationen wie Dateiname, Dateigröße oder das letzte Änderungsdatum, bietet uns die darunter liegende Klasse "Blob".</p>
+		<p>Diese Klasse bietet uns ein paar Methoden um den Inhalt aus der Datei zu erhalten. Für einfache Text-Dateien gibt es hierfür die Convenience-Funktion <code>.text()</code>. Diese Funktion ist async, sprich muss mit einem <code>await</code> versehen werden.</p>
+	</section>
+
+	<section>
+		<p>Das Ergebnis der Funktion resultiert nach dem <code>await</code> den Textinhalt der Datei.</p>
+		<p>Bei anderen Dateien (z.B. Bilder) fällt ein wenig mehr Arbeit an.</p>
+		<p>Insgesamt ist es in JavaScript nicht notwendig den Inhalt aus einer Textdatei zu extrahieren; Bei einem Versand mit dem Form-Element sorgt der Browser dafür, dass der Inhalt korrekt übertragen wird.</p>
+	</section>
+
+	<section>
+		<p>Wollen wir aber den Inhalt der Datei noch in der Web-Ansicht editiert, betrachtet oder sonst in irgendeiner Art und Weise modifizieren, müssen wir - zumindest für Binär-Dateien wie Bildern - noch der Inhalt extrahiert werden.</p>
+		<p>Im Folgenden Beispiel anhand eines Bildes, betrachten wir 2 Möglichkeiten um den Inhalt vor dem Absenden anzuschauen.</p>
+	</section>
+
+	<section>
+		<p>Das Bild zur Vorschau darstellen</p>
+		<pre class="js"><code data-trim data-line-numbers="2-5|7,14|8|10|11-13" is:raw>
+			function onFile(event) {
+				const file = event.target.files[0];
+
+				const previewElement = document
+					.getElementById('preview');
+
+				if (file) {
+					const url = URL.createObjectURL(file);
+
+					preview.src = url;
+					preview.onload = function () { 
+						URL.revokeObjectURL(url);
+					}
+				}
+			}
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Was passierte:</p>
+		<ol>
+			<li>Wir entnehmen die "hochgeladene" Datei und besorgen uns das Element zur Preview</li>
+			<li>Um einen "Abbruch" abzuhandeln prüfen wir ob wirklich <code>File</code> vorhanden ist</li>
+			<li>Mit <code>URL.createObjectURL(file);</code> erstellen wir einen <em>internen</em> Browserlink</li>
+		</ol>
+	</section>
+
+	<section>
+		<ol start="4">
+			<li>Die resultierende URL können wir dem Preview-Element als <code>src</code> anhängen</li>
+			<li>Sobald das Bild geladen wurde, können wir mit der <code>onload</code> Funktion darauf reagieren.</li>
+			<li>Um den Speicher zu befreien soll man <code>URL.revokeObjectURL(url);</code> aufrufen.</li>
+		</ol>
+	</section>
+
+	<section>
+		<p>Variante 2: Den eigentlichen Datei-Inhalt "parsen" und die Binär-Daten zur Preview verwenden.</p>
+		<p>Hier ist etwas "mehr" Arbeit zu verrichten. Vorteil mit dieser Art und Weise ist aber, dass wir den Datei-inhalt direkt verfügbar haben und modifizieren können (Zumindest mit dem konkreten Wissen wie man das macht).</p>
+	</section>
+
+	<section>
+		<pre class="js"><code data-trim data-line-numbers="5-7|10|11|12" is:raw>
+			function onChange(event) {
+				const file = event.target.files[0];
+				const preview = document.getElementById('preview');
+
+				function parseImage(e) {
+					// ...
+				}
+
+				if (file) {
+					const reader = new FileReader();
+					reader.onload = parseImage;
+					reader.readAsArrayBuffer(file);
+				}
+			}
+		</code></pre>
+	</section>
+
+	<section>
+		<ol>
+			<li>Wir legen eine Funktion parseImage an, was die genau macht implementieren wir gleich</li>
+			<li>Wir legen eine neue <code>FileReader</code>-Instanz an</li>
+			<li>Der <code>reader</code> erwartet eine Funktion für ein <code>onload</code> Event, wir weisen ihr die <code>parseImage</code>-Funktion zu</li>
+			<li>Zuletzt rufen wir die Funktion <code>readAsArrayBuffer</code> der FileReader-Instanz auf. Bei Erfolg ruft diese die Funktion <code>parseImage</code> auf.</li>
+		</ol>		
+	</section>
+
+	<section>
+		<pre class="js"><code data-trim data-line-numbers="2-3|5-7|9|10|12" is:raw>
+			function parseImage(e) {
+				const arrayBuffer = e.target.result;
+				const uint8Array = new Uint8Array(arrayBuffer);
+
+				const base64 = btoa(uint8Array.reduce((data, byte) => 
+					data + String,fromCharCode(byte), ''
+				);
+
+				const mimteType = file.type || 'image/jpeg';
+				const dataUrl = `data:${mimeType};base64,${base64}`;
+
+				preview.src = dataUrl;
+			}
+		</code></pre>
+	</section>
+
+	<section>
+		<ol>
+			<li>Das Resultat der Funktion <code>readAsArrayBuffer</code> erhalten wir in unserer Funktion im Event. Dieses nehmen wir und konvertieren es in ein Uint8Array</li>
+			<li>In den Zeilen 5 bis 7 konvertieren wir die Informationen in Characters und wandeln diese in einen Base-64 kodierten String um</li>
+			<li>Darauffolgend entnehmen wir den Bild-Typen (JPEG)</li>
+			<li>Wir fassen alle gesamelten Informationen in einen korrekt definierten String zur Bild-Darstellung zusammen</li>
+			<li>Zu guter letzt verwenden wir die Bildinformationen im <code>src</code>-Attribut des <code>img</code>-Elementes</li>
+		</ol>
+	</section>
+
+	<section>
+		<p>Aus dieser Position heraus haben wir alle Bildinformationen vorhanden und können mit diesen Arbeiten / modifizieren.</p>
+		<p>Wie wir diese Informationen modifizieren um das Bild zu modifizieren ist außerhalb des Scopes der Vorlesung.</p>
+	</section>
+</section>

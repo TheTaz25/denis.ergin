@@ -1,0 +1,90 @@
+<section>
+	<section>
+		<h2>Storage API</h2>
+	</section>
+
+	<section>
+		<p>
+			Mit der Storage-API haben wir eine einfache aber wirkungsvolle Art, um Informationen zu speichern und später wieder abzufragen.
+		</p>
+		<p>
+			Dafür stehen uns 2 "dedizierte" Speicher-Orte zur Verfügung: Der sessionStorage und der localStorage.
+		</p>
+		<p>
+			Beide haben die gleichen Funktionen um Inhalte zu speichern, nur die "Speicherdauer" variiert.
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Während wir im <code>localStorage</code> Inhalte auf "unbestimmte" Zeit speichern können, werden Daten im <code>sessionStorage</code> gelöscht, wenn der letzte Tab der Website geschlossen wird, auf dem die Daten gespeichert wurden.
+		</p>
+		<p>
+			Da beide Arten die gleiche API besitzen, betrachten wir nur die langfristige Variante zum Speichern von Daten.
+		</p>
+	</section>
+
+	<section>
+		<h3>Daten speichern</h3>
+	</section>
+
+	<section>
+		<p>
+			Daten im <em>storage</em> werden anhand eines <strong>Key-Value-Paares</strong> gespeichert. Das lässt uns mit der Gefahr im Fall der Fälle ungewollt Daten zu überschreiben. Einmal überschrieben können wir auch nicht mehr auf die Daten davor zugreifen.
+		</p>
+		<p>
+			Wichtig ist zu beachten, dass nur Strings gespeichert werden können. Wollen wir also JSON-Formattierte Daten speichern wollen, müssen wir diese vorher mit <code>JSON.stringify()</code> zu einem String umwandeln.
+		</p>
+	</section>
+
+	<section>
+		<pre
+			class="js"><code data-trim data-line-numbers is:raw>
+				const toSave = "Hallo TINF24BX!";
+				const key = 'greeting';
+				
+				localStorage.setItem(key, toSave);
+			</code></pre>
+	</section>
+
+	<section>
+		<h3>Daten abfragen</h3>
+	</section>
+
+	<section>
+		<p>
+			Wir können die Daten aus dem storage mithilfe des Key's auch wieder abholen:
+		</p>
+		<pre class="js"><code data-trim data-line-numers>
+			const data = localStorage.getItem('key');
+
+			console.log(data);
+		</code></pre>
+		<p>
+			Auch hier gilt wieder: Wenn wir strukturierte Dateien im JSON-Format abgespeichert haben, so müssen die Daten auch wieder mit <code>JSON.parse()</code> umformattiert werden um diese zu nutzen.
+		</p>
+	</section>
+
+	<section>
+		<h3>Daten löschen</h3>
+	</section>
+
+	<section>
+		<p>Sollten wir Daten aus dem Storage löschen wollen, geht das ganz einfach mit dem <em>key</em> und der Funktion <code>localStorage.removeItem(<em>key</em>)</code>.</p>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const key = 'greeting';
+
+			let data = localStorage.getItem(key);
+			console.log(data); // Wir erwarten hier etwas...
+
+			localStorage.removeItem(key);
+			data = localStorage.getItem(key);
+
+			console.log(data); // undefined...
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Wenn wir den gesamten Storage löschen möchten, gibt es die Funktion <code>localStorage.clear()</code>. Daraufhin werden alle gespeicherten <em>Key-Value</em>-Paare gelöscht.</p>
+	</section>
+</section>

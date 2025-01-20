@@ -1,0 +1,242 @@
+<section>
+	<section>
+		<h2>History API</h2>
+	</section>
+
+	<section>
+		<p>
+			Mit der History API können wir per JavaScript mit der Browser-History
+			interagieren.
+		</p>
+		<p>
+			Während sich der User durch verschiedene Dokumente klickt, wird jeder
+			Seitenbesuch in die History gelegt.
+		</p>
+		<p>
+			Durch die Buttons neben der URL-Bar interagiert der Nutzer mit der
+			Browser-History und springt darin vor und zurück.
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Das <code>history</code> Objekt ist im Browser im globalen Scope verfügbar.
+		</p>
+		<p>
+			Es bietet einige Funktionen um zu anderen Seiten zu navigieren und die
+			bisherige history zu modifizieren.
+		</p>
+	</section>
+
+	<section>
+		<h3>history.back()</h3>
+	</section>
+
+	<section>
+		<p>
+			Mit dieser Funktion springen wir in der Browser-History einen Eintrag aus
+			dem aktuellen Tab zurück.
+		</p>
+	</section>
+
+	<section>
+		<h3>history.forward()</h3>
+	</section>
+
+	<section>
+		<p>
+			Mit dieser Funktion springt der Browser in der History um einen Eintrag
+			"nach vorne", sofern in der History nach vorne ein Eintrag vorhanden ist.
+		</p>
+	</section>
+
+	<section>
+		<h3>history.go(<i>delta</i>)</h3>
+	</section>
+
+	<section>
+		<p>
+			Mittels go können wir mehrere Einträge in der Browser-History
+			überspringen.
+		</p>
+		<p>
+			Mit dem <i>delta</i> Parameter können wir die Anzahl der Einträge bestimmen.
+			(Es sind auch negative Zahlen möglich)
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Die Funktionen <code>back, forward &amp; go</code> sind <strong
+				>asynchron</strong
+			> und lösen <code>popstate</code> Events aus.
+		</p>
+		<p>
+			Dieser Umstand ist wichtig, wenn wir sogenannte <em
+				>Single State Applications</em
+			> entwickeln. Wir müssen dann in der Lage sein eine Navigation abzubrechen
+			und den Zustand in der UI zu aktualisieren.
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Für den normalen Webentwickler ist dieser Umstand "weniger wichtig",
+			moderne Bibliotheken und Frameworks kapseln die Logik komplett ab.
+		</p>
+		<p>
+			Aber sehen wir uns das <code>popstate</code> Event kurz etwas näher an:
+		</p>
+	</section>
+
+	<section>
+		<pre
+			class="js"><code data-trim data-line-numbers is:raw>
+      // Das Event kommt am window an
+      window.addEventListener('popstate', (event) =&gt; {
+        console.log(`location: ${document.location}`);
+        // in event.state stehen ggf. weitere infos
+        console.log(`state: ${JSON.stringify(event.state)}`);
+      })
+    </code></pre>
+		<p>
+			Dieses Event ist für den Umstand wichtig, wenn der Nutzer mittels der
+			Browser-Navigation die Seite ändert.
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Für den Fall das der User mit der Seite interagiert und eine Navigation
+			auslöst, können wir einfach das Event abfangen.
+		</p>
+		<pre
+			class="js"><code data-trim data-line-numbers is:raw>
+      // aTag ist nur ein generisches a-tag auf das ein User klickt
+      aTag.addEventListener('click', (event) =&gt; {
+        // Unterbricht die Event-Kette
+        // Verhindert dass der Browser die Seite wechselt
+        event.preventDefault();
+
+        // Ab hier können wir die UI aktualisieren
+      });
+    </code></pre>
+	</section>
+
+	<section>
+		<h3>history.pushState(<em>state, unused, url</em>)</h3>
+	</section>
+
+	<section>
+		<p>
+			Mit <code>pushState</code> fügen wir einen neuen Eintrag in der Browser-History
+			hinzu.
+		</p>
+		<p>
+			Der Browser wird nicht automatisch die neue URL laden, sondern dann wenn
+			es notwendig ist (z.B. wenn der Browser neu startet.). Wir können aber die
+			neue "gepushte" URL mit <code>history.go()</code> aufrufen.
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Wir können nur URL's auf der gleichen Origin angeben, ansonsten wirft die
+			Funktion einen Error.
+		</p>
+	</section>
+
+	<section>
+		<h3>history.replaceState(<em>state, unused, url</em>)</h3>
+	</section>
+
+	<section>
+		<p>
+			Ähnlich zu <code>pushState</code>, modifiziiert diese Funktion die
+			Browser-History.
+		</p>
+		<p>
+			Anders aber ist aber, dass der aktuelle (oberste) History-Eintrag von
+			dieser Funktion überschrieben wird.
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Besonders nützlich ist diese Funktionalität, wenn der User auf einer Seite
+			die URL mehrmals durch Aktionen ändert, die aber keinen Reload der Seite
+			triggern.
+		</p>
+		<p>Gängige Beispiele hierfür sind:</p>
+		<ul>
+			<li>Filtern von Suchergebnissen</li>
+			<li>Tab-Navigation innerhalb einer Seite</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Die URL-Klasse</h3>
+	</section>
+
+	<section>
+		<p>
+			Die URL-Klasse ist hilfreiche um eine Strukturierte URL zu generieren.
+		</p>
+		<p>
+			Sie bietet viele Funktionen um eine URL durch verschiedene Teile zu
+			erweitern (Query-Parameter zum Beispiel)
+		</p>
+	</section>
+
+	<section>
+		<p>
+			Das URL-Objekt lässt sich folgendermaßen aus dem Konstruktor erstellen
+		</p>
+		<pre
+			class="js"><code data-trim data-line-numbers is:raw>
+      const baseUrl = "https://www.denis-ergin.de";
+
+      // Erstellt eine URL zu
+      // "https://www.denis-ergin.de/slides/javascript/00-intro"
+      const url = new URL("/slides/javascript/00-intro", baseUrl);
+
+      /**
+      * new URL(Pfad, BaseUrl);
+      */
+    </code></pre>
+		<p>Diese URL kann z.B. auch für die History-API verwendet werden.</p>
+	</section>
+
+	<section>
+		<p>
+			Das resultierende URL Objekt hat nun Möglichkeiten auf bestimmte Teile
+			zuzugreifen und zu modifieren, sowie die komplette URL zu generieren.
+		</p>
+		<pre
+			class="js"><code data-trim data-line-numbers is:raw>
+      const baseUrl = "https://www.denis-ergin.de";
+      const url = new URL("/slides/javascript/00-intro", baseUrl);
+
+      console.log(
+        url.host, // Hostname + ggf Port
+        url.hostname, // z.B. google
+        url.origin, // scheme + domain + port
+        url.pathname, // Pfad ("/...")
+        url.search, // Der Query-String (kommt nach dem "?")
+        url.protocol, // Protokoll (":" inbegriffen)
+      );
+    </code></pre>
+	</section>
+
+	<section>
+		<p>
+			Wenn wir URL's modifizieren oder generieren müssen, sollten wir die
+			gegebene URL-Klasse verwenden, anstatt einen selbst-gebauten String zu
+			kreiieren.
+		</p>
+		<p>
+			Die URL-Klasse hat einen entscheidenden Vorteil: Potenziell "kritische"
+			Zeichen werden von der Klasse korrekt behandelt.
+		</p>
+	</section>
+</section>
