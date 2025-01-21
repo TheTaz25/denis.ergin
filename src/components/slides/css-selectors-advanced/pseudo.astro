@@ -162,16 +162,33 @@ import NthBox from "./nth-box.astro"
     <p><code>An+B</code>, dabei ist <code>n</code> "gedanklich" eine natürliche Zahl</p>
   </section>
 
-  <section>
+  <section class="apply-styles pseudo">
     <p>Beispiele:</p>
-    <hr>
     <p><code>:nth-child(2n)</code> <br>- Selektiert jedes 2. Element (even)</p>
-    <hr>
+    <div class="container nth nth-2n">
+      <NthBox amount={5} />
+    </div>
+  </section>
+
+  <section class="apply-styles pseudo">
     <p><code>:nth-child(2n + 1)</code> <br>- Selektiert jedes 2. Element, beginnend ab dem 1. Element (odd)</p>
-    <hr>
-    <p><code>(n+7)</code> <br>- Selektiert das 7. und alle darauffolgenden Elemente</p>
-    <hr>
+    <div class="container nth nth-2n+1">
+      <NthBox amount={5} />
+    </div>
+  </section>
+
+  <section class="apply-styles pseudo">
+    <p><code>(n+7)</code> <br>- Selektiert das 4. und alle darauffolgenden Elemente</p>
+    <div class="container nth nth-n+4">
+      <NthBox amount={5} />
+    </div>
+  </section>
+
+  <section class="apply-styles pseudo">
     <p><code>(-n+3)</code> <br>- Selektiert die ersten drei Elemente</p>
+    <div class="container nth nth--n+3">
+      <NthBox amount={5} />
+    </div>
   </section>
 
   <section>
@@ -447,13 +464,12 @@ import NthBox from "./nth-box.astro"
   <section>
     <pre class="css"><code data-trim data-line-numbers is:raw>
       p:where(.test) {
-        background-color: black;
+        background-color: white;
       }
 
       p {
         background-color: #002;
         color: white;
-
       }
     </code></pre>
   </section>

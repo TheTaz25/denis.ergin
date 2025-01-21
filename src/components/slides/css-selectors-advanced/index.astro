@@ -139,6 +139,24 @@ import MediaQueries from './media-queries.astro';
       }
     }
 
+    .container.nth {
+      &.nth-2n .child:nth-child(2n) {
+        background-color: rgb(126, 154, 240);
+      }
+
+      &.nth-2n\+1 .child:nth-child(2n+1) {
+        background-color: rgb(126, 154, 240);
+      }
+
+      &.nth-n\+4 .child:nth-child(n+4) {
+        background-color: rgb(126, 154, 240);
+      }
+
+      &.nth--n\+3 .child:nth-child(-n+3) {
+        background-color: rgba(126, 154, 240);
+      }
+    }
+
     &.not {
       p:not(.important) {
         background-color: #282;
