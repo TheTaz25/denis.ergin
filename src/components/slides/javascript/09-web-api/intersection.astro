@@ -2,4 +2,102 @@
 	<section>
 		<h2>Intersection-API</h2>
 	</section>
+
+	<section>
+		<p>Mithilfe dieser API können wir ein Element im DOM "beobachten" und auf den Umstand reagieren, ob das Element sich in den sichtbaren Bereich des Viewports bewegt (z.B. durch scrollen)</p>
+		<p>Einfacher gesagt können wir hiermit darauf reagieren, ob ein Element für den Nutzer sichtbar ist oder nicht.</p>
+		<p>Dieses Feature hilft uns bei einer Reihe von "alltäglichen" Problemen:</p>
+	</section>
+
+	<section>
+		<ul>
+			<li>Nachladen von Inhalten kurz bevor dieser sichtbar werden soll</li>
+			<li>"Infinite Scrolling"</li>
+			<li>Berechnung der Sichtbarkeit von Umsatz-Relevanten Inhalten</li>
+			<li>Abspielen von z.B. Animationen oder anderen Medien, nur wenn diese auch sichtbar sind (Unter anderem auch um Energie zu sparen)</li>
+		</ul>
+	</section>
+
+	<section>
+		<p>Um einen <code>IntersectionObserver</code> zu erstellen, müssen wir ein paar Optionen vorbereiten</p>
+		<pre class="js" style="font-size: 1rem;"><code data-trim data-line-numbers="2-4|5-7|8-11" is:raw>
+			const options = {
+				// Definiert den Bereich in dem das Element sichtbar sein soll
+				// Wenn dieser Wert nicht definiert ist, wird der (Browser) Viewport verwendet
+				root: null,
+				// Hiermit können wir am "beobachteten" Viewport Puffer einrichten
+				// Werte können sowohl positiv als auch negativ werden
+				rootMargin: "0px",
+				// Definiert, wann das "Intersection"-Event gefeuert werden soll
+				// Wert muss zwischen 0 und 1 sein, bei 1 wird das Event nur dann "getriggert"
+				// wenn das Element vollständig im Viewport zu sehen ist.
+				threshold: 1.0,
+			};
+		</code></pre>
+	</section>
+
+
+	<section>
+		<p>
+			Mit diesen Optionen können wir nun den eigentlichen <code>IntersectionObserver</code> erstellen
+		</p>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const callback = function(event) {
+				console.log("Element ist nun komplett sichtbar!", event);
+			}
+
+			const observer = new IntersectionObserver(callback, options);
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Als letzten Schritt müssen wir nun nur noch das gewünschte Objekt "beobachten"</p>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const observationTarget = document.getElementById('...');
+
+			observer.observe(target);
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Und das ist es schon! Der Callback wird beim initialisieren normalerweise einmalig ausgeführt, sobald das Element nun den Viewport betritt, und Flächenmäßig den <strong>threshold</strong> überschreitet, wird der Callback ausgeführt.</p>
+	</section>
+
+	<section>
+		<p>Nun können wir noch an den Optionen eine Kleinigkeit ändern.</p>
+		<p>Falls es notwendig ist, können wir auch mehrere Thresholds anlegen um mehrere "Steps" beim hineinscrollen in den Viewport zu überprüfen. Bei jedem threshold im definierten Array wird der Callback aufgerufen.</p>
+	</section>
+
+	<section>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const options = {
+				root: null,
+				rootMargin: "0px",
+				// Ruft den Callback bei 25%, 50%, 75%, und 100% 
+				// Sichtbarkeit im Viewport auf.
+				threshold: [0.25, 0.5, 0.75, 1],
+			};
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Der Callback der Aufgerufen wird, meldet sich mit allen Einträgen zurück, die seit dem letzten Aufruf die angegebene (Sichtbarkeits)-Grenze überschritten haben.</p>
+		<p>Zusätzlich befindet sich als 2. Parameter der observer der das Element überprüft.</p>
+	</section>
+
+	<section>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const callback = function(entries, observer) {
+				entries.forEach((entry) => {
+					// entry.boundingClientRect
+					// entry.intersectionRatio,
+					// entry.intersectionRect,
+					// entry.isIntersecting,
+					// entry.rootBounds,
+					// entry.target,
+					// entry.time
+				});
+			}
+		</code></pre>
+	</section>
 </section>
