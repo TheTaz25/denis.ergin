@@ -106,11 +106,11 @@ import GridDemo from "./grid-demo.astro"
   <section>
     <p>Wichtig beim "mischen" von Fraction-Units und Absoluten Größen:</p>
     <p>Das Grid gibt den absoluten Breiten Vorrang. Erst danach wird die restsliche Verfügbare Breite an Fractions verteilt. Ein Beispiel:</p>
-    <p><code>grid-template-columns: 200px 1f 4fr</code></p>
+    <p><code>grid-template-columns: 200px 1fr 4fr</code></p>
   </section>
   
   <section>
-    <p><code>grid-template-columns: 200px 1f 4fr</code></p>
+    <p><code>grid-template-columns: 200px 1fr 4fr</code></p>
     <p>Zuerst werden die 200px der ersten Spalte zugewiesen, die restliche Breite wird durch 5 (1fr + 4fr) geteilt und dann entsprechen "1 zu 5" und "4 zu 5" verteilt.</p>
     <hr>
     <p>Rechenbeispiel bei einer Verfügbaren Breite von 700px:</p>
@@ -184,7 +184,7 @@ import GridDemo from "./grid-demo.astro"
   </section>
 
   <section>
-    <h4><code>minxmax</code> für automatische Implizite Sektionen</h4>
+    <h4><code>minmax</code> für automatische Implizite Sektionen</h4>
   </section>
 
   <section>

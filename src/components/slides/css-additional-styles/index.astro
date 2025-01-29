@@ -320,8 +320,8 @@ import ZIndex from "./z-index.astro";
     align-items: center;
 
     .container {
-      width: 450px;
-      height: 450px;
+      width: 350px;
+      height: 350px;
     }
 
     .bg-color {
@@ -458,19 +458,21 @@ import ZIndex from "./z-index.astro";
     .one, .two, .three {
       width: 70%;
       height: 70%;
-      background-color: white;
     }
 
     .one {
-      z-index: 1;
+			z-index: 1;
+			background-color: red;
     }
 
     .two {
       right: 0;
+			background-color: blue;
     }
 
     .three {
       bottom: 0;
+			background-color: green;
     }
 
     .top-left {

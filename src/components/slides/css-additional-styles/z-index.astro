@@ -14,10 +14,33 @@
   </section>
 
   <section>
-    <pre class=""><code data-trim data-line-numbers>
-    
+    <pre class="html"><code data-trim data-line-numbers>
+    	&lt;div class="position relative box"&gt;
+				&lt;div class="absolute one"&gt;Erstes Element: Index 1&lt;/div&gt;
+				&lt;div class="absolute two"&gt;Zweites Element: Kein Index&lt;/div&gt;
+				&lt;div class="absolute three"&gt;Drittes Element: Kein Index&lt;/div&gt;
+			&lt;/div&gt;
     </code></pre>
   </section>
+
+	<section>
+		<pre class="css"><code data-trim data-line-numbers is:raw>
+			.one {
+				z-index:1; background: red;
+			}
+			.two { 
+				right: 0; background: blue;
+			}
+			.three {
+				bottom: 0; background: green;
+			}
+			.absolute {
+				position: absolute;
+				width: 70%;
+				height: 70%;
+			}
+		</code></pre>
+	</section>
 
   <section class="apply-styles">
     <div class="position relative box">
