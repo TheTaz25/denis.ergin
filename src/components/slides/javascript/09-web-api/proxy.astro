@@ -2,4 +2,82 @@
 	<section>
 		<h2>Proxy API</h2>
 	</section>
+
+	<section>
+		<p>Die Proxy-API ist ein <em>Interface</em> mit dem man JavaScript-Variablen "beobachten" kann.</p>
+		<p>Wir können eine Proxy als <strong>Man-In-The-Middle</strong> Wrapper um eine Variable ansehen. Die Proxy kann auf Lese-Zugriffe als auch auf Schreib-Zugriffe reagieren und das normale Verhalten beeinflußen.</p>
+		<p>Die Proxy-API ist eine sehr mächtige API und wird von vielen großen Frameworks (unter anderem VueJS) verwendet um z.B. Reactivität zu erreichen.</p>
+	</section>
+
+	<section>
+		<p>Grundlegendes Beispiel</p>
+		<pre class="js"><code data-trim data-line-numbers="1-3|5,6|8-10" is:raw>
+			const myObject = {
+				value: "Hallo",
+			};
+
+			// Mittels dem handler können wir Operationen beeinflußen
+			const handler = {};
+			
+			// Wir erstellen ein neues Objekt mithilfe der Proxy-Klasse
+			// und dessen Handler
+			const proxied = new Proxy(myObject, handler);
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Erweitern wir nun das <code>handler</code> Objekt</p>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const handler = {
+				get(target, prop, receiver) {
+					if (prop === 'value') {
+						return `${target[prop]} Welt!`;	
+					}
+				}
+			};
+			// ...
+
+			console.log(proxied.value);
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Wir können nun also beim Abfragen von Werten in den Zugriff auf die Variable zugreifen und den return-Wert modifizieren.</p>
+		<p>Dass, was wir gerade eben Entwickelt haben, nennt sich eine <strong>Trap</strong>. Wir haben verschiedene Traps für die verschiedensten Arten von Variablen.</p>
+	</section>
+
+	<section>
+		<ul>
+			<li><code>.apply()</code> für Funktionen (Funktionsaufrufe)</li>
+			<li><code>.construct()</code> für Konstruktoren-Aufrufe (mittels <code>new</code>)</li>
+			<li><code>.get()</code> für Zugriffs-Operationen von Objekten</li>
+			<li><code>.has()</code> wenn die Existenz von <strong>properties</strong> in Objekten geprüft wird</li>
+			<li><code>.set()</code> für Änderungs-Operationen auf Objekten</li>
+		</ul>
+	</section>
+
+	<section>
+		<p>Betrachten wir nochmals das Beispiel mit der <code>get()</code> trap.</p>
+		<p>Wenn wir versuchen einen anderen Wert also value abzufragen, erhalten wir ein <code>undefined</code>, auch wenn der Wert im Objekt gesetzt ist.</p>
+		<p>Wir müssen also noch eine Art Fallback implementieren, falls es zu einem "Case" kommt, in dem der <strong>default</strong> ausgeführt werden soll (in unserem Falle, den gespeicherten Wert zurück geben)</p>
+	</section>
+
+	<section>
+		<p>Machen wir das nun mal. Hierfür verwenden wir eine spezialisierte konstante <code>Reflect</code></p>
+		<pre class="js"><code data-trim data-line-numbers is:raw>
+			const handler = {
+				get(target, prop, receiver) {
+					if (prop === 'value') {
+						return `${target[prop]} Welt!`;
+						}
+					return Reflect.get(...arguments);
+				}
+			};
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Das Reflect Objekt enthält Funktionen die den gleichen Namen besitzen wie die, die man in den Traps definieren kann.</p>
+		<p>Wenn diese Aufgerufen und zurück gegeben werden, so wird die originale Aktion am Objekt ausgeführt. Wir können dies also als "Default" Aktion definieren wenn nur auf bestimmte Werte innerhalb einer Trap reagieren wollen.</p>
+	</section>
 </section>
