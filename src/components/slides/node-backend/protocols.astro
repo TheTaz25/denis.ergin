@@ -1,0 +1,162 @@
+<section>
+  <section>
+    <h2>Protokolle</h2>
+  </section>
+
+  <section>
+    <p>Wir betrachten nun in den Nachfolgenden Slides was passiert wenn wir eine URL im Browser angeben bis zu dem Zeitpunkt an dem wir alle Daten empfangen haben.</p>
+  </section>
+
+  <section>
+    <h3>DNS</h3>
+  </section>
+
+  <section>
+    <p>Wenn wir eine URL wie "google.de" haben, weiß unser PC nicht, wohin der Request gesendet werden muss. Dazu benötigt der PC die IP-Adresse des Ziels.</p>
+    <p>IP-Adressen sind heutzutage entweder in der Version 4 oder Version 6 vorhanden. Version 6 wurde primär dazu erfunden, weil es keine Verfügbaren IPv4 Adressen mehr gab.</p>
+  </section>
+
+  <section>
+    <p>Um einen Namen wie "google.de" in eine für den Computer / das Netzwerk interpretierbare Adresse umzuwandeln, frägt der Computer bei einem DNS-Server nach.</p>
+    <p>Der Namens-Server gibt uns eine IP-Adresse zu der dann der Request gesendet werden kann.</p>
+  </section>
+
+  <section>
+    <p>Die Info, unter welcher IP der Namensserver zu finden ist, erhalten wir durch unseren Internet-Service-Provider (Über den Router des Providers).</p>
+    <p>Es gibt ein paar Schritte die bei einem DNS-Lookup geschehen:</p>
+  </section>
+
+  <section>
+    <h4>Anfrage beim "Recursive Resolver"</h4>
+  </section>
+
+  <section>
+    <p>Die IP vom DNS-Server die wir "haben", ist die eines "DNS Recursive Resolvers". Dieser ist der "Einstiegspunkt" in der Suche eines Namenseintrages.</p>
+    <p>DNS-Server bestehen nicht nur aus einzelnen Servern sondern sind einer Verkettung von mehreren Namens-Servern die jeweils einen kleineren Teil des Namens-Raums kennen.</p>
+  </section>
+
+  <section>
+    <h4>Anfrage beim Root-Server</h4>
+  </section>
+
+  <section>
+    <p>Der DNS-Root-Server ist die erste Übersetzungs-Ebene im DNS-System.</p>
+    <p>Der Root-Server kennt dabei den "nächsten" Ansprechpartner (Server), der die Adresse kennt.</p>
+    <p>Im Normalfall ist dies ein Top-Level-DNS-Server</p>
+  </section>
+
+  <section>
+    <h4>Anfrage beim TLD-DNS-Server</h4>
+  </section>
+
+  <section>
+    <p>Der Recursive Resolver frägt nun beim TLD-DNS-Server nach der IP des gesuchten Ziels.</p>
+    <p>Überlicherweise erhält der Resolver die IP des <strong>Authorative Nameserver</strong>.</p>
+  </section>
+
+  <section>
+    <h4>Anfrage beim Authorative Nameserver</h4>
+  </section>
+
+  <section>
+    <p>Der Authorative Nameserver hat die Einträge der gesuchten Domains (Name zu IP-Mapping)</p>
+    <p>Der Recursive Resolver kann uns nun mit der gesuchten IP Antworten.</p>
+  </section>
+
+  <section>
+    <h3>http</h3>
+  </section>
+
+  <section>
+    <p>Jeder Gängige Web-Request wird über das HTTP-Protokol versendet.</p>
+    <p>Über die Jahre hat sich das HTTP-1 Protokol entwickelt (HTTP2 und HTTP3). Der Inhalt eines jeden Requests ist aber zunächst gleich/ähnlich.</p>
+  </section>
+
+  <section>
+    <p>Ein HTTP-Request besteht aus mehreren Informationen:</p>
+    <ol>
+      <li>Versions-Information (HTTP)</li>
+      <li>Ziel-URL</li>
+      <li>HTTP-Methode</li>
+      <li>Request-Header</li>
+      <li>(optionaler) Body</li>
+    </ol>
+  </section>
+
+  <section>
+    <h4>HTTP-Methode</h4>
+  </section>
+
+  <section>
+    <p>Die HTTP-Methode definiert die Aktion die wir auf einer URL (auch genannt Resource) ausführen wollen.</p>
+    <p>Der Browser sendet im ohne Information "by default" ein GET bei allen Requests</p>
+  </section>
+
+  <section>
+    <ul>
+      <li><strong>GET</strong> um Inhalte zu erhalten</li>
+      <li><strong>POST</strong> um Inhalte anzulegen</li>
+      <li><strong>PUT</strong> um Inhalte zu modifizieren</li>
+      <li><strong>DELETE</strong> um Inhalte zu löschen</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Es gibt noch weitere Methoden wie OPTIONS, aber diese werden seltener direkt in der Webentwicklung genutzt.</p>
+  </section>
+
+  <section>
+    <h4>Headers</h4>
+  </section>
+
+  <section>
+    <p>Header im HTTP-Request enthalten zusätzliche Informationen als Key-Value-Paare.</p>
+    <p>Header können entweder durch Code gesetzt werden (also durch den Entwickler) als auch durch den User-Agent (Web-Browser)</p>
+  </section>
+
+  <section>
+    <p>Beispielhafte Inhalte</p>
+    <ul>
+      <li><strong>accept</strong>: Welche Datentypen als Antwort akzeptiert werden</li>
+      <li><strong>Auhtorization</strong>: Optionale Angabe von Informationen zum verifizieren von Nutzern.</li>
+      <li><strong>User-Agent</strong>: Informationen zum User-Agent (Browser zum Beispiel)</li>
+      <li><strong>Cache-Control</strong>: Informationen wie Inhalte gecached werden sollen</li>
+      <li><strong>Cookie</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <h4>Body</h4>
+  </section>
+
+  <section>
+    <p>Im Body eines Requests stehen die zu übertragenden Informationen der jeweiligen Seite.</p>
+    <p>Der Body kann bei GET-Requests von der Sendenden Partei nicht gesetzt werden.</p>
+    <p>Im Body befindet sich bei einer Anfrage mittels Post zum Beispiel die Information für die zu anlegende Resource.</p>
+  </section>
+
+  <section>
+    <h4>HTTP-Responses</h4>
+  </section>
+
+  <section>
+    <p>Sobald / Während der Bearbeitung kann der Server in einer Response einen StatusCode festlegen, die dem Client mitteilen soll, wie der Status zur Bearbeitung der Anfrage ist.</p>
+    <p>Diese Responses sind eine Zahl im Bereich zwischen 100 und 599. Wobei jede "100-er" Kategorie einen anderen Allgemeinen Zustand definiert:</p>
+  </section>
+
+  <section>
+    <ol>
+      <li><strong>1xx</strong> Information</li>
+      <li><strong>2xx</strong> Success</li>
+      <li><strong>3xx</strong> Redirect</li>
+      <li><strong>4xx</strong> Client Error</li>
+      <li><strong>5xx</strong> Server Error</li>
+    </ol>
+    <p>Eine Ausführliche Erklärung (mit Katzen) ist <a href="https://http.cat/" rel="noopener noreferrer">hier</a> zu finden</p>
+  </section>
+
+  <!-- TODO: TCP/IP -->
+  <!-- <section>
+    <h3>TCP/UDP</h3>
+  </section> -->
+</section>

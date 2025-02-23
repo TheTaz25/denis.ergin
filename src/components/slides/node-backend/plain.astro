@@ -1,0 +1,116 @@
+<section>
+  <section>
+    <p>Wir beginnen nun damit, einen (bzw. mehrere) Server mit JavaScript auf NodeJS zu implementieren.</p>
+    <p>NodeJS ist im Vergleich zur Umgebung im Browser anders aufgebaut. Wir haben zum Beispiel kein <code>document</code> auf das wir beispielsweise zugreifen könnten.</p>
+  </section>
+
+  <section>
+    <p>Dafür haben wir nun Zugriff auf die gesamte NodeJS-API um mit dem Betriebssystem zu interagieren (Dateizugriffe, Netzwerk-Ports öffnen und so weiter).</p>
+    <p>Wenn Node installiert ist, können wir eine JavaScript Datei mit <code>node name-der-datei.js</code> ausführen.</p>
+  </section>
+
+  <section>
+    <p>Legen wir nun eine erste Datei <code>server.js</code> an:</p>
+    <pre class="js"><code data-trim data-line-numbers="1|3-5" is:raw>
+      const http = require("node:http");
+
+      http.createServer(function(req, res) {
+        res.end();
+      }).listen(8080);
+
+      console.log("Server listening on port 8080!");
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Funktionalitäten in NodeJS sind in <strong>Modulen</strong> geschrieben. Wir können auf diese jederzeit zugreifen.</p>
+    <p>Je nachdem wie das Projekt aufgebaut ist, müssen wir auf diese Module anders zugreifen.</p>
+    <p>In nicht näher konfigurierten Projekten müssen wir mittels <code>require("modulname")</code> auf diese Sachen zurgeifen.</p>
+  </section>
+
+  <section>
+    <p>In moderneren Projekten, benutzen wir die neuere Modul-Syntax die mittels den keywords <code>import something from 'modul';</code> aufgerufen wird.</p>
+    <p>Das aktuelle Setup macht nicht viel... Senden wir mal etwas an den Sender zurück!</p>
+  </section>
+
+  <section>
+    <p>Wir nutzen <code>res.write()</code> um Inhalte zum Client zurück zu senden</p>
+    <pre class="js"><code data-trim data-line-numbers="2" is:raw>
+      http.createServer(function(req, res) {
+        res.write("Hallo vom Server!");
+        res.end();
+      }).listen(8080);
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Request &amp; Response</h3>
+  </section>
+
+  <section>
+    <p>Wenn der Server startet, wird bei jedem Request zum Server die Callback-Funktion ausgeführt.</p>
+    <p>Diese Funktion erhält zum einen ein Request-Objekt und zum zweiten ein Response-Objekt.</p>
+  </section>
+
+  <section>
+    <p>Mit dem Request-Objekt können wir alle Informationen aus der vom Client gesendeten Anfrage extrahieren. Das Objekt ist (ähnlich zum Reponse-Objekt) recht komplex gestaltet.</p>
+    <p>Im Request finden wir die URL (den Pfad) über den wir die Anfrage erhalten haben, ggf. den Body, welche Methode, und mehr.</p>
+  </section>
+
+  <section>
+    <p>Das Response-Objekt beinhaltet Funktionalität um Daten zurück zu senden. Wichtig ist dabei zu wissen das wir mit einem NodeJS-Stream Objekt interagieren.</p>
+    <p>Streams sind Lesbar, Schreibbar oder beides. Sie dienen dazu mit verschiedenen Dingen zu interagieren (wie zum Beispiel Netzwerk-Streams, Interkation mit Dateien und mehr).</p>
+  </section>
+
+  <section>
+    <p>Für uns wichtig ist erstmal der Umstand, das wir in das response-Objekt mittels <code>.write()</code> Daten in den Stream hinein schreiben können, und dass wir mit <code>.end()</code> den Stream schließen können (und damit ultimativ den Request "beenden" oder schließen).</p>
+  </section>
+
+  <section>
+    <p>Geben wir ein paar Infos zum <em>testen</em> zurück.</p>
+    <pre class="js"><code data-trim data-line-numbers="3-4" is:raw>
+      http.createServer(function(req, res) {
+        res.write("Hallo vom Server!&lt;br /&gt;");
+        res.write(`Request unter dem Pfad ${req.url} aufgerufen.
+          Verwendete Methode: ${req.method}`);
+        res.end();
+      }).listen(8080);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Nun erhalten wir ein paar Informationen im Browser (Pfad + Methode). Aber offensichtlich denkt der Browser nicht, dass wir hier mit HTML arbeiten..</p>
+    <p>Wir arbeiten auch nicht wirklich mit HTML, aber wir können dem Browser mitteilen, dass das was wir versenden HTML ist und vom Browser entsprechend interpretiert werden soll.</p>
+  </section>
+
+  <section>
+    <pre class="js"><code data-trim data-line-numbers="2" is:raw>
+      http.createServer(function(req, res) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write("Hallo vom Server!&lt;br /&gt;");
+        res.write(`Request unter dem Pfad ${req.url} aufgerufen.
+          Verwendete Methode: ${req.method}`);
+        res.end();
+      }).listen(8080);
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Damit sollte der Browser die Empfangenen Daten als HTML erkennen und sein möglichstes Versuchen um dieses korrekt zu rendern (also ohne, dass wir extra den Kompletten Rahmen mitsenden müssten.)</p>
+  </section>
+
+  <section>
+    <p>Wenn wir nun mehr daraus machen wollen, müssten wir ein paar Dinge implementieren:</p>
+    <ul>
+      <li>Routing</li>
+      <li>Header-Logik</li>
+      <li>Middleware-Systeme</li>
+      <li>Und mehr...</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Aber bevor wir uns damit auseinander setzen, verwenden wir lieber bereits existierende Frameworks die uns all diesen Aufwand ersparen.</p>
+    <p>Bevor wir aber dazu kommen, sehen wir uns die darunter liegenden Protokolle an, die wir hier verwenden.</p>
+  </section>
+</section>
