@@ -1,0 +1,61 @@
+<section>
+  <section>
+    <h2>SQLite &amp; NodeJS</h2>
+  </section>
+
+  <section>
+    <p><strong>Vorab anzumerken: Um die Nachfolgenden Code-Snippets auszuführen, ist NodeJS in der Mindestversion 22.5.0 notwendig.</strong> Seit dieser Version wurde die <em>libsql</em> in die JavaScript Engine miteingebaut.</p>
+    <p>Hiermit ist es möglich eine SQLite Datenbank zu bedienen, ohne auf externe Pakete zurückgreifen zu müssen.</p>
+  </section>
+
+  <section>
+    <h3>Setup</h3>
+  </section>
+
+  <section>
+    <p>Wir bleiben weiterhin mit fastify unterwegs. Hier verwenden wir das Plugin-System um die Datenbank im Web-Server zu nutzen.</p>
+    <p>Beginnen wir nun auch damit. Im existierenden Projekt legen wir eine db.ts im Plugin-Ordner an.</p>
+  </section>
+
+  <section>
+    <p>Initialer Aufbau:</p>
+    <pre class="ts"><code data-trim data-line-numbers="1-3|5-7|9-13" is:raw>
+      import fp from 'fastify-plugin';
+      import { DatabaseSync } from 'node:sqlite';
+      import path from 'node:path';
+
+      export default fp(async (fastify, opts) => {
+        // ToDo
+      })
+
+      declare module 'fastify' {
+        export interface FastifyInstance {
+          db: DatabaseSync,
+        }
+      }
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Plugin-Implementierung</p>
+    <pre class="ts"><code data-trim data-line-numbers="2-3|6-10|12" is:raw>
+      export default fp(async (fastify, opts) => {
+        const p = path.join(process.cwd(), 'db', 'store.db');
+        const db = new DatabaseSync(p);
+      
+        db.exec(`
+            CREATE TABLE IF NOT EXISTS test(
+              key INTEGER PRIMARY KEY,
+              value TEXT
+            ) STRICT
+          `);
+      
+        fastify.decorate('db', db);
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Mit diesen Zeilen haben wir nun in allen Fastify-Umgebungen auf die Datenbank-Konstante zugreifen.</p>
+  </section>
+</section>

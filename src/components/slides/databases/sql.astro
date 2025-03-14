@@ -1,0 +1,148 @@
+<section>
+  <section>
+    <h2>Schnell-Kurs zu SQL</h2>
+  </section>
+
+  <section>
+    <p>Um im weiteren mit der Datenbank zu arbeiten, müssen wir kurz auf ein paar Basics mit SQL (Structured Query Language) eingehen.</p>
+    <p>Da wir hier mit SQLite arbeiten, müssen wir uns nicht um User-Management und Rechte kümmern, das haben wir hier nicht.</p>
+  </section>
+
+  <section>
+    <h3>Tabellen erstellen</h3>
+  </section>
+
+  <section>
+    <p>Um mit Tabellen und deren Daten zu arbeiten, müssen wir zuerst eine oder mehrere Tabellen anlegen, in der wir die Daten speichern wollen.</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY,
+        title TEXT NOT NULL,
+        completed INTEGER DEFAULT 0,
+        due_date TEXT
+      ) STRICT
+    </code></pre>
+  </section>
+
+  <section>
+    <p>SQLite unterstützt nur 5 Daten-Typen:</p>
+    <ul>
+      <li>NULL</li>
+      <li>INTEGER</li>
+      <li>REAL</li>
+      <li>TEXT</li>
+      <li>BLOB</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>
+      CREATE TABLE IF NOT EXISTS tasks
+      <br />
+      Erstelle die Tabelle <em>tasks</em>, falls diese noch nicht angelegt ist
+    </p>
+    <hr>
+    <p>
+      "id" - "INTEGER" "PRIMARY KEY"
+      <br />
+      "name" - "Datentype" "Primärschlüssel"
+    </p>
+  </section>
+
+  <section>
+    <p>In Datenbanken ist ein <em>PRIMARY KEY</em> notwendig um Einträge in der Tabelle eindeutig zu identifizieren.</p>
+    <p>Die Anweisung <strong>PRIMARY KEY</strong> zeigt an, dass diese Spalte eindeutig (UNIQUE) ist und das Datenbanksystem die Zahl automatisch hochzählen soll für jeden Eintrag.</p>
+  </section>
+
+  <section>
+    <p>Die Anweisung <strong>NOT NULL</strong> zeigt der Datenbank an, dass dieses Feld (Spalte) nicht leer sein darf. Leere Werte werden in relationalen Datenbanken als <strong>NULL</strong> definiert.</p>
+  </section>
+
+  <section>
+    <h3>Einträge speichern</h3>
+  </section>
+
+  <section>
+    <p>Die Tabelle ist nun angelegt, wir können also jetzt Daten darin speichern:</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      INSERT INTO tasks (title) VALUES
+        ("Für Web-Engineering lernen");
+    </code></pre>
+    <p>Mit diesem Eintrag speichern wie eine neue Aufgabe in die neue Tabelle. Defaults werden automatisch gesetzt und der erste Eintrag erhält die id <strong>1</strong>.</p>
+  </section>
+
+  <section>
+    <h3>Einträge abfragen</h3>
+  </section>
+
+  <section>
+    <p>Die wahre Stärke von relationalen Datenbanken besteht in der <em>effizienten</em> Abfrage von Daten. Fragen wir zum Anfang <strong>alle</strong> in der befindlichen Tabelle abgelegten Aufgaben ab:</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      SELECT * FROM tasks;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wenn wir nur einzelne <em>Spalten</em> abfragen wollen, können wir die Spalten-Namen anstatt der <strong>Wildcard *</strong> verwenden. Die Spalten-Liste muss Komma-Separiert sein.</p>
+    <pre class="sql"><code data-trim data-line-numbers>
+      SELECT title, completed FROM tasks;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wenn wir bestimmte Einträge filtern wollen können wir dies auch erreichen:</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      SELECT * FROM tasks WHERE completed = 0;
+      SELECT * FROM tasks WHERE completed <> 1;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Einträge aktualisieren</h3>
+  </section>
+
+  <section>
+    <p>Wir können unsere Aufgaben nun abhaken:</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      UPDATE tasks SET completed = 1 WHERE id = 1;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Einträge löschen</h3>
+  </section>
+
+  <section>
+    <p>Zu guter letzt ist es auch möglich, Einträge aus einer Datenbank zu löschen</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      DELETE FROM tasks WHERE completed = 1;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Relationen (JOINs)</h3>
+  </section>
+
+  <section>
+    <p>Eine der Stärken / Features von relationelen Datenbanken ist die Möglichkeit, Tabellen miteinander zu verknüpfen. So lassen sich komplexe Datenstrukturen stark vereinfachen. Besonders wenn es 1:n oder m:n Relationen gibt.</p>
+    <p>Wir können also Einträge einer Tabelle als Referenz in einer zweiten Tabelle verwenden.</p>
+  </section>
+
+  <section>
+    <p>Legen wir zuerst eine neue Tabelle an, die Nutzer abbilden soll:</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      CREATE TABLE IF NOT EXISTS user (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL
+      ) STRICT
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Im zweiten Schritt müssen wir die existierende Tabelle um eine Spalte erweitern, die die Referenz zum Nutzer (genauer gesagt dessen id) speichern kann.</p>
+    <pre class="sql"><code data-trim data-line-numbers is:raw>
+      ALTER TABLE tasks ADD COLUMN
+        user_id INTEGER REFERENCES user(id);
+    </code></pre>
+  </section>
+</section>
