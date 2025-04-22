@@ -1,0 +1,142 @@
+<section>
+  <section>
+    <h2>Wie machen wir den Code Produktionsreif?</h2>
+  </section>
+
+  <section>
+    <p>Wir haben nun unsere erste App geschrieben. Nun wollen wir die natürlich auch "öffentlich" Verfügbar haben. Das macht ja immerhin das Internet aus...</p>
+    <p>Wir schauen uns nun an, welche Schritte wir unternehmen <b>sollten</b>, um von lokal zu global zu wechseln.</p>
+  </section>
+
+  <section>
+    <p>Der erste Schritt besteht darin, den von uns geschrieben Code zu <em>optimieren</em>.</p>
+  </section>
+
+  <section>
+    <h3>Warum sollte ich meinen Code optimieren?</h3>
+  </section>
+
+  <section>
+    <p>Der <em>Rohe</em> Code den wir geschrieben haben ist, wenn wir das auf große Projekte projezieren, ineffizient.</p>
+    <p>Wir können den Code mittels Tools auf verschiedene Arten transformieren und effizienter gestalten.</p>
+  </section>
+
+  <section>
+    <p>Optimierungsmöglichkeiten:</p>
+    <ul>
+      <li>Minification</li>
+      <li>Tree-Shaking</li>
+      <li>Bundling</li>
+      <li>Compatibility</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Minification</h3>
+  </section>
+
+  <section>
+    <p>Während der <strong>Minification</strong> wird der Code verkleinert. Dabei werden unnötige Whitespaces entfernt, und Variablennamen verkürzt.</p>
+    <p>Variablennamen werden so verkürzt, dass es nur noch kurze Buchstabenfolgen (a, b, c, d, usw...) sind.</p>
+    <p>Verkleinert das finale JavaScript deutlich und reduziert dadurch die Menge der Daten die übertragen werden müssen.</p>
+  </section>
+
+  <section>
+    <h3>Tree-Shaking</h3>
+  </section>
+
+  <section>
+    <p>Wenn wir externe Bibliotheken und Frameworks verwenden, nutzen wir in den meisten Fällen nicht alle Features des Pakets.</p>
+    <p>Während des Tree-Shaking werden ungenutzte Code-Schnippsel von externen Paketen entfernt, sodass ungenutzter Code erst gar nicht ausgeliefert wird.</p>
+  </section>
+
+  <section>
+    <h3>Bundling</h3>
+  </section>
+
+  <section>
+    <p>Der Übersicht wegen teilen wir unseren Code in mehrere Dateien auf.</p>
+    <p>Beim Bundling sollen diese zusammenhängenden JavaScript-Codeschnippsel möglichst so zusammengefasst werden, dass eine Website nur ein einziges File herunter laden muss.</p>
+    <p>Hier gibt es aber auch eine "Anforderung", dass solche Bundles eine bestimmte Dateigröße nicht überschreiten sollten.</p>
+  </section>
+
+  <section>
+    <h3>Compatibility</h3>
+  </section>
+
+  <section>
+    <p>Das ist eher ein Relikt aus alten Zeiten, als der Support für den Internet Explorer 11 noch "sichergestellt" werden musste.</p>
+    <p>Tools wie Babel stellt sicher, dass moderne Features aus neueren JavaScript-Versionen auch "funktional" in alten Browsern verwendet werden können.</p>
+    <p>Hierzu wurden sogenannte "Polyfills" verwendet. Code der moderne Features "nachmacht", ohne dass sich der Entwickler darum kümmern muss.</p>
+  </section>
+
+  <section>
+    <p>Das sind die wichtigsten Dinge, die passieren müssen, damit unser JavaScript-Code auf einer realen Website "ausgrollt" werden können.</p>
+    <p>Jetzt stellt man sich natürlich die Frage, wie man das alles erreichen kann. Dass sind immerhin keine "kleinen" Änderungen die man an seinem Code machen muss.</p>
+    <p>Das gute: Wir müssen eigentlich recht wenig machen. Tools wie Bundler und Co. erledigen die schwere arbeit für uns.</p>
+  </section>
+
+  <section>
+    <p>Ein solches Tool verwenden wir bereits: Vite</p>
+    <p>Wir haben unseren vergangenen (Frontend) Projekte mit Vite aufgesetzt. Und Vite macht für uns das alles, was oben beschrieben wurde.</p>
+  </section>
+
+  <section>
+    <p>Um unser Frontend für die Produktion optimiert zu bauen, ist auch nur ein einzlnes Kommando notwendig: <code>npm run build</code></p>
+  </section>
+
+  <section>
+    <h2>Ein kurzer Blick: Möglichkeiten um eine Website zu "rendern"</h2>
+  </section>
+
+  <section>
+    <p>Das was wir bisher gebaut haben ist eine <strong>Statische Website</strong>. Die Inhalte die Ausgespielt werden sind vollständig und es sind z.B. keine weiteren Requests notwendig, damit die Website funktionieren kann.</p>
+    <p>Auch meine (also diese) Website ist Statisch erzeugt: Alle Inhalte sind zum nach dem Build-Prozess vollständig uns es muss der Content nur noch auf einen Server geladen werden.</p>
+  </section>
+
+  <section>
+    <p>Aber was gibt es für Alternativen?</p>
+    <p>Im Allgemeinen gibt es 2 weitere "Möglichkeiten", wie eine Website funktionieren kann</p>
+  </section>
+
+  <section>
+    <h3>Single Page Applications</h3>
+  </section>
+
+  <section>
+    <p>Single Page Applications sind spezialisierte Websites, die größtenteils auf JavaScript basiertem Rendering aufgebaut sind (Beispiele sind: React, Vue, etc.)</p>
+    <p>Die Website besteht eigentlich nur aus einer kleinen HTML-Datei mit einem Script-Tag. Das Script sorgt dann dafür, dass Inhalte angezeigt werden und Interaktivität hergestellt wird.</p>
+  </section>
+
+  <section>
+    <p>Die angezeigten Inhalte sind dann meist dynamischer Natur. Das heißt, die Inhalte werden nachträglich über Requests aus einem Content-Server ausgespielt.</p>
+    <p>Konzepte wie <em>Routing</em> passiert dann auch vollständig im Browser/JavaScript. In einer Art und Weise wie es der Endnutzer nicht mehr mitbekommt.</p>
+  </section>
+
+  <section>
+    <h3>Server Side Rendering</h3>
+  </section>
+
+  <section>
+    <p>Server-Side-Rendering ist eigentlich ein sehr altes Konzept:</p>
+    <p>Das auszuliefernde HTML-Markup wird auf einem Server dynamisch bei der Abfrage generiert.</p>
+    <p>Eines dieser älteren Systeme ist PHP. Moderne Alternativen sind vor allem React (NextJS oder Remix), Vue (Nuxt), Svelte oder eines der vielen anderen Systeme die es mittlerweile gibt.</p>
+  </section>
+
+  <section>
+    <p>Auch hier gibt es nochmals 2 "Unter"-Wege: Ein Hybrides Setup oder Klassiches Server-Side-Rendering</p>
+    <p>Im klassischen Server-Side-Rendering wird bei einem Seitenwechsel ein neues HTML angefordert.</p>
+    <p>Im Hybriden Setup (z.B. NUXT), wird der initiale Inhalt auf dem Server vor-generiert. Sobald der Inhalt beim Nutzer im Browser liegt, "übernimmt" JavaScript alle weiteren Seiten (ähnlich zu einer Single-Page-Application)</p>
+  </section>
+
+  <section>
+    <p>Aber wieso das "Hin-und-Her" mit Server-Side-Rendering?</p>
+    <p>Wir (als Webentwickler oder Betreiber eures eigenen Shops) wollen natürlich auffindbar sein. Und das größte "Ding" um gefunden zu werden ist Google.</p>
+    <p>Und Google hat bestimmte Anforderungen um unsere Website besser zu "ranken". In der Webentwicklung spricht man bei diesen Anforderungen von "Search Engine Optimization".</p>
+  </section>
+
+  <section>
+    <p>Im großen und ganzen wollen wir simpel gesprochen unsere Inhalte bereits bei der Ankunft beim Nutzer im HTML-Markup haben und nicht erst nachträglich durch JavaScript generieren.</p>
+    <p>Das Thema Search-Engine-Optimization wird nochmals tiefer in Web-Engineering II (zumindest bei mir behandelt.)</p>
+  </section>
+</section>

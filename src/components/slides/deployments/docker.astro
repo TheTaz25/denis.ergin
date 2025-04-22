@@ -1,0 +1,97 @@
+<section>
+  <section>
+    <h2>Docker</h2>
+  </section>
+
+  <section>
+    <p><strong>Was ist Docker?</strong></p>
+    <p>
+      Docker ist eine Plattform, mit der Anwendungen in isolierten Containern verpackt, verteilt und ausgeführt werden können. Diese Container enthalten alles, was die Anwendung zum Laufen braucht, wodurch sie unabhängig von der Umgebung funktioniert.
+    </p>
+    <p>-- ChatGPT</p>
+  </section>
+
+  <section>
+    <p>Docker ist zunächst eines: Eine Virtualisierungs-Software. Auf ihr können also im weitesten Sinne komplette Betriebssysteme in Isolation laufen.</p>
+    <p>Jede Applikation eines Anwendungs-System sollte möglichst allein laufen. Abhängigkeiten zu weiteren Applikationen (zum Beispiel Datenbanken), werden in einem isolierten Container ausgeführt.</p>
+  </section>
+
+  <section>
+    <p>Da wir nur einen statischen Webserver laufen lassen wollen, ist dies zunächst alles recht einfach.</p>
+    <p>Wir bauen innerhalb eines Docker-Containers unsere Website und stellen die gebaute Website innerhalb eines "sauberen" Containers zur Verfügung.</p>
+    <p>Wir schauen uns den Prozess Schritt für Schritt an.</p>
+  </section>
+
+  <section>
+    <h3>Eine Simple Konfiguration für Caddy</h3>
+  </section>
+
+  <section>
+    <p>Wir werden als Beispiel einen Caddy Web-Server verwenden um unsere Website verfügbar zu machen.</p>
+    <p>Die minimale Konfiguration für Caddy umfasst lediglich 3 Zeilen, wer an ein Beispiel mit nginx interessiert ist, findet diese auf meinem GitHub.</p>
+  </section>
+
+  <section>
+    <pre class="toml"><code data-trim data-line-numbers is:raw>
+      # Caddyfile
+      :80
+
+      root * /srv
+      file_server
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Anweisungen für den Bau eines Docker-Containers</h3>
+  </section>
+
+  <section>
+    <p>Wir müssen nun Docker eine Bauanleitung geben, wie wir vom Development-Code, zu einer gebauten Version und dann zu einem isolierten Web-Server (Caddy) kommen.</p>
+    <p>Dafür legen wir die Datei "Dockerfile" im root unseres Projektes an.</p>
+  </section>
+
+  <section>
+    <p>Wir können uns den Prozess in 2 Schritten vorstellen:</p>
+    <ol>
+      <li>Die Website bauen</li>
+      <li>Die gebaute Website in einem Caddy-File-Server ablegen</li>
+    </ol>
+  </section>
+
+  <section>
+    <pre class="docker"><code data-trim data-line-numbers>
+      FROM node:20-alpine AS base
+
+      COPY . /app
+      WORKDIR /app
+
+      FROM base AS build
+      RUN npm ci
+      RUN npm run build
+    </code></pre>
+  </section>
+
+  <section>
+    <pre class="docker"><code data-trim data-line-numbers>
+      FROM caddy:alpine
+
+      COPY ./dist/ /srv/
+      COPY ./Caddyfile /etc/caddy/Caddyfile
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Wenn wir das ganze lokal ausprobieren wollen, müssen wir einfach (bei laufender Docker-Engine) folgenden Befehl in der Kommandozeile ausführen:</p>
+    <p><code>docker build . -t my-website</code></p>
+    <p>Das veranlasst Docker zum Bau der Website anhand des angegebenen Dockerfile</p>
+  </section>
+
+  <section>
+    <p>Der gebaute Container ist kann dann lokal mit Docker ausgeführt werden:</p>
+    <p><code>docker run my-website -p 8080:80</code></p>
+  </section>
+
+  <section>
+    <p>Damit haben wir nun die Möglichkeit, die Website bei Anbietern wie Sevalla, Railway oder Fly zu deployen...</p>
+  </section>
+</section>
