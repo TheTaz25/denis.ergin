@@ -14,6 +14,7 @@ const dhbwCollection = defineCollection({
     tags: z.array(z.string()),
     staticPath: z.string(),
     show: z.optional(z.boolean()),
+    order: z.number(),
   }),
 });
 
