@@ -21,4 +21,25 @@
 		<p>Bei der Interaktion mit den Variablen sollten nun Informationen zu den Variablen besser angezeigt werden.</p>
 		<p>Sehen wir uns nun das Beispiel mit einer String-Variable an.</p>
 	</section>
+
+	<section>
+		<p>Neben diesen normalen Datentypen, kennt TypeScript noch zwei weitere wichtige: <code>any</code> und <code>unknown</code>.</p>
+	</section>
+
+	<section>
+		<p>Sobald man <code>any</code> verwendet, gibt man dem TypeScript Type-Checker die Information, dass diese Variable nicht weiter beachtet werden soll. Für diese Variable wird also jegliches Type-Checking deaktiviert und wir erhalten keine Warnungen und Informationen mehr.</p>
+		<p>Als <i>sichere</i> alternative gibt es hierfür <code>unknown</code>. Hiermit teilen wir TypeScript mit, dass wir zum aktuellen Zeitpunkt nicht wissen, was das für ein Datentyp ist.</p>
+	</section>
+
+	<section>
+		<p>Wenn wir den Datentyp einer unknown Variable später eindeutig kennen, können wir diesen mit folgendem Code-Schnipsel konvertieren:</p>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			function x(y: unknown): number | undefined {
+				if (typeof y === 'number') {
+					return y as number;
+				}
+				return undefined;
+			}
+		</code></pre>
+	</section>
 </section>

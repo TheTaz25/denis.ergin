@@ -1,0 +1,29 @@
+<section>
+  <section>
+    <h2>Funktionen</h2>
+  </section>
+
+  <section>
+    <p>Funktionen in TypeScript lassen sich einfach definieren. Wir verwenden dazu das Type-Keyword und geben eine Funktion ähnlich zu einer Standard-Arrow-Function an:</p>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      type MyFunction = () =&gt; void;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>In den runden Klammern können wir die notwendigen Parameter für die Funktion definieren:</p>
+  </section>
+
+  <section>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      type MyFunction = (paramA: string, paramB: string) =&gt; void;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Der Rückgabe-Type wird nach dem "Fat-Arrow" definiert. <code>void</code> signalisiert, dass die Funktion keinen Wert zurückggibt.</p>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      type MyFunction = () =&gt; string;
+    </code></pre>
+  </section>
+</section>
