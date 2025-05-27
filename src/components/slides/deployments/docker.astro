@@ -75,7 +75,7 @@
     <pre class="docker"><code data-trim data-line-numbers>
       FROM caddy:alpine
 
-      COPY ./dist/ /srv/
+      COPY --from=build /app/dist/ /srv/
       COPY ./Caddyfile /etc/caddy/Caddyfile
     </code></pre>
   </section>
