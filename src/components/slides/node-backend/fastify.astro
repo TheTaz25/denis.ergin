@@ -1,0 +1,141 @@
+<section>
+  <section>
+    <h2>Bessere Webserver mit Fastify</h2>
+  </section>
+
+  <section>
+    <p>Wir haben in den vorangegenangenen Folien gesehen, wie man einen einfachen Web-Server in NodeJS erstellt.</p>
+    <p>Moderne Features wie Routing-Logik, Logging, Error-Handling und weitere Features waren nicht mit inbegriffen.</p>
+    <p>Wir wollen das auch nicht selber schreiben. Hierfür wurde das Rad unzählige male für verschiedenste Problemstellungen neu Entwickelt.</p>
+  </section>
+
+  <section>
+    <p>Eines dieser vielen Räder schauen wir uns genauer an: Fastify</p>
+    <p>Fastify ist ein modernes Web-Framework um seinen eigenen Web-Server zu bauen. Es bietet die vorher erwähnten Features und hat darüber hinaus noch mehr zu bieten.</p>
+    <p>Das wichtigste aus meiner Sicht: Eine solide TypeScript Unterstützung.</p>
+  </section>
+
+  <section>
+    <h3>Setup</h3>
+  </section>
+
+  <section>
+    <p>Fastify hat eine CLI die leider nicht sehr gut Dokumentiert ist, obwohl diese Optionen hat um ein Fastify-Projekt extrem schnell aufzusetzen.</p>
+    <p>Folgender Befehl erstellt ein Fastify-Projekt in einen neuen Order "my-new-project" inklusive TypeScript-Unterstützung</p>
+    <pre class="bash"><code data-trim data-line-numbers is:raw>
+      # Projekt generieren
+      npx fastify-cli generate my-new-project -- --lang=ts
+
+      # Ins Projekt wechseln und Dependencies installieren
+      cd my-new-project
+      npm install
+
+      # Dev-Server starten
+      npm run dev
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Das Basis-Projekt sieht nach der Initialisierung folgendermaßen aus:</p>
+    <pre><code data-trim data-line-numbers>
+      src/
+      ├── plugins/
+      │   ├── sensible.ts
+      │   └── support.ts
+      ├── routes/
+      │   ├── example/
+      │   │   └── index.ts
+      │   └── root.ts
+      └── app.ts
+      test/
+      ├── plugins/
+      │   └── ...
+      └── routes/
+          └── ...
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Routen</h3>
+  </section>
+
+  <section>
+    <p>Im Ordner <code>src/routes</code> befindet sich die gesamte Routen-Logik innerhalb von fastify.</p>
+    <p>Mit dem CLI-Setup wurde das Projekt so konfiguriert, dass die Ordner und Dateien später den aufrufbaren Pfaden für die API entsprechen.</p>
+    <p>Konkret bedeutet dies: Die Datei im Pfad <code>routes/example/index.ts</code> wird über den URL-Pfad <code>/example</code> ansprechbar sein.</p>
+  </section>
+
+  <section>
+    <p>Innerhalb der Dateien kann der Pfad aber nochmal <strong>erweitert</strong> werden.</p>
+    <pre class="ts"><code data-trim data-line-numbers="1|3|4-6" is:raw>
+      import { FastifyPluginAsync } from "fastify"
+
+      const example: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
+        fastify.get('/', async function (request, reply) {
+          return 'this is an example'
+        })
+      }
+
+      export default example;
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Fastify basiert stark auf einem Plug-And-Play basiertem Subsystem, um ein korrektes Typing zu haben, verwenden wir TypeScript-Types</p>
+    <p>"example" ist eine Variable die als Plugin-Funktion exportiert wird. Die Funktion nimmt das "globale" fastify-Objekt (und dessen konfiguration an). Zusätzlich erhalten wir weitere Optionen.</p>
+  </section>
+
+  <section>
+    <p>Innerhalb unseres Plugins haben wir dann die Möglichkeit (Unter)-Routen auf Basis des aktuellen Pfades zu erstellen.</p>
+    <p><code>fastify.get(...)</code> legt einen GET-Handler auf einer Route an. Die Konfiguration erfolgt im Aufruf der Funktion "get".</p>
+    <p>Der erste Parameter beschreibt die Pfad-Erweiterung (basierend auf dem Ordner im routes-Ordner).</p>
+    <p>Der zweite Paramter ist eine Callback-Funktion die aufgerufen wird, wenn die Route durch einen Client aufgerufen wird.</p>
+  </section>
+
+  <section>
+    <p>Innerhalb dieses Callbacks können wir dann unsere Routen-Logik implementieren.</p>
+  </section>
+
+  <section>
+    <h3>Plugins</h3>
+  </section>
+
+  <section>
+    <p>In dem generierten Projekt gibt es noch einen 2. Ordner mit dem Namen "plugins".</p>
+    <p>Die hier erstellten Dateien legen Funktionen in den fastify-Scope die wir später in den Route-Handlers wiederverwenden können.</p>
+    <p>Unter anderem können wir hiermit Datenbank-Verbindungen als Plugins bereitstellen die wir später dazu verwenden um Datenbankabfragen zu machen.</p>
+  </section>
+
+  <section>
+    <h3>Dynamische Routen</h3>
+  </section>
+
+  <section>
+    <p>Wenn Routen einen dynamischen Anteil haben (also ein Teil des Pfades ist dynamisch mit zum Beispiel einer ID die wir abfragen), lässt sich dies simpel darstellen.</p>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      fastify.get('/:name', async function (request, reply) {
+        return `Hello, ${request.params.name}!`;
+      });
+    </code></pre>
+    <p>Nun ist aber <code>request.params.name</code> Fehlerhaft.</p>
+  </section>
+
+  <section>
+    <p>Da wir mit TypeScript arbeiten, müssen wir der Funktion nun noch mitteilen, dass wir einen solchen Paramater erwarten:</p>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      type HelloNamedParams = {
+        name: string;
+      }
+      // ...
+      fastify.get<{
+        Params: HelloNamedParams;
+      }>('/:name', async function (request, reply) {
+        return `Hello, ${request.params.name}!`;
+      });
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Mit denn weiteren Optionen <code>Body, Querystring und Headers</code> können wir auch die erwartete Form dieser Request-Bestandteile definieren.</p>
+  </section>
+</section>

@@ -1,0 +1,77 @@
+<!-- Live Action! -->
+<section>
+  <section>
+    <h2>Aufgabe!</h2>
+  </section>
+
+  <section>
+    <p>Lasst uns einen kleinen Finanz-Tracker bauen:</p>
+    <ul>
+      <li>Einnahmen tracken</li>
+      <li>Ausnahmen tracken</li>
+      <li>Kategorisierung von Transaktionen (z.B. Lebensversicherung, Lebensmittel, etc)</li>
+      <li>Accounts (z.B. Bank, Kreditkarte, etc)</li>
+      <li>"Transaktionspartner" (an wen ging die Zahlung?)</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Accounts "Managen"</p>
+    <pre class="sql"><code data-trim data-line-numbers>
+      CREATE TABLE accounts (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL UNIQUE,
+        type TEXT NOT NULL
+      ) STRICT
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Kategorien bereitstellen</p>
+    <pre class="sql"><code data-trim data-line-numbers>
+      CREATE TABLE categories (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL UNIQUE
+      ) STRICT
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Transaktionspartner</p>
+    <pre class="sql"><code data-trim data-line-numbers>
+      CREATE TABLE transactors (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL
+      ) STRICT
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Zu guter letzt, die Transaktionstabelle selbst:</p>
+    <pre class="sql"><code data-trim data-line-numbers>
+      CREATE TABLE transactions (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        date TEXT NOT NULL,
+        cat_id INTEGER REFERENCES categories(id),
+        acc_id INTEGER NOT NULL REFERENCES accounts(id),
+        tra_id INTEGER NOT NULL REFERENCES transactors(id),
+        value INTEGER
+      ) STRICT
+    </code></pre>
+  </section>
+</section>
+<!-- Here are some simple applications that can help you learn SQL while building practical projects:
+
+1. **To-Do List App**  
+   - **Database Tables:** Tasks, Categories, Users  
+   - **Features:** Add, update, and delete tasks; categorize tasks; assign deadlines; filter tasks by status.
+
+3. **Personal Finance Tracker**  
+   - **Database Tables:** Transactions, Categories, Accounts, Users  
+   - **Features:** Record income/expenses; categorize transactions; view financial summaries and reports.
+
+6. **Student Management System**  
+   - **Database Tables:** Students, Courses, Grades, Instructors  
+   - **Features:** Enroll students in courses; assign grades; generate reports of student performance.
+-->

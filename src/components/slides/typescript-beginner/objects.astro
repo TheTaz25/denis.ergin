@@ -1,0 +1,164 @@
+<section>
+	<section>
+		<h2>Objekte</h2>
+	</section>
+
+	<section>
+		<p>In TS gibt es 2 Varianten Objekte zu Typisieren. Dabei definieren wir die Form bzw die Eigenschaften (Properties) innerhalb des Objektes.</p>
+	</section>
+
+	<section>
+		<h3>Interfaces</h3>
+	</section>
+
+	<section>
+		<p>Mit Interfaces definieren wir Objekte. Dabei können wir uns das <code>interface</code> noch am ehesten wie eine normale JavaScript-Klasse vorstellen, die später durch weitere Interfaces erweitert werden kann.</p>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			interface Point2D {
+				x: number,
+				y: number,
+			};
+
+			const location: Point2D = {
+				x: 5,
+				y: 10,
+			};
+		</code></pre>
+	</section>
+
+
+	<section>
+		<p>Ein Interface kann nun mit einem bestehenden Interface "erweitert" (extended) werden.</p>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			interface Point3D extends Point2D {
+				z: number,
+			};
+
+			const location: Point3D = {
+				x: 5,
+				y: 10,
+				z: 20,
+			};
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>type</h3>
+	</section>
+
+	<section>
+		<p>Ein <code>type</code> dient ähnlich zum interface dazu, ein Objekt zu definieren, beschränkt sich aber nicht darauf.</p>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			type Point2D = {
+				x: number;
+				y: number;
+			};
+
+			// Mit dem "&" können wir mehrere types zusammenführen
+			type Point3D = {
+				z: number;
+			} & Point2D;
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Wie gesagt beschränkt sich eine <code>type</code>-Definition nicht nur auf Objekte, wir können zum Beispiel einen String auf bestimmte Werte "restriktieren".</p>
+	</section>
+
+	<section>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			type Animal = "cat" | "dog" | "hamster";
+
+			const pet: Animal = "cat";
+
+			// Mischformen sind auch möglich
+			type Falsy = null | undefined | "" | 0 | false;
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>Optionale Properties</h3>
+	</section>
+
+	<section>
+		<p>Manchmal benötigen wir einzelne Properties in einem Objekt nicht immer, also können wir diese auch weg lassen.</p>
+		<p>In TypeScript werden optionale Properties in einem Objekt mit einem Fragezeichen markiert:</p>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			type MyObject = {
+				required: boolean;
+				optional?: boolean;
+			};
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>Record</h3>
+	</section>
+
+	<section>
+		<p>Der spezielle Type <code>Record</code>, ist ein generischer Type von TypeScript, der ein Objekt beschreiben kann.</p>
+		<p>Er nimmt 2 Parameter an: Einen <code>Keys</code>-Type und einen <code>Value</code>-Type.</p>
+	</section>
+
+	<section>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			type Keys = "cat" | "dog" | "hamster";
+			type Value = {
+				name: string;
+				age: number;
+			}
+
+			type Pets = Record&lt;Keys, Value&gt;;
+		</code></pre>
+	</section>
+
+	<section>
+		<p>Dies erzeugt folgenden Typ:</p>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			type Pets = {
+				cat: Value,
+				dog: Value,
+				hamster: Value
+			}
+		</code></pre>
+		<p>Jeder Key wird als Property mit dem angegebenen Value definiert!</p>
+	</section>
+
+	<section>
+		<h3>typeof</h3>
+	</section>
+
+	<section>
+		<p>Manchmal macht es Sinn, einen Datentypen (Interface oder Type) anhand eines bereits existierenden JavaScript-Objektes zu generieren.</p>
+		<p>Hierfür haben wir das keyword <code>typeof</code>. TypeScript wandelt bei der Verwendung eines JS-Ojbektes mit diesem keyword, in einen Datentypen um:</p>
+	</section>
+	
+	<section>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			const myObject = {
+				key1: 'Hello',
+				key2: 'World', 
+			};
+			
+			const MyObject = typeof myObject;
+			/**
+			*	{
+			*		key1: string;
+			*		key2: string;
+			*	}
+			*/
+		</code></pre>
+	</section>
+
+	<section>
+		<h3>keyof</h3>
+	</section>
+
+	<section>
+		<p>Das keyword <code>keyof</code> ist ein weiterer nützliches Tool. Damit können wir die property-keys aus einem Type extrahieren:</p>
+		<pre class="ts"><code data-trim data-line-numbers is:raw>
+			type Keys = keyof MyObject;
+			// Keys => 'key1' | 'key2';
+		</code></pre>
+	</section>
+</section>

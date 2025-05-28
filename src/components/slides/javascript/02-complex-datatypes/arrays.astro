@@ -110,7 +110,7 @@
   </section>
 
   <section>
-    <p>push &amp; pop</p>
+    <p>.push() &amp; .pop()</p>
     <pre class="js"><code data-trim data-line-numbers is:raw>
       const arr = [1, 2, 3];
       arr.push(4);
@@ -135,14 +135,14 @@
 
       // 10
       console.log(arr.reduce((acc, val) =&gt; {
-        acc += val;
+        return acc += val;
       }, 0));
     </code></pre>
     <p>Kalkuliert einen Wert basierend aus den Elementen des Array. Das Array erwartet 2 Werte: eine Funktion in der ein Accumulator und der aktuelle Wert als Parameter übergeben wird und den nächsten Wert zurück geben soll. Und den initialen Wert das Accumulators.</p>
   </section>
 
   <section>
-    <p>some</p>
+    <p>.some()</p>
     <pre class="js"><code data-trim data-line-numbers is:raw>
       const arr = [1, 5, 10, 25];
 
@@ -165,7 +165,6 @@
     <p>Sortiert das Array "In Place" (Ursprüngliches Array wird modifiziert).</p>
     <p>Hierzu führt <code>sort</code> eine Funktion aus, die mitgegeben wird. Anhand des Ergebnisses werden Elemente im Array umsortiert</p>
   </section>
-
   <section>
     <ul>
       <li>Ergebnis -1: Wert "a" ist kleiner als Wert "b"</li>

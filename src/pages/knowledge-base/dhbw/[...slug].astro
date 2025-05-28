@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const blogEntries = await getCollection('dhbw');
   return blogEntries.map(entry => ({
     params: { slug: entry.slug }, props: { entry },
-  }));
+  }))
 }
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;

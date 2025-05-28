@@ -1,0 +1,30 @@
+<section>
+	<section>
+		<h2>Projekt-Setup mit TS</h2>
+	</section>
+
+	<section>
+		<h3>Schnelles Setup mit Vite</h3>
+	</section>
+
+	<section>
+		<p>Wenn wir ein Projekt mit Vite aufsetzen, können wir aus den vielen Templates von Vite wählen. Viele "Vanilla"-Templates haben auch eine TS-Variante mit der unnötiges Setup vermieden werden kann.</p>
+	</section>
+
+	<section>
+		<pre class="sh"><code data-trim data-line-numbers>
+			npm create vite@latest my-first-ts-app
+				-- --template vanilla-ts
+		</code></pre>
+	</section>
+
+	<section>
+		<p>In dem nun generierten Projekt sehen wir nun die ersten Unterschiede: Javascript-Dateien gibt es hier nicht mehr und sind mit <code>.ts</code> abgekürzt. Das sind entsprechende TypeScript-Dateien.</p>
+		<p>TypeScript wird diese Dateien analysieren, und während der Build-Phase diese in JavaScript umwandeln, sodass dieser dann in nachgelagerten Schritten weiter prozessiert werden kann.</p>
+	</section>
+
+	<section>
+		<p>Euch wird wahrscheinlich eine tsconfig.json im Projekt aufgefallen sein.</p>
+		<p>Dies ist die Konfigurations-Datei für TypeScript. Hier sind alle Einstellungen für den TypeScript-Compiler und können den eigenen Anforderungen entsprechend angepasst werden.</p>
+	</section>
+</section>

@@ -10,5 +10,6 @@ tags:
 slug: "web-engineering-ii"
 staticPath: "knowledge-base/dhbw/"
 show: false
+order: 3
 ---
 # Hallo Welt!

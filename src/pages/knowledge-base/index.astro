@@ -25,7 +25,9 @@ const dhbwModules = await getCollection('dhbw', (module) => module.data.show);
       Hier findet Ihr alles rund um die Module die ich als Dozent für die DHBW verfasst habe.
     </p>
     <HorizontalSlider>
-      {dhbwModules.map((module) => (
+      {dhbwModules
+        .sort((e1, e2) => (e1.data.order - e2.data.order))
+        .map((module) => (
         <Card to={`/${module.data.staticPath}${module.slug}`} class="module-card">
           <span class="card-title">{module.data.title}</span>
           <Icon name="arrow" class="arrow" />

@@ -1,0 +1,46 @@
+<section>
+  <section>
+    <h2>Generics</h2>
+  </section>
+
+  <section>
+    <p>Generics in TypeScript sind ein wichtiges Feature um Typen dynamisch festzulegen</p>
+    <p>Im Grunde geben wir mit einem Generic an, das der <code>type</code> von außen festgelegt oder durch Code-Analyse automatisch bestimmbar ist.</p>
+  </section>
+
+  <section>
+    <p>Fangen wir einfach an: Wir wollen den <code>type</code> einer Eigenschaft eines Objekts frei einstellen:</p>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      type MyObject&lt;T&gt; = {
+        value: T,
+      };
+
+      const x: MyObject&lt;number&gt; = {
+        value: 5,
+      };
+      const y: MyObject&lt;string&gt; = {
+        value: 'Hallo!',
+      };
+    </code></pre>
+  </section>
+
+  <section>
+    <p>Fangen wir einfach an</p>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      const convertToString = (thing): string =&gt; {
+        return thing.toString();
+      }
+    </code></pre>
+    <p>Nicht alles kann mit <code>toString</code> in etwas nützliches konvertiert werden (z.B. Objekte). Deshalb wollen wir nun nur "Sinnvolle" Typen zulassen</p>
+  </section>
+
+  <section>
+    <pre class="ts"><code data-trim data-line-numbers is:raw>
+      const convertToString = &lt;T extends
+        string | number | boolean | null | undefined
+      &gt;(thing: T): string =&gt; {
+        return thing.toString();
+      }
+    </code></pre>
+  </section>
+</section>

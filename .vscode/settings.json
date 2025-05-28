@@ -6,5 +6,6 @@
     "landing",
     "build",
     "knowledge-base"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
