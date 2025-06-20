@@ -7,7 +7,7 @@ tags:
 - "html"
 - "css"
 - "javascript"
-slug: "web-engineering-ii"
+id: "web-engineering-ii"
 staticPath: "knowledge-base/dhbw/"
 show: false
 order: 3
