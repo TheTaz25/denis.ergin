@@ -18,7 +18,12 @@ const dhbwCollection = defineCollection({
   }),
 });
 
+const homeCollection = defineCollection({
+  type: 'content',
+})
+
 export const collections = {
   'skills': skillCollection,
   'dhbw': dhbwCollection,
+  'home': homeCollection,
 }
