@@ -4,7 +4,7 @@ tags:
 - "dhbw"
 - "web"
 - "engineering"
-slug: "web-engineering-project-25-checklist"
+id: "web-engineering-project-25-checklist"
 staticPath: "knowledge-base/dhbw/"
 show: true
 order: 3

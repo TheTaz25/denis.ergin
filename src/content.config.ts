@@ -1,14 +1,8 @@
 import { defineCollection, z } from 'astro:content';
-
-const skillCollection = defineCollection({
-  type: 'data',
-  schema: z.object({
-    skills: z.array(z.string())
-  }),  
-});
+import { glob } from 'astro/loaders';
 
 const dhbwCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '*.(mdx|md)', base: './src/content/dhbw/de' }),
   schema: z.object({
     title: z.string(),
     tags: z.array(z.string()),
@@ -18,7 +12,11 @@ const dhbwCollection = defineCollection({
   }),
 });
 
+const homeCollection = defineCollection({
+  type: 'content',
+})
+
 export const collections = {
-  'skills': skillCollection,
   'dhbw': dhbwCollection,
+  'home': homeCollection,
 }
