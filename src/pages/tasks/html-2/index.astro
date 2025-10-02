@@ -1,8 +1,13 @@
 ---
+import type { SeoProps } from '../../../components/special/seo.astro';
 import Layout from '../../../layouts/Layout.astro';
+const seo: SeoProps = {
+  description: "HTML Aufgabe 2",
+  title: 'HTML Aufgabe 2'
+}
 ---
 
-<Layout title="HTML Aufgabe 2">
+<Layout seoProps={seo}>
   <section>
     <h1>Aufgabe 2 zu HTML</h1>
     <p>

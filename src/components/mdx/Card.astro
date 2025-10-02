@@ -3,12 +3,13 @@ import { Icon } from 'astro-icon/components'
 interface Props {
   to: string;
   color?: 'green' | 'rose' | 'violet' | 'blue';
+  _class?: string;
 }
 
-const { color, to } = Astro.props;
+const { color, to, _class } = Astro.props;
 ---
 
-<a class:list={["card", color]} href={to}>
+<a class:list={["card", color, _class]} href={to}>
   <slot />
   <Icon name="arrow" class="icon"/>
 </a>

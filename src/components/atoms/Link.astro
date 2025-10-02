@@ -1,13 +1,18 @@
 ---
 interface Props {
-  to: string
+  to: string;
+	variant?: 'vibrant';
 }
 
-const { to } = Astro.props;
-const currentPath = new URL(Astro.url).pathname.split('/')[1];
+const { to, variant } = Astro.props;
+
+const className = [];
+if (variant === 'vibrant') {
+	className.push('as-button');
+}
 ---
 
-<a href={to} class={`/${currentPath}` === to ? 'current' : undefined}>
+<a href={to} class={className.join(' ')}>
   <slot />
 </a>
 
@@ -17,5 +22,12 @@ a {
 	color: white;
 	font-size: large;
 	position: relative;
+	padding: 1rem .75rem;
+	border-radius: 4px;
+	display: inline-block;
+
+	&.as-button {
+		background: var(--button-background-color);
+	}
 }
 </style>

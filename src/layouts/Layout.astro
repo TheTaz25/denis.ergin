@@ -1,32 +1,42 @@
 ---
 import Navigation from '../components/nav.astro'
+import Seo from '../components/special/seo.astro';
 import Footer from '../components/footer.astro'
 import { getLangFromUrl } from '../i18n/utils';
-import '../styles/global.css'
+import '../styles/global.scss'
+import type { SeoProps } from '../components/special/seo.astro';
 
-interface Props {
-	title: string;
+export interface NavigationItem {
+	to: string;
+	name: string;
 }
 
-const { title } = Astro.props;
+interface Props {
+	backlinks?: Array<NavigationItem>,
+	seoProps: SeoProps,
+}
+
+const { seoProps, backlinks } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-// const t = useTranslations(lang);
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<link rel="preload" href="/fonts/AllertaStencil-Reg.ttf" as="font" />
+		<link rel="preload" href="/fonts/Quicksand-Var.ttf" as="font" />
+		<Seo seo={seoProps} />
 	</head>
 	<body>
-		<header>
-			<Navigation />
-		</header>
+		{ backlinks && (
+			<header>
+				<Navigation data={backlinks} />
+			</header>
+		)}
 		<main>
 			<slot />
 		</main>
@@ -40,11 +50,7 @@ const lang = getLangFromUrl(Astro.url);
 		color: var(--foreground-color);
 	}
 	body {
-		max-width: 1200px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-rows: auto 1fr auto;
-		min-height: 100vh;
+		margin: 0;
 	}
 	code {
 		font-family:
@@ -59,8 +65,5 @@ const lang = getLangFromUrl(Astro.url);
 	}
 	header {
 		margin: 1rem 1rem;
-	}
-	main {
-		margin: 0 1rem;
 	}
 </style>

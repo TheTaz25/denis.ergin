@@ -1,0 +1,42 @@
+---
+import type { InferEntrySchema } from 'astro:content'
+import Card from '../../mdx/Card.astro';
+
+interface Props {
+  module: InferEntrySchema<'dhbw'>;
+}
+
+const props = Astro.props;
+
+const getColor = (linkedTo: string): string => {
+  switch (linkedTo) {
+    case 'slides': return 'green';
+    default:
+      return 'violet';
+  }
+}
+---
+
+<section>
+  <h2 class="heading-medium">{props.module.sectionName}</h2>
+  <div class="links">
+    {props.module.links.map((link) => (
+      <Card to={link.to} color={getColor(link.linkedTo) as any} _class="paragraph-large mb-8">
+        {link.title}
+      </Card>
+    ))}
+  </div>
+</section>
+
+<style scoped lang="scss">
+@use "../../../styles/_responsive.scss" as responsive;
+.links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
+  gap: 1.5rem;
+
+  @include responsive.screen-mobile {
+    gap: 0.5rem;
+  }
+}
+</style>

@@ -1,0 +1,9 @@
+.full-page-container {
+  > * {
+    scroll-snap-align: start;
+  }
+}
+
+html:has(.full-page-container) {
+  scroll-snap-type: y proximity;
+}

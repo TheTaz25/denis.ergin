@@ -1,8 +1,14 @@
 ---
+import type { SeoProps } from "../../../components/special/seo.astro";
 import Layout from "../../../layouts/Layout.astro";
+
+const seo: SeoProps = {
+  description: "HTML Aufgabe 5",
+  title: 'HTML Aufgabe 5'
+}
 ---
 
-<Layout title="HTML Aufgabe 5 - Formulare">
+<Layout seoProps={seo}>
   <h1>Ein Formular bauen</h1>
   <p>Für diese Aufgabe soll ein Formular entwickelt werden.</p>
   <p>

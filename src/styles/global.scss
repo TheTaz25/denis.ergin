@@ -1,0 +1,42 @@
+@use "./responsive" as responsive;
+@import url("./fonts.scss");
+
+:root {
+  --background-color: #091216;
+  --foreground-color: #eef4ed;
+
+  --navigation-background-color: #003554;
+  --button-background-color: #0582ca;
+  --button-background-color-translucent: #0582ca33;
+  --button-hover-color: #006494;
+  --button-active-color: #051923;
+  --button-fg-color: white;
+
+  --size-h1: 3.5rem;
+  --size-h2: 3rem;
+  --size-h3: 2.5rem;
+  --size-h4: 2rem;
+  --size-p-l: 1.5rem;
+  --size-p-m: 1rem;
+  --line-height-xl: 200%;
+  --line-height-l: 175%;
+  --line-height-m: 150%;
+  --line-height-s: 125%;
+  --line-height-xs: 110%;
+  --line-height-reg: 100%;
+}
+
+@include responsive.screen-mobile {
+  :root {
+    --size-h1: 2.25rem;
+    --size-h2: 2rem;
+    --size-h3: 1.75rem;
+    --size-h4: 1.5rem;
+    --size-p-l: 1.25rem;
+    --line-height-xl: 135%;
+    --line-height-l: 125%;
+    --line-height-m: 110%;
+    --line-height-s: 100%;
+    --line-height-xs: 100%;
+  }
+}

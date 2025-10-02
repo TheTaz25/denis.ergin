@@ -1,50 +1,67 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { useTranslations } from '../i18n/utils';
-import { Icon } from 'astro-icon/components';
+import Layout from "../layouts/Layout.astro";
+import FullPageContainer from '../components/atoms/full-page-container/index.astro';
+import Link from "../components/atoms/Link.astro";
+import type { SeoProps } from "../components/special/seo.astro";
 
-const t = useTranslations();
+const seo: SeoProps = {
+  title: 'Meet Denis',
+  description: 'I\'m Denis, a Software Engineer based in Germany. I use this (my) website to present my current work.',
+  og: {
+    title: 'Meet Denis',
+    type: 'website',
+    url: '/',
+    description: "I\'m Denis, a Software Engineer based in Germany. I use this website to present myself and my work."
+  }
+}
 ---
 
-<Layout title="Hallo Welt!">
-	<div class="opening-wrapper">
-		<div class="row">
-			<Icon name="bracket" class="bracket open" height="100px" width="unset" />
-			<h1>{t('home.welcome')}</h1>
-		</div>
-		<p class="mb-2">
-			{t('home.opening.1')}
-		</p>
-		<p>
-			{t('home.opening.2')}
-		</p>
-		<div class="row">
-			<p>{t('home.opening.3')}</p>
-			<Icon name="bracket" class="bracket close" height="100px" width="unset" />
-		</div>
-	</div>
+<Layout seoProps={seo}>
+  <FullPageContainer>
+    <section class="max-height text-center" style='background: linear-gradient(rgb(0 0 0 / .8) 0 0), url("/images/macbook-angle-open.webp") center center / cover no-repeat;'>
+      <div class="inner">
+        <p class="paragraph-large">Hi! I am Denis!</p>
+        <h1 class="heading-impact">I am a Software Engineer based<br> in Karlsruhe, Germany.</h1>
+        <p class="paragraph-large">This Website is mainly used to present the work I am doing, who I am and as place to store my knowledge for my students (or, of course any other individual thinking my content is useful for them!). So if you want to find out more about me, just scroll down!</p>
+      </div>
+    </section>
+    <section>
+      <div class="inner">
+        <h2 class="heading-impact">Lecturing Content</h2>
+        <p class="paragraph-large">You're one of the students at the DHBW having me for Web Engineering? Or are you just interested in the content I show as a lecturer? Then check out this page!</p>
+        <Link variant="vibrant" to="/knowledge-base">Follow me to the Content!</Link>
+      </div>
+    </section>
+  </FullPageContainer>
 </Layout>
 
-<style lang="scss">
-.row {
-	display: flex;
-	align-items: center;
-
-	h1 {
-		font-size: xxx-large;
-		margin: unset;
-	}
+<style lang="scss" scoped>
+@use "../styles/_responsive.scss" as reponsive;
+section {
+  align-content: center;
+  
+  width: 100%;
+  position: relative;
+  &.text-center {
+    text-align: center;
+  }
+  &.max-height {
+    height: 100vh;
+  }
+  .inner {
+    padding: 150px 250px;
+    @include reponsive.screen-mobile {
+      padding: 2rem 1rem;
+    }
+  }
 }
-[data-icon="bracket"].bracket {
-	height: 100px;
-	color: #555;
 
-	&.close {
-		transform: rotate(180deg);
-	}
-
-	&.open {
-		width: auto;
-	}
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.2;
 }
 </style>

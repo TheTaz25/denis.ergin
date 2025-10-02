@@ -1,77 +1,61 @@
 ---
-import { Icon } from 'astro-icon/components';
-import Button from './atoms/Button.astro';
-import Link from './atoms/MenuLink.astro';
+interface NavigationItem {
+	to: string;
+	name: string;
+}
+
+interface Props {
+  data: Array<NavigationItem>
+}
+
+const { data } = Astro.props;
 ---
 
-<div class="nav-wrapper">
-  <Button className="nav-open">
-    <Icon name="ham" />
-    Menü
-  </Button>
-</div>
-<nav aria-hidden="true" class="main">
-  <Button className="nav-close" aria-label="Navigation schließen" type="ghost">
-    Menü schließen
-  </Button>
+<nav class="breadcrumb">
   <ul>
-    <li><Link to="/">Startseite</Link></li>
-    <li><Link to="/knowledge-base">Knowledge-Base</Link></li>
+    {data.map((item, i) => (
+      <li>
+        { i + 1 === data.length ? (
+          <span>
+            {item.name}
+          </span>
+        ) : (
+          <a href={item.to}>
+            {item.name}
+          </a>
+        )}
+      </li>
+    ))}
   </ul>
 </nav>
 
-<script>
-function toggleMenu() {
-  const targetAttr = 'aria-hidden';
-  const nav = document.querySelector('nav.main') as HTMLElement;
-  const nextState = nav.getAttribute(targetAttr) === 'true' ? 'false' : 'true';
-  nav.setAttribute(targetAttr, nextState);
-}
-
-const openbutton = document.querySelector('button.nav-open') as HTMLButtonElement;
-openbutton.addEventListener('click', toggleMenu);
-const closeButton = document.querySelector('button.nav-close') as HTMLButtonElement; 
-closeButton.addEventListener('click', toggleMenu);
-</script>
-
 <style lang="scss">
-div.nav-wrapper {
-  position: relative;
-}
+.breadcrumb {
+  margin: 0rem 2rem;
 
-nav.main {
-  position: absolute;
-  height: calc(100vh - 2rem);
-  max-width: 90vw;
-  width: 300px;
-  top: 0;
-  padding: 0;
-  margin: 0;
-  transition: left 150ms ease-out;
-  background-color: var(--navigation-background-color);
-  border-right: 2px solid #8da9c4;
-  padding-left: 2rem;
-  padding-top: 2rem;
-}
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
 
-nav.main ul {
-  list-style: none;
-  padding-left: 0;
-  line-height: 2.5rem;
-  font-size: 1.3rem;
-}
+    li:not(:last-of-type):after {
+      padding-inline-start: 2rem;
+      content: '>'
+    }
+  }
 
-nav.main[aria-hidden="true"] {
-  left: -100vw;
-}
-
-nav.main[aria-hidden="false"] {
-  left: 0rem;
-}
-
-button.nav-open {
-  display: inline-flex;
-  gap: 1rem;
-  align-items: center;
+  a, span {
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  a {
+    transition: color 150ms ease-in-out;
+  }
+  a:hover {
+    color: var(--button-background-color);
+  }
 }
 </style>

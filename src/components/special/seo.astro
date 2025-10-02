@@ -1,0 +1,35 @@
+---
+type OgTypes = 'website' | 'article';
+
+export interface OpenGraph {
+  title: string;
+  type: OgTypes;
+  url: string;
+  description: string;
+}
+
+export interface SeoProps {
+  title: string;
+  description: string;
+  og?: OpenGraph
+}
+
+type Props = {
+  seo: SeoProps,
+};
+const { og, description, title } = Astro.props.seo;
+
+const getFullUrl = (path: string) => {
+  return `https://www.denis-ergin.de${path}`;
+}
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+{ og && (
+  <meta property="og:title" content={og.title} />
+  <meta property="og:type" content={og.type} />
+  <meta property="og:url" content={getFullUrl(og.url)} />
+  <meta property="og:description" content={og.description} />
+)}

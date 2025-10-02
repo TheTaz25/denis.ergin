@@ -1,0 +1,29 @@
+[{
+  "$type": "fullscreen",
+  "background": {
+    "value": "linear-gradient(rgb(0 0 0 / .8) 0 0), url(\"/images/macbook-angle-open.jpg\") center center / cover no-repeat"
+  },
+  "modifier": {
+    "full-height": true
+  },
+  "content": [{
+    "$type": "paragraph",
+    "content": "Hi! I am Denis!",
+    "modifier": {
+      "size": "large"
+    }
+  }, {
+    "$type": "headline",
+    "level": 1,
+    "content": "I am a Software Engineer based in Karlsruhe, Germany.",
+    "modifier": {
+      "size": "impact"
+    }
+  }, {
+    "$type": "paragraph",
+    "content": "This Website is mainly used to present the work I am doing, who I am and as place to store my knowledge for my students (or, of course any other individual thinking my content is useful for them!). So if you want to find out more about me, just scroll down!",
+    "modifier": {
+      "size": "large"
+    }
+  }]
+}]

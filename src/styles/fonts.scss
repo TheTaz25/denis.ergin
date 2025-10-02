@@ -1,0 +1,55 @@
+@font-face {
+  font-family: Allerta;
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/fonts/AllertaStencil-Reg.ttf") format('woff2');
+  unicode-range: U+00-7F;
+}
+
+@font-face {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 300 400 500 600 700;
+  font-display: swap;
+  src: url("/fonts/Quicksand-Var.ttf") format('woff2-variations');
+}
+
+.heading-impact {
+  font-family: Allerta, sans-serif;
+  font-size: var(--size-h1);
+  line-height: var(--line-height-xl);
+}
+.heading-large {
+  font-family: Allerta, sans-serif;
+  font-size: var(--size-h2);
+  line-height: var(--line-height-l);
+}
+.heading-medium {
+  font-family: Allerta, sans-serif;
+  font-size: var(--size-h3);
+  line-height: var(--line-height-m);
+}
+.heading-small {
+  font-family: Allerta, sans-serif;
+  font-size: var(--size-h4);
+  line-height: var(--line-height-s);
+}
+
+.paragraph-large {
+  font-family: Quicksand, Verdana, Geneva, Tahoma, sans-serif;
+  font-size: var(--size-p-l);
+  line-height: var(--line-height-xs);
+  margin-block-end: 2.5rem;
+}
+
+.paragraph-medium {
+  font-family: Quicksand, Verdana, Geneva, Tahoma, sans-serif;
+  font-size: var(--size-p-m);
+  line-height: var(--line-height-reg);
+  margin-block-end: 1.5rem;
+}
+
+.mb-8 {
+  margin-block-end: 0.5rem;
+}

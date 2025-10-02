@@ -1,0 +1,5 @@
+@mixin screen-mobile {
+  @media screen and (width <= 786px) {
+    @content
+  }
+}

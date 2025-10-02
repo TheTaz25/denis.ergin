@@ -1,8 +1,14 @@
 ---
+import type { SeoProps } from '../../../components/special/seo.astro';
 import Layout from '../../../layouts/Layout.astro';
+
+const seo: SeoProps = {
+  description: "HTML Aufgabe 3",
+  title: 'HTML Aufgabe 3'
+}
 ---
 
-<Layout title="HTML Aufgabe 3 - Ein Bild sagt mehr als 1000 Worte">
+<Layout seoProps={seo}>
   <h1>Bilder einbauen</h1>
   <p>Mit dem erlernten Material soll nun das HTML aus Aufgabe 1 erweitert werden</p>
   <ul>

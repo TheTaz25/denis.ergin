@@ -1,24 +1,48 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import type { SeoProps } from "../components/special/seo.astro";
+import Layout, { type NavigationItem } from "../layouts/Layout.astro";
+
+const navItems: Array<NavigationItem> = [{
+  to: '/',
+  name: 'Startseite'
+}, {
+  to: '',
+  name: 'Impressum'
+}];
+
+const seo: SeoProps = {
+  description: 'Impressum',
+  title: 'Impressum',
+}
 ---
 
-<Layout title="Impressum">
-  <h1>Impressum</h1>
-  <p style="margin-bottom: 3rem;">
-    Angaben gemäß § 5 TMG:
-    <br><br>
-    Denis Ergin <br>
-    Albgaustraße 3a <br>
-    76337 Waldbronn
-    <br><br>
-    Kontakt: <br>
-    E-Mail: kontakt@denis-ergin.de
-  </p>
-  <p>
-    Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
-    <br>
-    Denis Ergin <br>
-    Albgaustraße 3a <br>
-    76337 Waldbronn
-  </p>
+<Layout seoProps={seo} backlinks={navItems}>
+  <section class="inset">
+    <h1>Impressum</h1>
+    <p style="margin-bottom: 3rem;">
+      Angaben gemäß § 5 TMG:
+      <br><br>
+      Denis Ergin <br>
+      Albgaustraße 3a <br>
+      76337 Waldbronn
+      <br><br>
+      Kontakt: <br>
+      E-Mail: kontakt@denis-ergin.de
+    </p>
+    <p>
+      Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
+      <br>
+      Denis Ergin <br>
+      Albgaustraße 3a <br>
+      76337 Waldbronn
+    </p>
+    
+  </section>
 </Layout>
+
+<style scoped>
+.inset {
+  margin: 2rem auto;
+  max-width: 1000px;
+}
+</style>

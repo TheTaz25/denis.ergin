@@ -1,54 +1,22 @@
-# Astro Starter Kit: Basics
+# Code for my Static Webseite "denis-ergin.de"
 
-```sh
-npm create astro@latest -- --template basics
-```
+As I do not have any _secretive_ things on my personal website, I want to freely share the code that it is build upon on. Maybe as a good example, maybe as an bad example, who knows...
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Used Framework
+This website is build with **Astro**! It is configured to run on a quite small *docker image* with *nginx* (alpine) to keep the resource-fingerprint quite low, for this to achieve, I did **not** opt-out of the static site generation. Inside the build-pipeline the image will be built for static delivery. This allows the nginx server to deliver the whole site with max 20 MB of RAM usage and a not measurable (at least according to my dashboards) usage of a virtual CPU (finest measurment in the dashboard is 0.1 VCPU).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Current Plans for this Website
+- [ ] Redesign current contents with a more modern design (excluding slides)
+  - [x] Homepage
+  - [x] Knowledge-Base (Stage 1, -> Rework to a single json file and have everything on a single page)
+  - [x] Footer-Section
+  - [x] Image-optimazation
+  - [x] Impressum
+  - [x] Basic Navigation in sub-pages
+  - [ ] ~~Get rid of the "old" layout file~~
+  - [x] Implement Basic SEO needs for the website
+  - [x] Sitemap?
+- [ ] New Content:
+  - [ ] About Me
+  - [ ] Project-Page
+- [ ] General I18n (DE/EN)

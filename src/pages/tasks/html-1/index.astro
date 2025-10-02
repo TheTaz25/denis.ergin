@@ -1,8 +1,14 @@
 ---
+import type { SeoProps } from "../../../components/special/seo.astro";
 import Layout from "../../../layouts/Layout.astro";
+
+const seo: SeoProps = {
+  description: "HTML Aufgabe 1",
+  title: 'HTML Aufgabe 1'
+}
 ---
 
-<Layout title="HTML Aufgabe 1">
+<Layout seoProps={seo}>
   <h1>Aufgabe #1 zu HTML</h1>
   <p>
     Mit den bisher erlernten Inhalten sollte es möglich sein eine erste kleine HTML-Seite aufzubauen.
